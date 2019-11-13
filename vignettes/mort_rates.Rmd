@@ -4,7 +4,7 @@ author: "Duncan Gillespie, Laura Webster, Colin Angus"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Cigarette consumption}
+  %\VignetteIndexEntry{Cause-specific mortality data}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 bibliography: mort-refs.bib
