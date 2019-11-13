@@ -1,0 +1,24 @@
+Package: mort.tools
+Title: Process ONS mortality microdata
+Version: 1.0.0
+Authors@R: 
+    person(given = "Duncan",
+           family = "Gillespie",
+           role = c("aut", "cre"),
+           email = "duncan.gillespie@sheffield.ac.uk")
+Description: A collection of functions to read, clean and analyse cause-specific mortality data.
+License: For internal University of Sheffield use only
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    testthat,
+    dplyr,
+    stringr,
+    readxl,
+    plyr,
+    ggplot2,
+    TTR
+RoxygenNote: 6.1.1
+Depends: 
+    data.table,
+    demography
