@@ -10,6 +10,7 @@
 #' @param mort_data Data table - central rates of death in single years of age and period, stratified by cause.
 #' Cause-specific death rates are "mix", stratified by subgroups of "age", "sex", "imd_quintile" and "year".
 #' @param pop_data Data table - mid-year population sizes in single years of age and period.
+#' @param strat_vars Character vector - the variables by which to stratify the summary.
 #' @param label Character - the label to append to the calculated variables. Defaults to NULL.
 #'
 #' @return Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
@@ -25,6 +26,7 @@
 LifetableSummary <- function(
   mort_data,
   pop_data,
+  strat_vars = c("age_cat", "sex", "imd_quintile", "year", "condition"),
   label = NULL
 ) {
 
@@ -72,7 +74,7 @@ LifetableSummary <- function(
     yll = sum(N * mix * ex),
     ex = mean(ex)
 
-  ), by = c("age_cat", "sex", "imd_quintile", "year", "condition")]
+  ), by = strat_vars]
 
 
   setnames(data_YLL,
