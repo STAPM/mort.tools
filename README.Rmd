@@ -12,8 +12,8 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# hseclean <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
-
+# mort.tools <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3800592.svg)](https://doi.org/10.5281/zenodo.3800592)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)  
 
 
@@ -76,7 +76,7 @@ The **output** of these processes are the trends in cause-specific death rates a
 We would like to ask that since the code and documentation is still under development and is complex, that you consult with the authors before you use it.    
 
 Please cite the latest version of the package using:  
-"Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. https://STAPM.github.io/mort.tools/. DOI: "   
+"Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. https://STAPM.github.io/mort.tools/. DOI: 10.5281/zenodo.3800592."   
 
 ---
 

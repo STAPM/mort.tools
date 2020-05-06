@@ -1,8 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# hseclean <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
+# mort.tools <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3800592.svg)](https://doi.org/10.5281/zenodo.3800592)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
@@ -110,7 +111,8 @@ before you use it.
 Please cite the latest version of the package using:  
 “Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020).
 mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R
-package version x.x.x. <https://STAPM.github.io/mort.tools/>. DOI:”
+package version x.x.x. <https://STAPM.github.io/mort.tools/>. DOI:
+10.5281/zenodo.3800592.”
 
 -----
 
