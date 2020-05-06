@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)  
 
 
-The package is usable but there are still bugs and further developments that are being worked through i.e. some code and documentation is still incomplete or in need of being refined. The code and documentation are still undergoing internal review by the analyst team.   
+**DRAFT WORKING VERSION** - The package is usable but there are still bugs and further developments that are being worked through i.e. some code and documentation is still incomplete or in need of being refined. The code and documentation are still undergoing internal review by the analyst team.   
 
 ## Motivation
 `mort.tools` was created as part of a programme of work on the health economics of tobacco and alcohol at the School of Health and Related Research (ScHARR), The University of Sheffield. This programme is based around the construction of the Sheffield Tobacco and Alcohol Policy Model (STAPM), which aims to use comparable methodologies to evaluate the impacts of tobacco and alcohol policies, and investigate the consequences of clustering and interactions between tobacco and alcohol consumption behaviours.   
