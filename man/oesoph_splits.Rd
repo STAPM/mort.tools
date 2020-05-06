@@ -4,7 +4,9 @@
 \name{oesoph_splits}
 \alias{oesoph_splits}
 \title{Oesphageal SCC AC splits}
-\format{A data table}
+\format{
+A data table
+}
 \source{
 Percentages supplied by Katrina Brown at CRUK Katrina.Brown@cancer.org.uk
 }

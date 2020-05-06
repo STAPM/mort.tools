@@ -4,8 +4,12 @@
 \alias{CombinedForecast}
 \title{Run cause-specific forecasts}
 \usage{
-CombinedForecast(data, forecast_params, n_years = 2060 - 2016,
-  folder_path = getwd())
+CombinedForecast(
+  data,
+  forecast_params,
+  n_years = 2060 - 2016,
+  folder_path = getwd()
+)
 }
 \arguments{
 \item{data}{Data table containing our processed cause-specific mortality rates}
@@ -28,8 +32,8 @@ A wrapper that runs the forecast for each cause and groups the outputs together.
 \dontrun{
 
 cforecast <- CombinedForecast(
-  data = fread("X:/ScHARR/PR_Mortality_data_TA/Code/model_inputs/Output/tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv"),
-  forecast_params = setDT(readxl::read_xlsx("X:/ScHARR/PR_Mortality_data_TA/Code/mortality_forecast/Doc/disease specific mortality forecasting (for function input).xlsx"))
+  data = fread("tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv"),
+  forecast_params = setDT(readxl::read_xlsx("disease specific mortality forecasting (for function input).xlsx"))
 )
 
 }

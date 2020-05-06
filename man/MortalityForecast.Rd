@@ -4,12 +4,21 @@
 \alias{MortalityForecast}
 \title{Lee-Carter forecast of mortality}
 \usage{
-MortalityForecast(mort_data_cause, folder_path = getwd(),
+MortalityForecast(
+  mort_data_cause,
+  folder_path = getwd(),
   cause_names = c("Chronic_obstructive_pulmonary_disease"),
-  sex_focus = c("Female", "Male"), folder_label = NULL,
-  year_range = 2001:2016, age_range = 12:89, smooth = FALSE,
-  smooth_n_age = 3, smooth_n_year = 3, n_years = 50,
-  standard_pop = mort.tools::esp2013, interpolate = TRUE)
+  sex_focus = c("Female", "Male"),
+  folder_label = NULL,
+  year_range = 2001:2016,
+  age_range = 12:89,
+  smooth = FALSE,
+  smooth_n_age = 3,
+  smooth_n_year = 3,
+  n_years = 50,
+  standard_pop = mort.tools::esp2013,
+  interpolate = TRUE
+)
 }
 \arguments{
 \item{mort_data_cause}{Data table containing our processed cause-specific mortality rates}
@@ -17,6 +26,8 @@ MortalityForecast(mort_data_cause, folder_path = getwd(),
 \item{folder_path}{where to put the folder of diagnostic files}
 
 \item{cause_names}{names of the causes to include}
+
+\item{sex_focus}{Female, Male or both}
 
 \item{folder_label}{how to identify the forecast folder}
 
@@ -31,6 +42,8 @@ MortalityForecast(mort_data_cause, folder_path = getwd(),
 \item{smooth_n_year}{the year range for moving average - must be odd number}
 
 \item{n_years}{how far in future to project}
+
+\item{standard_pop}{Data table - the population structure for standardisation.}
 
 \item{interpolate}{TRUE or FALSE - should any remaining zeros in the data after smoothing
 be interpolated based on neighbouring values. This only works if sufficient data exists to inform the interpolation
@@ -60,7 +73,7 @@ Uses the functions from the R package 'demography':
 \dontrun{
 
 mx_forecast <- MortalityForecast(
-  mort_data_cause = fread("X:/ScHARR/PR_Mortality_data_TA/Code/model_inputs/Output/tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv")
+  mort_data_cause = fread("tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv")
 )
 
 }

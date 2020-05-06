@@ -1,13 +1,27 @@
 Package: mort.tools
-Title: Process ONS mortality microdata
+Title: Process Mortality Microdata
 Version: 1.0.0
 Authors@R: 
+    c(
     person(given = "Duncan",
            family = "Gillespie",
            role = c("aut", "cre"),
-           email = "duncan.gillespie@sheffield.ac.uk")
-Description: A collection of functions to read, clean and analyse cause-specific mortality data.
-License: For internal University of Sheffield use only
+           email = "duncan.gillespie@sheffield.ac.uk",
+           comment = c(ORCID = "0000-0003-3450-5747")),
+    person(given = "Laura",
+           family = "Webster",
+           role = c("aut")),
+    person(given = "Colin",
+           family = "Angus",
+           role = c("aut"),
+           email = "c.r.angus@sheffield.ac.uk"),
+    person(given = "Alan",
+           family = "Brennan",
+           role = c("aut"),
+           email = "a.brennan@sheffield.ac.uk")
+    )
+Description: Read, Clean and Analyse Cause-Specific Mortality Data.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -17,8 +31,13 @@ Imports:
     readxl,
     plyr,
     ggplot2,
-    TTR
-RoxygenNote: 6.1.1
-Depends: 
+    TTR,
     data.table,
-    demography
+    demography,
+    forecast,
+    raster
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.1.0

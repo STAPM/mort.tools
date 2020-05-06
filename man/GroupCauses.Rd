@@ -4,8 +4,11 @@
 \alias{GroupCauses}
 \title{Aggregate ICD-10 codes by cause group}
 \usage{
-GroupCauses(data_file, lookup_file, strat_vars = c("year", "age", "sex",
-  "imd_quintile", "laua"))
+GroupCauses(
+  data_file,
+  lookup_file,
+  strat_vars = c("year", "age", "sex", "imd_quintile", "laua")
+)
 }
 \arguments{
 \item{data_file}{Data table containing death counts ("n_deaths") by individual ICD10 codes.}

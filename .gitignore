@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+inst/doc
+*.zip
+Archive/
+*.Rproj*
+dev/

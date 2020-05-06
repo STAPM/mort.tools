@@ -7,6 +7,7 @@
 #'
 #' @param data Data table containing counts of death by cause.
 #' @param cruk_splits Data table containing the percentages of oesphageal cancer that are SCC and AC.
+#' @param n_deaths_var Character - the name of the variable containing the death counts.  
 #'
 #' @return Returns a data table that is an updated version of data with extra rows added to reflect
 #' the splitting of oesophageal cancer into two diseases.

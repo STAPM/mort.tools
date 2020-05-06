@@ -1,0 +1,19 @@
+destination: docs
+home:
+  title: Process Mortality Microdata
+  links:
+  - text: Browse source code
+    href: https://github.com/STAPM/mort.tools
+  - text: Read the ScHARR Information Governance Policy
+    href: https://www.sheffield.ac.uk/scharr/research/igov/policy00
+url: https://github.com/STAPM/mort.tools
+template:
+  params:
+    bootswatch: flatly
+authors:
+  Duncan Gillespie:
+    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/gillespie_d
+  Colin Angus:
+    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/angus_c
+  Alan Brennan:
+    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a

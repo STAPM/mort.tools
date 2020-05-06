@@ -14,6 +14,7 @@
 #' @param mort_data_cause Data table containing our processed cause-specific mortality rates
 #' @param folder_path where to put the folder of diagnostic files
 #' @param cause_names names of the causes to include
+#' @param sex_focus Female, Male or both
 #' @param folder_label how to identify the forecast folder
 #' @param year_range the range of years to use as the basis for forecasting
 #' @param age_range the ages for which to conduct the forecast
@@ -21,10 +22,15 @@
 #' @param smooth_n_age the age range for moving average - must be odd number
 #' @param smooth_n_year the year range for moving average - must be odd number
 #' @param n_years how far in future to project
+#' @param standard_pop Data table - the population structure for standardisation.  
 #' @param interpolate TRUE or FALSE - should any remaining zeros in the data after smoothing
 #' be interpolated based on neighbouring values. This only works if sufficient data exists to inform the interpolation
 #' i.e. for diseases with few deaths it might have to be turned off.
-#'
+#' @importFrom data.table := setDT setnames fread rbindlist dcast copy
+#' @importFrom demography read.demogdata lca
+#' @importFrom forecast forecast
+#' @importFrom grDevices png dev.off
+#' @importFrom graphics plot
 #' @return
 #' \item{mort_data}{Observed mortality}
 #' \item{mort_data_smooth}{Smoothed observed mortality}
@@ -39,7 +45,7 @@
 #' \dontrun{
 #'
 #' mx_forecast <- MortalityForecast(
-#'   mort_data_cause = fread("X:/ScHARR/PR_Mortality_data_TA/Code/model_inputs/Output/tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv")
+#'   mort_data_cause = fread("tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv")
 #' )
 #'
 #' }

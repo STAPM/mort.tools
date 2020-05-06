@@ -7,6 +7,7 @@
 #' @param path Character - the path to the folder in which the data are stored.
 #'
 #' @return Returns a data table containing the data for all years.
+#' @importFrom data.table := setDT setnames rbindlist copy
 #' @export
 #'
 #' @examples
@@ -85,7 +86,7 @@ ReadPopData <- function(path) {
 
     # Keep track of progress
     cat(ky, "\r")
-    flush.console()
+    utils::flush.console()
   }
 
 return(data)

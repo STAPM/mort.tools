@@ -4,7 +4,9 @@
 \name{esp2013}
 \alias{esp2013}
 \title{European Standard Population (ESP)}
-\format{A data table}
+\format{
+A data table
+}
 \source{
 https://www.causesofdeath.org/docs/standard.pdf
 }

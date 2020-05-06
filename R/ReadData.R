@@ -8,7 +8,7 @@
 #' The data is processed by an ONS analyst initially before being transferred to us.
 #'
 #' @param path Character - the path to the folder in which the data are stored.
-#'
+#' @importFrom data.table := setDT setnames fread rbindlist dcast copy
 #' @return Returns a data table containing the data for all years.
 #' @export
 #'
@@ -91,7 +91,7 @@ ReadData <- function(path) {
 
   # Keep track of progress
   cat("2016", "\r")
-  flush.console()
+  utils::flush.console()
 
   # Clean age variable
   data[ , age := as.vector(as.numeric(ageinyrs))]

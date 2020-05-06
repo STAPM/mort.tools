@@ -4,8 +4,12 @@
 \alias{LifetableSummary}
 \title{Calculate lifetable summary statistics}
 \usage{
-LifetableSummary(mort_data, pop_data, strat_vars = c("age_cat", "sex",
-  "imd_quintile", "year", "condition"), label = NULL)
+LifetableSummary(
+  mort_data,
+  pop_data,
+  strat_vars = c("age_cat", "sex", "imd_quintile", "year", "condition"),
+  label = NULL
+)
 }
 \arguments{
 \item{mort_data}{Data table - central rates of death in single years of age and period, stratified by cause.

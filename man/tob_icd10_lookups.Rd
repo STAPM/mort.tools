@@ -4,7 +4,9 @@
 \name{tob_icd10_lookups}
 \alias{tob_icd10_lookups}
 \title{Diseases related to tobacco and their ICD-10 defintions}
-\format{A data table}
+\format{
+A data table
+}
 \source{
 Our tobacco disease list in the folder PR_Disease_Risk_TA
 }

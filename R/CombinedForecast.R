@@ -8,7 +8,7 @@
 #' @param forecast_params Data table containing the control parameters for the cause specific forecasts
 #' @param n_years Integer - the number of years to forecast into the future
 #' @param folder_path where to save the outputs - defaults to the current working directory
-#'
+#' @importFrom data.table := setDT setnames fread rbindlist
 #' @return
 #' \item{mx_data_cause}{Data table containing the observed and forecast mortality rates by age, sex, IMD quintile and cause.}
 #' \item{mx_data_all}{Data table containing the observed and forecast mortality rates for all causes combined.}
@@ -20,8 +20,8 @@
 #' \dontrun{
 #'
 #' cforecast <- CombinedForecast(
-#'   data = fread("X:/ScHARR/PR_Mortality_data_TA/Code/model_inputs/Output/tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv"),
-#'   forecast_params = setDT(readxl::read_xlsx("X:/ScHARR/PR_Mortality_data_TA/Code/mortality_forecast/Doc/disease specific mortality forecasting (for function input).xlsx"))
+#'   data = fread("tob_death_rates_national_2019-05-06_mort.tools_1.0.0.csv"),
+#'   forecast_params = setDT(readxl::read_xlsx("disease specific mortality forecasting (for function input).xlsx"))
 #' )
 #'
 #' }

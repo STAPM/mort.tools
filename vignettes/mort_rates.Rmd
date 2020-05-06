@@ -1,7 +1,5 @@
 ---
 title: "Cause-specific mortality data"
-author: "Duncan Gillespie, Laura Webster, Colin Angus"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Cause-specific mortality data}
@@ -41,26 +39,22 @@ This vignette describes how cause-specific mortality data is used in the new She
 To inform the rates of mortality We use Office for National Statistics mortality microdata. These data are used to examine conditions that have been classed as partially attributable to the consumption of tobacco and to put this in the context of deaths from all other causes. We use data from 2001 (being the first year for which estimates by Index of Multiple Deprivation quintile are available) to the latest available. We calculated death rates and later use lifetable methods to estimate the consequent years of life lost to death from each condition.  
 
 ## Death microdata
-\begin{itemize}
-\item 326 lower tier Local Authorities
-\item IMD quintiles
-\item sex
-\item Age groups single year of age then 100+ (in some years the data was provided with the upper open age-interval of 90+ due to small number counts to avoid being disclosive - so all our analyses use 90+)
-\item ICD-Codes
-\item 2001-latest available
-\item Death Counts
-\end{itemize}
+- 326 lower tier Local Authorities    
+- IMD quintiles   
+- sex   
+- Age groups single year of age then 100+ (in some years the data was provided with the upper open age-interval of 90+ due to small number counts to avoid being disclosive - so all our analyses use 90+)   
+- ICD-Codes   
+- 2001-latest available   
+- Death Counts   
 
 ## Population microdata
-These are mid-year population sizes  
-\begin{itemize}
-\item 326 lower tier LAs
-\item IMD quintiles
-\item sex
-\item Age groups single year of age then 100+
-\item 2001-latest available
-\item Death Counts
-\end{itemize}
+These are mid-year population sizes    
+- 326 lower tier LAs   
+- IMD quintiles   
+- sex   
+- Age groups single year of age then 100+   
+- 2001-latest available   
+- Population Counts    
 
 ## Information governance
 The data is stored on and accessed via a University managed secure virtual machine `heta_study`. This machine is accessible only from the office workstation IP addresses of named individuals via a password protected login.
@@ -184,7 +178,7 @@ ggplot(lungc_rates) +
 
 ```
 
-```{r, eval = T, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 5, fig.cap = "Age-standardised rates of death from lung cancer per 100,000 people by quintiles of the English Index of Multiple Deprivation."}
+```{r, eval = F, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 5, fig.cap = "Age-standardised rates of death from lung cancer per 100,000 people by quintiles of the English Index of Multiple Deprivation."}
 readRDS("lungc_rates.rds")
 
 ```  
@@ -208,7 +202,7 @@ ggplot(lungc_rates2016) +
 
 ```
 
-```{r, eval = T, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 5, fig.cap = "Age-specific rates of death from lung cancer per 100,000 people in 2016 by sex and quintiles of the English Index of Multiple Deprivation."}
+```{r, eval = F, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 5, fig.cap = "Age-specific rates of death from lung cancer per 100,000 people in 2016 by sex and quintiles of the English Index of Multiple Deprivation."}
 readRDS("lungc_rates_age2016.rds")
 
 ```  
@@ -245,7 +239,8 @@ We conduct the forecast using the R package `demography` [@RJHHBLTJ2019]. We con
 
 The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into `CombinedForecast()` as `forecast_params` (Figure 3). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.  
 
-![Snapshot of the forecast input spreadsheet.](forecast_spreadsheet_snapshot.png)
+<img src="forecast_spreadsheet_snapshot.png" />
+
 
 Given all the potential unreliabilities of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.  
 
@@ -283,7 +278,7 @@ tob_mort_data_cause <- copy(cforecast$mx_data_cause)
 
 ```
 
-```{r, eval = T, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 6, fig.cap = "Forecast of lung cancer death rates for males compared between the least and most deprived IMD quintiles."}
+```{r, eval = F, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 6, fig.cap = "Forecast of lung cancer death rates for males compared between the least and most deprived IMD quintiles."}
 readRDS("lung_cancer_forecast.rds")
 
 ```  

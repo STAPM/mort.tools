@@ -13,6 +13,7 @@
 #' Counts must be in a variable named "N_pop".
 #' @param strat_vars Character vector - the variables by which to stratify the summary.
 #' @param label Character - the label to append to the calculated variables. Defaults to NULL.
+#' @importFrom data.table := setDT setnames fread rbindlist
 #'
 #' @return Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
 #' @export
