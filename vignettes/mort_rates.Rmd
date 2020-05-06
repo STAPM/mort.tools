@@ -48,7 +48,8 @@ To inform the rates of mortality We use Office for National Statistics mortality
 - Death Counts   
 
 ## Population microdata
-These are mid-year population sizes    
+These are mid-year population sizes:  
+
 - 326 lower tier LAs   
 - IMD quintiles   
 - sex   
@@ -57,7 +58,7 @@ These are mid-year population sizes
 - Population Counts    
 
 ## Information governance
-The data is stored on and accessed via a University managed secure virtual machine `heta_study`. This machine is accessible only from the office workstation IP addresses of named individuals via a password protected login.
+We abide by the [ScHARR information governance policy](https://www.sheffield.ac.uk/scharr/research/igov/policy00) and the terms of the data access agreement. See our data management plan.  
 
 ## Ethics
 Ethics approval was received for ‘Investigation of the geographic and socioeconomic variation in alcohol and tobacco related mortality to inform decision support models for policy’ on 25/09/2018 from the School of Health and Related Research at the University of Sheffield with reference number 023092.  
