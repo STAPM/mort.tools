@@ -103,20 +103,17 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>We would like to ask that since the code and documentation is still under development and is complex, that you consult with the authors before you use it.</p>
-<p>Please cite the latest version of the package using:<br>
-“Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. <a href="https://STAPM.github.io/mort.tools/" class="uri">https://STAPM.github.io/mort.tools/</a>. DOI: 10.5281/zenodo.3800592.”</p>
-<hr>
-<p>You can <strong>install the development version of <code>mort.tools</code></strong> from github with:</p>
+<p><code>mort.tools</code> is currently available only to members of the project team (but please contact Duncan Gillespie <a href="mailto:duncan.gillespie@sheffield.ac.uk" class="email">duncan.gillespie@sheffield.ac.uk</a> to discuss). To access you need to <a href="https://gitlab.com/"><strong>sign-up for a GitLab account</strong></a>. You will then need to be added to the STAPM project team to gain access.</p>
+<p>Once that is sorted, you can <strong>install the development version</strong> from GitLab with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co">#install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"STAPM/mort.tools"</span>)</pre></div>
-<hr>
-<p>If there is an error with <code>install_github()</code>, or for data security reasons you need to use the package on a computer with no internet connection, one possible work-around is</p>
-<ol>
-<li><p>Download the package “tarball” by copying this into your internet browser (making sure the numbers at the end indicate the latest version) e.g. <code>https://github.com/STAPM/mort.tools/tarball/1.0.0</code>. When the window pops up, choose where to save the .tar.gz file.</p></li>
-<li><p>Go to the Terminal window in R Studio (or a console window in Windows by searching for “cmd”) and install the package from the downloaded file by typing <code>R CMD INSTALL [file path]</code>.</p></li>
-</ol>
-<hr>
+
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_git</a></span>(
+  <span class="st">"https://gitlab.com/stapm/mort.tools.git"</span>,
+  <span class="kw">credentials</span> <span class="kw">=</span> <span class="kw pkg">git2r</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/git2r/reference/cred_user_pass.html">cred_user_pass</a></span>(<span class="st">"uname"</span>, <span class="kw pkg">getPass</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html">getPass</a></span>())
+)
+
+<span class="co"># Where uname is your Gitlab user name.</span>
+<span class="co"># this should make a box pop up where you enter your GitLab password</span></pre></div>
 <p>Then load the package, and some other packages that are useful. Note that the code within <code>mort.tools</code> uses the <code><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table::data.table()</a></code> syntax.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co"># Load the package</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mort.tools</span>)
@@ -126,6 +123,12 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">magrittr</span>) <span class="co"># for pipes</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">ggplot2</span>) <span class="co"># for plotting</span></pre></div>
 </div>
+<div id="citation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#citation" class="anchor"></a>Citation</h2>
+<p>Please cite the latest version of the package using:<br>
+“Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. <a href="https://stapm.gitlab.io/mort.tools/" class="uri">https://stapm.gitlab.io/mort.tools/</a>.”</p>
+</div>
 </div>
   </div>
 
@@ -133,11 +136,7 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>STAPM webpage at <br><a href="https://stapm.github.io/">https://​stapm.github.io/​</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/STAPM/mort.tools">https://​github.com/​STAPM/​mort.tools</a>
-</li>
-<li>Read the ScHARR Information Governance Policy at <br><a href="https://www.sheffield.ac.uk/scharr/research/igov/policy00">https://​www.sheffield.ac.uk/​scharr/​research/​igov/​policy00</a>
+<li>STAPM webpage at <br><a href="https://stapm.gitlab.io/">https://​stapm.gitlab.io/​</a>
 </li>
 </ul>
 </div>
@@ -164,7 +163,6 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://doi.org/10.5281/zenodo.3800592"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3800592.svg" alt="DOI"></a></li>
 <li><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 </ul>
 </div>

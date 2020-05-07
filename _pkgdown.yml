@@ -1,14 +1,10 @@
-destination: docs
+destination: public
 home:
   title: Process Mortality Microdata
   links:
   - text: STAPM webpage
-    href: https://stapm.github.io/
-  - text: Browse source code
-    href: https://github.com/STAPM/mort.tools
-  - text: Read the ScHARR Information Governance Policy
-    href: https://www.sheffield.ac.uk/scharr/research/igov/policy00
-url: https://github.com/STAPM/mort.tools
+    href: https://stapm.gitlab.io/
+url: https://stapm.gitlab.io/mort.tools
 template:
   params:
     bootswatch: flatly

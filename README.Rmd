@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 # mort.tools <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3800592.svg)](https://doi.org/10.5281/zenodo.3800592)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)  
 
 
@@ -39,30 +38,21 @@ The **processes** applied by the functions in `mort.tools` give options to:
 The **output** of these processes are the trends in cause-specific death rates and population sizes. These dataset can be saved so that you don't need to run the cleaning processes in `mort.tools` each time you want to use the cleaned data.    
 
 ## Installation
+`mort.tools` is currently available only to members of the project team (but please contact Duncan Gillespie duncan.gillespie@sheffield.ac.uk to discuss). To access you need to [**sign-up for a GitLab account**](https://gitlab.com/). You will then need to be added to the STAPM project team to gain access.   
 
-We would like to ask that since the code and documentation is still under development and is complex, that you consult with the authors before you use it.    
-
-Please cite the latest version of the package using:  
-"Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. https://STAPM.github.io/mort.tools/. DOI: 10.5281/zenodo.3800592."   
-
----
-
-You can **install the development version of `mort.tools`** from github with:   
+Once that is sorted, you can **install the development version** from GitLab with:     
 
 ```{r gh_installation, message=FALSE, eval = FALSE}
 #install.packages("devtools")
-devtools::install_github("STAPM/mort.tools")
+
+devtools::install_git(
+  "https://gitlab.com/stapm/mort.tools.git", 
+  credentials = git2r::cred_user_pass("uname", getPass::getPass())
+)
+
+# Where uname is your Gitlab user name.
+# this should make a box pop up where you enter your GitLab password
 ```
-
----
-
-If there is an error with `install_github()`, or for data security reasons you need to use the package on a computer with no internet connection, one possible work-around is 
-
-1. Download the package "tarball" by copying this into your internet browser (making sure the numbers at the end indicate the latest version) e.g. `https://github.com/STAPM/mort.tools/tarball/1.0.0`. When the window pops up, choose where to save the .tar.gz file.  
-
-2. Go to the Terminal window in R Studio (or a console window in Windows by searching for "cmd") and install the package from the downloaded file by typing `R CMD INSTALL [file path]`.  
-
----
 
 Then load the package, and some other packages that are useful. Note that the code within `mort.tools` uses the `data.table::data.table()` syntax.  
 
@@ -75,3 +65,10 @@ library(dplyr) # for data manipulation and summary
 library(magrittr) # for pipes
 library(ggplot2) # for plotting
 ```
+
+## Citation
+Please cite the latest version of the package using:  
+"Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x.  https://stapm.gitlab.io/mort.tools/."   
+
+
+
