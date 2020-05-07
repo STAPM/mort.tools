@@ -73,22 +73,22 @@
   <div class="contents col-md-9">
 <div id="mort-tools" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#mort-tools" class="anchor"></a>mort.tools <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100">
+<a href="#mort-tools" class="anchor"></a>mort-tools <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100">
 </h1></div>
 
 <p><strong>DRAFT WORKING VERSION</strong> - The package is usable but there are still bugs and further developments that are being worked through i.e. some code and documentation is still incomplete or in need of being refined. The code and documentation are still undergoing internal review by the analyst team.</p>
 <div id="motivation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h2>
-<p><code>mort.tools</code> was created as part of a programme of work on the health economics of tobacco and alcohol at the School of Health and Related Research (ScHARR), The University of Sheffield. This programme is based around the construction of the Sheffield Tobacco and Alcohol Policy Model (STAPM), which aims to use comparable methodologies to evaluate the impacts of tobacco and alcohol policies, and investigate the consequences of clustering and interactions between tobacco and alcohol consumption behaviours.</p>
-<p>The motivation for <code>mort.tools</code> was to develop a set of functions to clean and do basic processing of the data. The advantage of this is that it ensures we apply a consistent approach across years of data and across the different projects for which we use the data.</p>
+<p><code>mort-tools</code> was created as part of a programme of work on the health economics of tobacco and alcohol at the School of Health and Related Research (ScHARR), The University of Sheffield. This programme is based around the construction of the Sheffield Tobacco and Alcohol Policy Model (STAPM), which aims to use comparable methodologies to evaluate the impacts of tobacco and alcohol policies, and investigate the consequences of clustering and interactions between tobacco and alcohol consumption behaviours.</p>
+<p>The motivation for <code>mort-tools</code> was to develop a set of functions to clean and do basic processing of the data. The advantage of this is that it ensures we apply a consistent approach across years of data and across the different projects for which we use the data.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>The suite of functions within <code>mort.tools</code> reads the data for each year, produces cause-specific life tables (focusing on the diseases related to tobacco and alcohol), and gives options for conducting forecasts of cause-specific death rates using the Lee-Carter method.</p>
+<p>The suite of functions within <code>mort-tools</code> reads the data for each year, produces cause-specific life tables (focusing on the diseases related to tobacco and alcohol), and gives options for conducting forecasts of cause-specific death rates using the Lee-Carter method.</p>
 <p>The <strong>inputs</strong> are the counts of death and mid-year population size.</p>
-<p>The <strong>processes</strong> applied by the functions in <code>mort.tools</code> give options to:</p>
+<p>The <strong>processes</strong> applied by the functions in <code>mort-tools</code> give options to:</p>
 <ol>
 <li>Read each year of data.<br>
 </li>
@@ -98,25 +98,25 @@
 </li>
 <li>Forecast trends in cause-specific mortality.</li>
 </ol>
-<p>The <strong>output</strong> of these processes are the trends in cause-specific death rates and population sizes. These dataset can be saved so that you don’t need to run the cleaning processes in <code>mort.tools</code> each time you want to use the cleaned data.</p>
+<p>The <strong>output</strong> of these processes are the trends in cause-specific death rates and population sizes. These dataset can be saved so that you don’t need to run the cleaning processes in <code>mort-tools</code> each time you want to use the cleaned data.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>mort.tools</code> is currently available only to members of the project team (but please contact Duncan Gillespie <a href="mailto:duncan.gillespie@sheffield.ac.uk" class="email">duncan.gillespie@sheffield.ac.uk</a> to discuss). To access you need to <a href="https://gitlab.com/"><strong>sign-up for a GitLab account</strong></a>. You will then need to be added to the STAPM project team to gain access.</p>
+<p><code>mort-tools</code> is currently available only to members of the project team (but please contact Duncan Gillespie <a href="mailto:duncan.gillespie@sheffield.ac.uk" class="email">duncan.gillespie@sheffield.ac.uk</a> to discuss). To access you need to <a href="https://gitlab.com/"><strong>sign-up for a GitLab account</strong></a>. You will then need to be added to the STAPM project team to gain access.</p>
 <p>Once that is sorted, you can <strong>install the development version</strong> from GitLab with:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co">#install.packages("devtools")</span>
 
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_git</a></span>(
-  <span class="st">"https://gitlab.com/stapm/mort.tools.git"</span>,
+  <span class="st">"https://gitlab.com/stapm/mort-tools.git"</span>,
   <span class="kw">credentials</span> <span class="kw">=</span> <span class="kw pkg">git2r</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/git2r/reference/cred_user_pass.html">cred_user_pass</a></span>(<span class="st">"uname"</span>, <span class="kw pkg">getPass</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html">getPass</a></span>())
 )
 
 <span class="co"># Where uname is your Gitlab user name.</span>
 <span class="co"># this should make a box pop up where you enter your GitLab password</span></pre></div>
-<p>Then load the package, and some other packages that are useful. Note that the code within <code>mort.tools</code> uses the <code><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table::data.table()</a></code> syntax.</p>
+<p>Then load the package, and some other packages that are useful. Note that the code within <code>mort-tools</code> uses the <code><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">data.table::data.table()</a></code> syntax.</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co"># Load the package</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mort.tools</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">mort</span>-<span class="no">tools</span>)
 
 <span class="co"># Other useful packages</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>) <span class="co"># for data manipulation and summary</span>
@@ -127,7 +127,7 @@
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>Please cite the latest version of the package using:<br>
-“Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. <a href="https://stapm.gitlab.io/mort.tools/" class="uri">https://stapm.gitlab.io/mort.tools/</a>.”</p>
+“Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020). mort-tools: Read, Clean and Analyse Cause-Specific Mortality Data. R package version x.x.x. <a href="https://stapm.gitlab.io/mort-tools/" class="uri">https://stapm.gitlab.io/mort-tools/</a>.”</p>
 </div>
 </div>
   </div>
