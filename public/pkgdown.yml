@@ -3,7 +3,7 @@ pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   mort_rates: mort_rates.html
-last_built: 2020-05-07T11:34Z
+last_built: 2020-05-15T15:10Z
 urls:
   reference: https://stapm.gitlab.io/mort.tools/reference
   article: https://stapm.gitlab.io/mort.tools/articles
