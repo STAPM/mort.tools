@@ -69,7 +69,8 @@ GitLab with:
 devtools::install_git(
   "https://gitlab.com/stapm/mort.tools.git", 
   credentials = git2r::cred_user_pass("uname", getPass::getPass()),
-  ref = "x.x.x"
+  ref = "x.x.x",
+  build_vignettes = TRUE
 )
 
 # Where uname is your Gitlab user name.

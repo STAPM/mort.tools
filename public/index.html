@@ -111,7 +111,8 @@
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_git</a></span>(
   <span class="st">"https://gitlab.com/stapm/mort.tools.git"</span>,
   <span class="kw">credentials</span> <span class="kw">=</span> <span class="kw pkg">git2r</span><span class="kw ns">::</span><span class="fu"><a href="https://docs.ropensci.org/git2r/reference/cred_user_pass.html">cred_user_pass</a></span>(<span class="st">"uname"</span>, <span class="kw pkg">getPass</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/getPass/man/getPass.html">getPass</a></span>()),
-  <span class="kw">ref</span> <span class="kw">=</span> <span class="st">"x.x.x"</span>
+  <span class="kw">ref</span> <span class="kw">=</span> <span class="st">"x.x.x"</span>,
+  <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>
 )
 
 <span class="co"># Where uname is your Gitlab user name.</span>
