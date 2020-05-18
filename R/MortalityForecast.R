@@ -58,7 +58,7 @@ MortalityForecast <- function(
   sex_focus = c("Female", "Male"),
   folder_label = NULL,
   year_range = 2001:2016,
-  age_range = 12:89,
+  age_range = 11:89,
   smooth = FALSE,
   smooth_n_age = 3,
   smooth_n_year = 3,
@@ -75,7 +75,7 @@ MortalityForecast <- function(
 
   # Tidy mortality and population data
   keep_vars <- c("age", "sex", "imd_quintile", "year", "cause", "n_deaths", "pops")
-  mort_data_cause <- copy(mort_data_cause[!is.na(cause) & age %in% 12:89, ..keep_vars])
+  mort_data_cause <- copy(mort_data_cause[!is.na(cause) & age %in% 11:89, ..keep_vars])
 
   # Collapse data to remove stratification by cause
   mort_data <- mort_data_cause[cause %in% cause_names, .(
@@ -152,10 +152,10 @@ MortalityForecast <- function(
       #}
 
       colnames(qdat) <- 2001:2016
-      rownames(qdat) <- 12:89
+      rownames(qdat) <- 11:89
 
       qdat <- as.data.frame(qdat)
-      qdat$age <- 12:89
+      qdat$age <- 11:89
 
       setDT(qdat)
 
