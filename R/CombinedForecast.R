@@ -66,7 +66,7 @@ CombinedForecast <- function(
     if(c_name != "all_causes") {
 
       # Calculate the average rate by age and subgroup and smooth
-      rate_summary <- data[cause == c_name & age %in% 12:89, .(mx_mean = mean(mx_cause)),
+      rate_summary <- data[cause == c_name & age %in% 11:89, .(mx_mean = mean(mx_cause)),
                            by = c("age", "sex", "imd_quintile")]
 
       # Smooth over age
@@ -125,7 +125,7 @@ CombinedForecast <- function(
       )
 
       domain <- data.frame(expand.grid(
-        age = 12:89,
+        age = 11:89,
         sex = c("Female", "Male"),
         year = (jump_year + 1):(jump_year + n_years),
         imd_quintile = c("1_least_deprived", "2", "3", "4", "5_most_deprived"),
@@ -158,7 +158,7 @@ CombinedForecast <- function(
     if(do_forecast == "no") {
 
       domain <- data.frame(expand.grid(
-        age = 12:89,
+        age = 11:89,
         sex = c("Female", "Male"),
         year = 2001:(jump_year + n_years),
         imd_quintile = c("1_least_deprived", "2", "3", "4", "5_most_deprived"),
