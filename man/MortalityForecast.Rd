@@ -11,7 +11,7 @@ MortalityForecast(
   sex_focus = c("Female", "Male"),
   folder_label = NULL,
   year_range = 2001:2016,
-  age_range = 12:89,
+  age_range = 11:89,
   smooth = FALSE,
   smooth_n_age = 3,
   smooth_n_year = 3,
