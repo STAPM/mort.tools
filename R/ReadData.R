@@ -4,10 +4,11 @@
 #'
 #' Loads and cleans the microdata provided by the ONS into a clean form ready for further processing.
 #'
-#' The ONS data was provided originally for years 2001-2014, with subsequent annual updates for 2015 and 2016.
+#' The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
 #' The data is processed by an ONS analyst initially before being transferred to us.
 #'
 #' @param path Character - the path to the folder in which the data are stored.
+#' 
 #' @importFrom data.table := setDT setnames fread rbindlist dcast copy
 #' @return Returns a data table containing the data for all years.
 #' @export
@@ -93,6 +94,50 @@ ReadData <- function(path) {
   cat("2016", "\r")
   utils::flush.console()
 
+  #############################################
+  # 2017
+  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2017_IMD2015.csv"),
+                               sheet = "ENG_DEATHS_2017_IMD15",
+                               col_types = c("numeric", "numeric", "numeric", "text", "numeric", "text", "text"))
+  
+  setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
+  
+  setnames(data_y, 
+           c("registration year", "age", "imd quintile", "icd-10 code", "la code", "underlying cause"), 
+           c("regyr", "ageinyrs", "imd_quintile", "icd10u", "laua", "cause"))
+  
+  data <- rbindlist(list(data, data_y), use.names = TRUE)
+  
+  # Keep track of progress
+  cat("2017", "\r")
+  utils::flush.console()
+  
+  #############################################
+  # 2018
+  
+  # Note that the Health Survey for England 2018 used the IMD 2015
+  # The ONS have also supplied us with the 2018 mortality and pop data for the new IMD version
+  # (so we can test what difference this makes)
+  # but for the standard processing we will use the 2015 version until the Health Survey for England changes
+  
+  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2018_IMD2015.csv"),
+                               sheet = "ENG_DEATHS_2018_IMD15",
+                               col_types = c("numeric", "numeric", "numeric", "text", "numeric", "text", "text"))
+  
+  setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
+  
+  setnames(data_y, 
+           c("registration year", "age", "imd quintile", "icd-10 code", "la code", "underlying cause"), 
+           c("regyr", "ageinyrs", "imd_quintile", "icd10u", "laua", "cause"))
+  
+  data <- rbindlist(list(data, data_y), use.names = TRUE)
+  
+  # Keep track of progress
+  cat("2018", "\r")
+  utils::flush.console()
+  
+  #############################################
+  
   # Clean age variable
   data[ , age := as.vector(as.numeric(ageinyrs))]
   data[ , ageinyrs := NULL]
