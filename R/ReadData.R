@@ -157,5 +157,5 @@ ReadData <- function(path) {
 
   setnames(data, c("deaths", "regyr", "icd10u"), c("n_deaths", "year", "icd10"))
 
-return(data)
+return(data[])
 }
