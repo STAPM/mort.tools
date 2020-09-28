@@ -7,3 +7,4 @@ inst/doc
 Archive/
 *.Rproj*
 dev/
+.DS_Store
