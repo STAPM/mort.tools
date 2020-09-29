@@ -13,10 +13,11 @@ ReadData(path)
 Returns a data table containing the data for all years.
 }
 \description{
-Loads and cleans the microdata provided by the ONS into a clean form ready for further processing.
+Loads and cleans the microdata provided by the ONS into a clean form ready 
+for further processing.
 }
 \details{
-The ONS data was provided originally for years 2001-2014, with subsequent annual updates for 2015 and 2016.
+The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
 The data is processed by an ONS analyst initially before being transferred to us.
 }
 \examples{

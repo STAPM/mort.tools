@@ -2,7 +2,8 @@
 
 #' Read ONS mortality microdata
 #'
-#' Loads and cleans the microdata provided by the ONS into a clean form ready for further processing.
+#' Loads and cleans the microdata provided by the ONS into a clean form ready 
+#' for further processing.
 #'
 #' The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
 #' The data is processed by an ONS analyst initially before being transferred to us.
@@ -27,13 +28,17 @@ ReadData <- function(path) {
   # 2001-2014
 
   # Read deaths data (2002 - 2014)
-  # 2001 and 2015 don't have deaths pooled into an open age interval of 90+ - so read and process these data separately.
-  # 2015 was provided in a data update and is in a separate file, as is the latest data update for 2016
-  sheet_names <- c("2001", "2002-2003", "2004-2005", "2006-2007", "2008-2009", "2010-2011", "2012-2013", "2014")
+  # 2001 and 2015 don't have deaths pooled into an open age interval of 90+ - 
+  # so read and process these data separately.
+  # 2015 was provided in a data update and is in a separate file, 
+  # as is the latest data update for 2016
+  sheet_names <- c("2001", "2002-2003", "2004-2005", "2006-2007", 
+                   "2008-2009", "2010-2011", "2012-2013", "2014")
 
   for(sn in sheet_names) {
 
-    # The deaths data for each year is stored within a different workbook in the same excel spreadsheet.
+    # The deaths data for each year is stored within a different workbook in the 
+    # same excel spreadsheet.
     # This function reads in the data for the year specified.
     data_y <- readxl::read_excel(
       path = paste0(path, "/2001-2014/deaths_2001_2014.xlsx"),
@@ -81,10 +86,12 @@ ReadData <- function(path) {
   #############################################
   # 2016
   data_y <- fread(paste0(path, "/2016/Deaths_Eng_2016.csv"),
-                  colClasses = c("numeric", "numeric", "numeric", "numeric", "character", "character", "numeric", "character", "character"))
+                  colClasses = c("numeric", "numeric", "numeric", "numeric", 
+                                 "character", "character", "numeric", "character", "character"))
 
   setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
-  setnames(data_y, c("year of registration", "age", "imd quintile", "icd"), c("regyr", "ageinyrs", "imd_quintile", "icd10u"))
+  setnames(data_y, c("year of registration", "age", "imd quintile", "icd"), 
+           c("regyr", "ageinyrs", "imd_quintile", "icd10u"))
 
   data_y[ , ("laua name") := NULL]
 
@@ -96,14 +103,16 @@ ReadData <- function(path) {
 
   #############################################
   # 2017
-  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2017_IMD2015.csv"),
+  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2017_IMD2015.xlsx"),
                                sheet = "ENG_DEATHS_2017_IMD15",
-                               col_types = c("numeric", "numeric", "numeric", "text", "numeric", "text", "text"))
+                               col_types = c("numeric", "numeric", "numeric", "text", 
+                                             "numeric", "text", "text", "numeric"))
   
   setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
   
   setnames(data_y, 
-           c("registration year", "age", "imd quintile", "icd-10 code", "la code", "underlying cause"), 
+           c("registration year", "age", "imd quintile", "icd-10 code", "la code", 
+             "underlying cause"), 
            c("regyr", "ageinyrs", "imd_quintile", "icd10u", "laua", "cause"))
   
   data <- rbindlist(list(data, data_y), use.names = TRUE)
@@ -118,16 +127,19 @@ ReadData <- function(path) {
   # Note that the Health Survey for England 2018 used the IMD 2015
   # The ONS have also supplied us with the 2018 mortality and pop data for the new IMD version
   # (so we can test what difference this makes)
-  # but for the standard processing we will use the 2015 version until the Health Survey for England changes
+  # but for the standard processing we will use the 2015 version 
+  # until the Health Survey for England changes
   
-  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2018_IMD2015.csv"),
-                               sheet = "ENG_DEATHS_2018_IMD15",
-                               col_types = c("numeric", "numeric", "numeric", "text", "numeric", "text", "text"))
+  data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_England_2018_IMD2015.xlsx"),
+                               sheet = "ENG_DTHS_2018_IMD15",
+                               col_types = c("numeric", "numeric", "numeric", "text", "numeric", 
+                                             "text", "text", "numeric"))
   
   setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
   
   setnames(data_y, 
-           c("registration year", "age", "imd quintile", "icd-10 code", "la code", "underlying cause"), 
+           c("registration year", "age", "imd quintile", "icd-10 code", "la code", 
+             "underlying cause"), 
            c("regyr", "ageinyrs", "imd_quintile", "icd10u", "laua", "cause"))
   
   data <- rbindlist(list(data, data_y), use.names = TRUE)
