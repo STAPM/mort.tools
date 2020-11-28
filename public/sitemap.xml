@@ -43,13 +43,16 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/tobalc_icd10_lookups.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mort-tools.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_england_data.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_forecasting.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_rate_calculation.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_rate_smoothing.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_summary_age_standardised_rates.html</loc>

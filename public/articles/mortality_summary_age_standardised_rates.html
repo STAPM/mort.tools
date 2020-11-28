@@ -44,9 +44,6 @@
   </a>
 </li>
 <li>
-  <a href="../articles/mort-tools.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -78,7 +75,7 @@
     
     
 <p>To illustrate the trends in the death rates, begin by selecting the rates from one disease (here will choose lung cancer) and calculating the age-standardised death rate, stratified by year, sex and quintiles of the Index of Multiple Deprivation. For the age-standardisation, the package <code>mort.tools</code> contains the 2013 European Standard Population in <code>esp2013</code>, which provides a standard set of weights for calculating average mortality across all ages. Figure 1 shows that lung cancer death rates have been falling for males but rising slightly for females - a trend that warrants further investigation. There are many possible ways of visualising these data, including</p>
-<p>The high dimensionality of these data and the number of possible ways to visualise, and their relevance for policymaking, suggests that making an online tool e.g. a Shiny app might be useful (cf. the DH PRP project).</p>
+<p>The high dimensionality of these data and the number of possible ways to visualise, and their relevance for policymaking, suggests that making an online tool e.g. a Shiny app might be useful.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Figure 1</span>
@@ -105,17 +102,11 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sex</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Lung cancer"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Death rate / 100 thousand people"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"year"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 

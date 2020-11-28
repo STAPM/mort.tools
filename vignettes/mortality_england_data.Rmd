@@ -1,8 +1,8 @@
 ---
-title: "Process Mortality Microdata"
+title: "English mortality data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Process Mortality Microdata}
+  %\VignetteIndexEntry{English mortality data}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 bibliography: mort-refs.bib
@@ -33,18 +33,6 @@ suppressPackageStartupMessages(library(ggplot2))
 
 ```
 
-Here we describe how cause-specific mortality data is used in the Sheffield Tobacco and Alcohol Policy Modelling (STAPM).   
-
-## Calculate mortality rates
-We calculate the central rates of death over one-year intervals (see the [vignette that describes how to use the package code to do this](mortality_rate_calculation.html)). 
-
-## Summarise mortality rates
-We summarise the mortality rates in a variety of ways, e.g. [constructing life-tables]() and [calculating age-standardised rates]().
-
-## Forecast mortality rates
-We describe the methods used to forecast the data [here](mortality_forecasting.html).  
-
-## English data
 To inform the rates of mortality, we use Office for National Statistics mortality microdata. We use data from 2001 (being the first year for which estimates by Index of Multiple Deprivation quintile are available) to the latest available. We calculate and forecast mortality rates, and use lifetable methods to estimate the consequent years of life lost to death from each condition.    
 
 ### Death counts

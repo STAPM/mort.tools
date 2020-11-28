@@ -44,9 +44,6 @@
   </a>
 </li>
 <li>
-  <a href="../articles/mort-tools.html">Get started</a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -77,29 +74,12 @@
 
     
     
-<div id="age-patterns" class="section level2">
-<h2 class="hasAnchor">
-<a href="#age-patterns" class="anchor"></a>Age patterns</h2>
-<p>The Sheffield Alcohol Policy Model (SAPM) v4.0 works by updating the rates of mortality observed in the baseline year for the effects of an intervention. The latest year of mortality data that we have currently is 2016. The baseline rates for modelling are therefore the mortality rates by disease, age, sex and IMD quintile observed in 2016.</p>
-<p>To stick with lung cancer for illustration, Figure 2 shows the patterns. In STAPM, we use mortality rates in single years of age, whereas STAPM considers mortality rates in age categories. As Figure 2 shows, when dealing with single years of age, due to limited numbers of deaths, there is noise in the age trend (even though there were 28,564 lung cancer deaths in England in 2016). This issue becomes more obvious for causes of death that are rarer e.g. there are several causes with fewer than 5,000 deaths in a year.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Figure 2</span>
-
-<span class="va">lungc_rates2016</span> <span class="op">&lt;-</span> <span class="va">data</span><span class="op">[</span><span class="va">cause</span> <span class="op">==</span> <span class="st">"Lung"</span> <span class="op">&amp;</span> <span class="va">year</span> <span class="op">==</span> <span class="fl">2016</span><span class="op">]</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">lungc_rates2016</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">age</span>, y <span class="op">=</span> <span class="va">mx_cause</span> <span class="op">*</span> <span class="fl">1e5</span>, colour <span class="op">=</span> <span class="va">imd_quintile</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">sex</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Lung cancer"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Death rate / 100 thousand people"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"age"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-</div>
 <div id="smoothed-and-forecast-mortality-rates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#smoothed-and-forecast-mortality-rates" class="anchor"></a>Smoothed and forecast mortality rates</h2>
-<p>STAPM operates on the basis of projecting the past trends in the age-patterns of cause-specific mortality forwards into the future for each sex and Index of Multiple deprivation population subgroup. Intervention effects are then modelled as adjustments to these trends.</p>
+<p>STAPM operates on the basis of projecting the past trends in the age-patterns of cause-specific mortality forwards into the future for each sex and Index of Multiple deprivation population subgroup. It is important to also consider how mortality might change into the future due to factors that are not related to smoking. For example, the effect of a future policy on cardiovascular disease mortality might be over-estimated if the ongoing declines in cardiovascular mortality rates are not modelled <span class="citation">(<span class="citeproc-not-found" data-reference-id="Castillo2014"><strong>???</strong></span>)</span>. For STPM, this presents the challenge of producing forecasts of the age-patterns of cause-specific mortality for each sex and Index of Multiple Deprivation population subgroup. Intervention effects would then be modelled as adjustments to these trends.</p>
 <p>The advantages of conducting a cause-specific forecast is that it enables us to incorporate different trends for different diseases and different subgroups e.g. that that there are fewer deaths from Ischeamic Heart disease but more from dementia, and that lung cancer rates are declining in males but rising in females. Cause-specific forecasts stratified by IMD quintiles also allow us to incorporate the different socioeconomic trends in past mortality and to project an expectation of the future socioeconomic trends in mortality.</p>
-<p>However, an issue with cause-specific mortality forecasting is that the forecasts of cause-specific mortality rates generally do not add up to the forecasts of the aggregate all-cause mortality rates. Wilmoth <span class="citation">(<a href="#ref-Wilmoth1995" role="doc-biblioref">1995</a>)</span> observed that mortality projections are more pessimistic when disaggregated by cause of death because the causes of death that are decreasing the most slowly or that are increasing come to dominate (i.e. the aggegate trends are most influenced by trends in the causes with the most deaths).</p>
+<p>There are several methods that might be used <span class="citation">(Li et al. <a href="#ref-Li2019" role="doc-biblioref">2019</a>; Arnold and Sherris <a href="#ref-Arnold2013" role="doc-biblioref">2013</a>; Bergeron-Boucher et al. <a href="#ref-Bergeron-Boucher2017" role="doc-biblioref">2017</a>)</span>. An issue with cause-specific mortality forecasting is that the forecasts of cause-specific mortality rates generally do not add up to the forecasts of the aggregate all-cause mortality rates. Wilmoth <span class="citation">(<a href="#ref-Wilmoth1995" role="doc-biblioref">1995</a>)</span> observed that mortality projections are more pessimistic when disaggregated by cause of death because the causes of death that are decreasing the most slowly or that are increasing come to dominate (i.e. the aggegate trends are most influenced by trends in the causes with the most deaths).</p>
 <div id="lee-carter-methods" class="section level3">
 <h3 class="hasAnchor">
 <a href="#lee-carter-methods" class="anchor"></a>Lee-Carter methods</h3>
@@ -119,7 +99,7 @@
 <p>Before we conduct our cause and subgroup specific mortality forecast, we reduce the noise in the matrix of observed rates of mortality by smoothing each matrix over age and period. To do so, we estimate a moving average based on the application of a two-dimensional sliding window (we adjust the degree of smoothing by adjusting the size of the window). We find that smoothing is particularly important for the rarer causes, as the projected future trends for these causes can be strongly influenced by noise in the observed rates.</p>
 <p>We conduct the forecast using the R package <code>demography</code> <span class="citation">(Rob J Hyndman with contributions from Heather Booth and Leonie Tickle and John Maindonald., <a href="#ref-RJHHBLTJ2019" role="doc-biblioref">n.d.</a>)</span>. We conduct a set of cause-specific forecasts and also a forecast of the remaining other-cause mortality. In our <code>mort.tools</code> R package, the forecast is conducted by the function <code><a href="../reference/CombinedForecast.html">CombinedForecast()</a></code>, which is a wrapper that calls the function <code><a href="../reference/MortalityForecast.html">MortalityForecast()</a></code> to run the forecast for each cause and groups the outputs together. The forecast is run for 10 population subgroups defined by combinations of sex and IMD quintile.</p>
 <p>The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into <code><a href="../reference/CombinedForecast.html">CombinedForecast()</a></code> as <code>forecast_params</code> (Figure 3). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.</p>
-<p><img src="forecast_spreadsheet_snapshot.PNG"></p>
+<p><img src="images/forecast_spreadsheet_snapshot.PNG" width="800"></p>
 <p>Given all the potential unreliabilities of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.</p>
 <p>There is lots of room for improvement in this forecasting method, particularly looking into incorporating forecast undertainty, and developing methods that improve the consistency between the forecasts of cause-specific mortality and those of all-cause mortality <span class="citation">(Li et al. <a href="#ref-Li2019" role="doc-biblioref">2019</a>; Arnold and Sherris <a href="#ref-Arnold2013" role="doc-biblioref">2013</a>; Bergeron-Boucher et al. <a href="#ref-Bergeron-Boucher2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
@@ -127,7 +107,7 @@
 <h3 class="hasAnchor">
 <a href="#example-forecast" class="anchor"></a>Example forecast</h3>
 <p>The following code provides the observed and forecast cause and subgroup specific mortality rates for use in STAPM. In this case, we forecast the trends from 2016 to 2100. In Figure 4, we select the forecast values for lung cancer in males and compare the forecast trends between the least and most deprived IMD quintiles.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#install.packages("X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools_1.0.0.zip", </span>
   <span class="co"># repos = NULL, type = "binary")</span>

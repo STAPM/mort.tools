@@ -17,6 +17,10 @@ authors:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a
 
 articles:
+- title: "Data"
+  contents:
+  - mortality_england_data
+
 - title: "Calculate mortality rates"
   contents:
   - mortality_rate_calculation

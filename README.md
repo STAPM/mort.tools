@@ -28,8 +28,12 @@ consumption behaviours.
 
 ## Usage
 
-See [Get started](mort-tools.html). Data processing is done on the
-University of Sheffield managed secure `heta-study` virtual machine.
+We have written a range of short
+[articles](https://stapm.gitlab.io/r-packages/mort.tools/articles/index.html)
+that explain our data and methods. There is a [reference list of
+functions](https://stapm.gitlab.io/r-packages/mort.tools/reference/index.html)
+in this package. Data processing is done on the University of Sheffield
+managed secure `heta-study` virtual machine.
 
 The suite of functions within `mort.tools` reads the data for each year,
 produces cause-specific life tables (focusing on the diseases related to
