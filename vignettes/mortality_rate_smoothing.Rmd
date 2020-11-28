@@ -1,0 +1,36 @@
+---
+title: "Mortality rate smoothing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mortality rate smoothing}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography: mort-refs.bib
+header-includes:
+  \usepackage{float}
+  \usepackage{amsmath}
+link-citations: yes
+citation_package: natbib
+biblio-style: vancouver
+urlcolor: blue
+---
+
+
+```{r setup, include = FALSE, results = 'hide', warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.pos = 'H'
+)
+
+library(readxl)
+library(data.table)
+suppressPackageStartupMessages(library(ggplot2))
+#library(cowplot)
+
+#knitr::opts_knit$set(root.dir = "/Volumes/Shared/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+#knitr::opts_knit$set(root.dir = "X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+
+```
+
+Before we conduct our analysis, we reduce the noise in the observed rates of mortality by smoothing over age and period. To do so, we estimate a moving average based on the application of a two-dimensional sliding window (we adjust the degree of smoothing by adjusting the size of the window). We find that smoothing is particularly important for the rarer causes, which are more influenced by noise in the observed rates.  

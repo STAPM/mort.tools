@@ -1,48 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/index.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/index.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/CombinedForecast.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/CombinedForecast.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/GroupCauses.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/GroupCauses.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/LifetableSummary.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/LifetableSummary.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/MortalityForecast.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/MortalityForecast.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/ReadData.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/ReadData.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/ReadPopData.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/ReadPopData.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/SplitOesoph.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/SplitOesoph.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/alc_icd10_lookups.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/alc_icd10_lookups.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/esp2013.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/esp2013.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/mort.tools-package.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/mort.tools-package.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/oesoph_splits.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/oesoph_splits.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/tob_icd10_lookups.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/tob_icd10_lookups.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/reference/tobalc_icd10_lookups.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/tobalc_icd10_lookups.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/mort.tools/articles/mort_rates.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mort-tools.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_forecasting.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_rate_calculation.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_summary_age_standardised_rates.html</loc>
   </url>
 </urlset>

@@ -1,0 +1,109 @@
+---
+title: "Mortality rate calculation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Mortality rate calculation}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography: mort-refs.bib
+header-includes:
+  \usepackage{float}
+  \usepackage{amsmath}
+link-citations: yes
+citation_package: natbib
+biblio-style: vancouver
+urlcolor: blue
+---
+
+
+```{r setup, include = FALSE, results = 'hide', warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.pos = 'H'
+)
+
+library(readxl)
+library(data.table)
+suppressPackageStartupMessages(library(ggplot2))
+#library(cowplot)
+
+#knitr::opts_knit$set(root.dir = "/Volumes/Shared/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+#knitr::opts_knit$set(root.dir = "X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+
+```
+
+We calculate the one year central rates of death for specific ICD code categories for specific population subgroups. To prepare the death rates from tobacco related diseases for England we first aggregate the death counts by age, sex, IMD quintile and year and single ICD-10 codes.  
+
+## Grouping deaths by cause
+Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in `mort.tools::tob_icd10_lookups`. We then use the function `tobalcepi::ExpandCodes()` to convert these data to 'long' form, which we use to map the single ICD-10 codes to disease groups.  
+
+We then use the function `mort.tools::GroupCauses()` to aggregate the cause of death counts by disease group (searching for 3 and 4 character ICD-10 matches).  
+
+## Oesphageal SCC-AC splits
+See the `tobalcepi` package's vignette for smoking disease risks for an explanation of why and how we split the rates of death from oesophageal cancer into the Squamous cell carcinoma and adenocarcinoma subtypes. The data for splitting is in `mort.tools::oesoph_splits` and the function that does the splitting is `mort.tools::SplitOesoph()`.  
+
+## Trends over time
+To illustrate how to use this code to view the trends over time in the rates of mortality from tobacco related disease, the code below calculates the mortality rates  
+
+```{r clean tob rates trends, eval = F}
+
+# install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/mort.tools_1.0.0.zip", 
+  # repos = NULL, type = "binary")
+# install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/tobalcepi_0.1.0.zip", 
+  # repos = NULL)
+
+library(mort.tools)
+library(tobalcepi)
+library(stringr)
+
+# Prepare the death rates from tobacco related diseases for England
+
+# Load the population counts by age, sex, IMD quintile, local authority, year
+pop_data <- ReadPopData(path = "D:/Death and population data")
+
+# Load the death counts by age, sex, IMD quintile, local authority, year and cause
+data <- ReadData(path = "D:/Death and population data")
+
+# Select only England
+data <- data[str_sub(laua, 1, 1) == "E"]
+pop_data <- pop_data[str_sub(laua, 1, 1) == "E"]
+
+# Collapse local authority splits to national level
+data <- data[ , .(n_deaths = sum(n_deaths, na.rm = T)), 
+              by = c("year", "age", "sex", "imd_quintile", "icd10")]
+
+pop_data <- pop_data[ , .(pops = sum(pops, na.rm = T)), 
+                      by = c("year", "age", "sex", "imd_quintile")]
+
+# Generate the relevant lookup file
+lookups <- ExpandCodes(tob_icd10_lookups)
+
+# Group death data into causes
+data <- GroupCauses(data, lookups, strat_vars = c("year", "age", "sex", "imd_quintile"))
+
+# Where there have been no deaths from a particular cause within a particular subgroup,
+# add new rows that have n_deaths = 0
+domain <- data.frame(expand.grid(
+  year = unique(data$year),
+  age = unique(data$age),
+  sex = unique(data$sex),
+  imd_quintile = unique(data$imd_quintile),
+  cause = unique(data$cause)
+))
+setDT(domain)
+
+data <- merge(domain, data, 
+              by = c("year", "age", "sex", "imd_quintile", "cause"), 
+              all.x = T, all.y = F)
+
+data[is.na(n_deaths), n_deaths := 0]
+
+# Merge the deaths and population counts
+data <- merge(data, pop_data, by = c("year", "age", "sex", "imd_quintile"), all = T)
+
+# Calculate the central death rates
+data[ , mx_cause := n_deaths / pops]
+
+```  
+

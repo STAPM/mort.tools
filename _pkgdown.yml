@@ -4,7 +4,7 @@ home:
   links:
   - text: STAPM webpage
     href: https://stapm.gitlab.io/
-url: https://stapm.gitlab.io/mort.tools
+url: https://stapm.gitlab.io/r-packages/mort.tools
 template:
   params:
     bootswatch: flatly
@@ -15,3 +15,44 @@ authors:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/angus_c
   Alan Brennan:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a
+
+articles:
+- title: "Calculate mortality rates"
+  contents:
+  - mortality_rate_calculation
+  - mortality_rate_smoothing
+  
+- title: "Summarise mortality rates"
+  contents:
+  - mortality_summary_age_standardised_rates
+
+- title: "Forecast mortality rates"
+  contents:
+  - mortality_forecasting
+
+reference:
+- title: "Calculate mortality rates"
+  contents:
+  - ReadData
+  - ReadPopData
+  - GroupCauses
+  - alc_icd10_lookups
+  - tob_icd10_lookups
+  - tobalc_icd10_lookups
+  - SplitOesoph
+  - oesoph_splits
+  
+- title: "Summarise mortality rates"
+  contents:
+  - LifetableSummary
+  - esp2013
+  
+- title: "Forecast mortality rates"
+  contents:
+  - CombinedForecast
+  - MortalityForecast
+  
+  
+  
+  
+  

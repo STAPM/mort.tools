@@ -7,13 +7,15 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
-**DRAFT WORKING VERSION** - The package is usable but there are still
-bugs and further developments that are being worked through i.e. some
-code and documentation is still incomplete or in need of being refined.
-The code and documentation are still undergoing internal review by the
-analyst team.
+**WORKING VERSION** - Some code and documentation is still incomplete
+are undergoing review by the analyst team.
 
 ## Motivation
+
+The motivation for `mort.tools` was to develop a set of functions to
+clean and do basic processing of the data. The advantage of this is that
+it ensures we apply a consistent approach across years of data and
+across the different projects for which we use the data.
 
 `mort.tools` was created as part of a programme of work on the health
 economics of tobacco and alcohol at the School of Health and Related
@@ -24,17 +26,15 @@ the impacts of tobacco and alcohol policies, and investigate the
 consequences of clustering and interactions between tobacco and alcohol
 consumption behaviours.
 
-The motivation for `mort.tools` was to develop a set of functions to
-clean and do basic processing of the data. The advantage of this is that
-it ensures we apply a consistent approach across years of data and
-across the different projects for which we use the data.
-
 ## Usage
+
+See [Get started](mort-tools.html). Data processing is done on the
+University of Sheffield managed secure `heta-study` virtual machine.
 
 The suite of functions within `mort.tools` reads the data for each year,
 produces cause-specific life tables (focusing on the diseases related to
 tobacco and alcohol), and gives options for conducting forecasts of
-cause-specific death rates using the Lee-Carter method.
+cause-specific death rates.
 
 The **inputs** are the counts of death and mid-year population size.
 
@@ -53,21 +53,21 @@ use the cleaned data.
 
 ## Installation
 
-`mort.tools` is currently available only to members of the project team
-(but please contact Duncan Gillespie <duncan.gillespie@sheffield.ac.uk>
-to discuss). To access you need to [**sign-up for a GitLab
-account**](https://gitlab.com/). You will then need to be added to the
-STAPM project team to gain access.
+The `mort.tools` package is currently available only to members of the
+project team (but contact Duncan Gillespie
+<duncan.gillespie@sheffield.ac.uk> to discuss). To access the package
+you need to [sign-up for a GitLab account](https://gitlab.com/). You
+will then need to be added to the STAPM project team to gain access.
 
-Once that is sorted, you can **install the development version** from
-GitLab with:
+Once that is sorted, you can install either the latest version or a
+specified version from GitLab with:
 
 ``` r
 #install.packages("devtools")
 #install.packages("getPass")
 
 devtools::install_git(
-  "https://gitlab.com/stapm/mort.tools.git", 
+  "https://gitlab.com/stapm/r-packages/mort.tools.git", 
   credentials = git2r::cred_user_pass("uname", getPass::getPass()),
   ref = "x.x.x",
   build_vignettes = TRUE
@@ -97,4 +97,5 @@ library(ggplot2) # for plotting
 Please cite the latest version of the package using:  
 “Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020).
 mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R
-package version x.x.x. <https://stapm.gitlab.io/mort.tools/>.”
+package version x.x.x.
+<https://stapm.gitlab.io/r-packages/mort.tools/>.”

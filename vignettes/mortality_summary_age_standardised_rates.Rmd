@@ -1,0 +1,143 @@
+---
+title: "Calculate age-standardised mortality rates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Calculate age-standardised mortality rates}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography: mort-refs.bib
+header-includes:
+  \usepackage{float}
+  \usepackage{amsmath}
+link-citations: yes
+citation_package: natbib
+biblio-style: vancouver
+urlcolor: blue
+---
+
+
+```{r setup, include = FALSE, results = 'hide', warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.pos = 'H'
+)
+
+library(readxl)
+library(data.table)
+suppressPackageStartupMessages(library(ggplot2))
+#library(cowplot)
+
+#knitr::opts_knit$set(root.dir = "/Volumes/Shared/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+#knitr::opts_knit$set(root.dir = "X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+
+```
+
+To illustrate the trends in the death rates, begin by selecting the rates from one disease (here will choose lung cancer) and calculating the age-standardised death rate, stratified by year, sex and quintiles of the Index of Multiple Deprivation. For the age-standardisation, the package `mort.tools` contains the 2013 European Standard Population in `esp2013`, which provides a standard set of weights for calculating average mortality across all ages. Figure 1 shows that lung cancer death rates have been falling for males but rising slightly for females - a trend that warrants further investigation. There are many possible ways of visualising these data, including  
+
+\begin{itemize}
+\item lexis surfaces showing the age, period and cohort effects
+\item age-distributions of mortality by cause
+\item trends in the distribution of deaths among causes
+\end{itemize}  
+
+The high dimensionality of these data and the number of possible ways to visualise, and their relevance for policymaking, suggests that making an online tool e.g. a Shiny app might be useful.  
+
+
+```{r lung cancer trends, eval = F}
+
+# Figure 1
+
+library(ggplot2)
+
+# Create age categorys for merging with the European Standard Population
+data[, agegroup := c(
+  "0-4", "5-9", "10-14", "15-19",  "20-24", "25-29", "30-34", "35-39", "40-44", 
+  "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90+"
+  )[findInterval(age, seq(0, 90, 5))]]
+
+data <- merge(data, esp2013, by = "agegroup")
+
+# Calculate age-standardised mortality rates per 100,000 people for lung cancer 
+# by year, sex and IMD quintile
+lungc_rates <- data[cause == "Lung", 
+                    .(stdrate = 1e5 * sum(mx_cause * ESP2013) / sum(ESP2013)), 
+                    by = c("year", "sex", "imd_quintile")]
+
+# Plot
+ggplot(lungc_rates) +
+  geom_line(aes(x = year, y = stdrate, colour = imd_quintile)) +
+  facet_wrap(~ sex, ncol = 1) +
+  ggtitle("Lung cancer") + ylab("Death rate / 100 thousand people") + xlab("year") +
+  theme_minimal()
+
+```
+
+```{r, eval = F, warning = F, out.extra='', echo=F, fig.width = 5, fig.height = 5, fig.cap = "Age-standardised rates of death from lung cancer per 100,000 people by quintiles of the English Index of Multiple Deprivation."}
+readRDS("lungc_rates.rds")
+
+```  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
