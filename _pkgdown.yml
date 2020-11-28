@@ -6,7 +6,7 @@ home:
     href: https://gitlab.com/stapm/r-packages/mort.tools
   - text: STAPM webpage
     href: https://stapm.gitlab.io/
-url: https://stapm.gitlab.io/r-packages/mort.tools
+url: https://stapm.gitlab.io/r-packages/mort.tools/
 template:
   params:
     bootswatch: flatly

@@ -23,6 +23,7 @@ Authors@R:
 Maintainer: Duncan Gillespie <duncan.gillespie@sheffield.ac.uk>
 Description: Read, Clean and Analyse Cause-Specific Mortality Data.
 License: GPL-3
+URL: https://stapm.gitlab.io/r-packages/mort.tools
 Encoding: UTF-8
 LazyData: true
 Imports: 
