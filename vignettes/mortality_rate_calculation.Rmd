@@ -16,24 +16,26 @@ urlcolor: blue
 ---
 
 
-```{r setup, include = FALSE, results = 'hide', warning = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.pos = 'H'
-)
+Aim: To calculate the one year central rates of death from diseases defined by specific ICD-10 codes, stratified by specified population subgroups.   
 
-library(readxl)
-library(data.table)
-suppressPackageStartupMessages(library(ggplot2))
-#library(cowplot)
+## Preliminaries
 
-#knitr::opts_knit$set(root.dir = "/Volumes/Shared/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
-#knitr::opts_knit$set(root.dir = "X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+- Get access to the data on the `heta-study` VM.  
+- Get access to the STAPM Gitlab organisation.  
+- [Choose a repo](mort-tools.html) as a starting point and get the code on the VM.  
+
+## Read the death and population counts data
+The functions `mort.tools::ReadPopData()` and `mort.tools::ReadData()` have been written to read the data in the format that it was provided by the data providers and output the data in a nicely formatted form ready for further processing. Depending on the objective for processing, you might then need to filter the data to select only specific geographic regions. You might also need to collapse some of the dimensionality in the data, e.g. if you do not need separate counts of deaths for males and females, then you will need to sum the counts of deaths and population numbers across the sexes. 
+
+```{r loadmortpopdata, eval = F}
+
+# Load the population counts by age, sex, IMD quintile, local authority, year
+pop_data <- mort.tools::ReadPopData(path = "D:/Death and population data")
+
+# Load the death counts by age, sex, IMD quintile, local authority, year and cause
+data <- mort.tools::ReadData(path = "D:/Death and population data")
 
 ```
-
-We calculate the one year central rates of death for specific ICD code categories for specific population subgroups. To prepare the death rates from tobacco related diseases for England we first aggregate the death counts by age, sex, IMD quintile and year and single ICD-10 codes.  
 
 ## Grouping deaths by cause
 Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in `mort.tools::tob_icd10_lookups`. We then use the function `tobalcepi::ExpandCodes()` to convert these data to 'long' form, which we use to map the single ICD-10 codes to disease groups.  

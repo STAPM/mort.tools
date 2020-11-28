@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mort.tools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -77,11 +77,34 @@
 
     
     
-<p>We calculate the one year central rates of death for specific ICD code categories for specific population subgroups. To prepare the death rates from tobacco related diseases for England we first aggregate the death counts by age, sex, IMD quintile and year and single ICD-10 codes.</p>
+<p>Aim: To calculate the one year central rates of death from diseases defined by specific ICD-10 codes, stratified by specified population subgroups.</p>
+<div id="preliminaries" class="section level2">
+<h2 class="hasAnchor">
+<a href="#preliminaries" class="anchor"></a>Preliminaries</h2>
+<ul>
+<li>Get access to the data on the <code>heta-study</code> VM.<br>
+</li>
+<li>Get access to the STAPM Gitlab organisation.<br>
+</li>
+<li>
+<a href="mort-tools.html">Choose a repo</a> as a starting point and get the code on the VM.</li>
+</ul>
+</div>
+<div id="read-the-death-and-population-counts-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#read-the-death-and-population-counts-data" class="anchor"></a>Read the death and population counts data</h2>
+<p>The functions <code><a href="../reference/ReadPopData.html">mort.tools::ReadPopData()</a></code> and <code><a href="../reference/ReadData.html">mort.tools::ReadData()</a></code> have been written to read the data in the format that it was provided by the data providers and output the data in a nicely formatted form ready for further processing. Depending on the objective for processing, you might then need to filter the data to select only specific geographic regions. You might also need to collapse some of the dimensionality in the data, e.g. if you do not need separate counts of deaths for males and females, then you will need to sum the counts of deaths and population numbers across the sexes.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load the population counts by age, sex, IMD quintile, local authority, year</span>
+<span class="va">pop_data</span> <span class="op">&lt;-</span> <span class="fu">mort.tools</span><span class="fu">::</span><span class="fu"><a href="../reference/ReadPopData.html">ReadPopData</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"D:/Death and population data"</span><span class="op">)</span>
+
+<span class="co"># Load the death counts by age, sex, IMD quintile, local authority, year and cause</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">mort.tools</span><span class="fu">::</span><span class="fu"><a href="../reference/ReadData.html">ReadData</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"D:/Death and population data"</span><span class="op">)</span></code></pre></div>
+</div>
 <div id="grouping-deaths-by-cause" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grouping-deaths-by-cause" class="anchor"></a>Grouping deaths by cause</h2>
-<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in <code><a href="../reference/tob_icd10_lookups.html">mort.tools::tob_icd10_lookups</a></code>. We then use the function <code><a href="https://rdrr.io/pkg/tobalcepi/man/ExpandCodes.html">tobalcepi::ExpandCodes()</a></code> to convert these data to ‘long’ form, which we use to map the single ICD-10 codes to disease groups.</p>
+<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in <code>mort.tools::tob_icd10_lookups</code>. We then use the function <code><a href="https://rdrr.io/pkg/tobalcepi/man/ExpandCodes.html">tobalcepi::ExpandCodes()</a></code> to convert these data to ‘long’ form, which we use to map the single ICD-10 codes to disease groups.</p>
 <p>We then use the function <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code> to aggregate the cause of death counts by disease group (searching for 3 and 4 character ICD-10 matches).</p>
 </div>
 <div id="oesphageal-scc-ac-splits" class="section level2">
@@ -93,9 +116,8 @@
 <h2 class="hasAnchor">
 <a href="#trends-over-time" class="anchor"></a>Trends over time</h2>
 <p>To illustrate how to use this code to view the trends over time in the rates of mortality from tobacco related disease, the code below calculates the mortality rates</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/mort.tools_1.0.0.zip", </span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/mort.tools_1.0.0.zip", </span>
   <span class="co"># repos = NULL, type = "binary")</span>
 <span class="co"># install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/tobalcepi_0.1.0.zip", </span>
   <span class="co"># repos = NULL)</span>
@@ -132,22 +154,22 @@
 <span class="co"># Where there have been no deaths from a particular cause within a particular subgroup,</span>
 <span class="co"># add new rows that have n_deaths = 0</span>
 <span class="va">domain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span>
-  year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>,
-  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">age</span><span class="op">)</span>,
-  sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span>,
-  imd_quintile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">imd_quintile</span><span class="op">)</span>,
-  cause <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">cause</span><span class="op">)</span>
+  year <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>,
+  age <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">age</span><span class="op">)</span>,
+  sex <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span>,
+  imd_quintile <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">imd_quintile</span><span class="op">)</span>,
+  cause <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">data</span><span class="op">$</span><span class="va">cause</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span>
-<span class="fu">setDT</span><span class="op">(</span><span class="va">domain</span><span class="op">)</span>
+<span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/setDT.html">setDT</a></span><span class="op">(</span><span class="va">domain</span><span class="op">)</span>
 
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">domain</span>, <span class="va">data</span>, 
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/merge.html">merge</a></span><span class="op">(</span><span class="va">domain</span>, <span class="va">data</span>, 
               by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"imd_quintile"</span>, <span class="st">"cause"</span><span class="op">)</span>, 
               all.x <span class="op">=</span> <span class="cn">T</span>, all.y <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 
 <span class="va">data</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">n_deaths</span><span class="op">)</span>, <span class="va">n_deaths</span> <span class="op">:=</span> <span class="fl">0</span><span class="op">]</span>
 
 <span class="co"># Merge the deaths and population counts</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">pop_data</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"imd_quintile"</span><span class="op">)</span>, all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/merge.html">merge</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">pop_data</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"imd_quintile"</span><span class="op">)</span>, all <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
 
 <span class="co"># Calculate the central death rates</span>
 <span class="va">data</span><span class="op">[</span> , <span class="va">mx_cause</span> <span class="op">:=</span> <span class="va">n_deaths</span> <span class="op">/</span> <span class="va">pops</span><span class="op">]</span></code></pre></div>

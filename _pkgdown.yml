@@ -2,6 +2,8 @@ destination: public
 home:
   title: Process Mortality Microdata
   links:
+  - text: View source code (team members only)
+    href: https://gitlab.com/stapm/r-packages/mort.tools
   - text: STAPM webpage
     href: https://stapm.gitlab.io/
 url: https://stapm.gitlab.io/r-packages/mort.tools
@@ -40,9 +42,6 @@ reference:
   - ReadData
   - ReadPopData
   - GroupCauses
-  - alc_icd10_lookups
-  - tob_icd10_lookups
-  - tobalc_icd10_lookups
   - SplitOesoph
   - oesoph_splits
   

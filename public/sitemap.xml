@@ -25,9 +25,6 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/SplitOesoph.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/alc_icd10_lookups.html</loc>
-  </url>
-  <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/esp2013.html</loc>
   </url>
   <url>
@@ -35,12 +32,6 @@
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/oesoph_splits.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/tob_icd10_lookups.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools/reference/tobalc_icd10_lookups.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mort-tools.html</loc>

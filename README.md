@@ -3,12 +3,14 @@
 
 # Process Mortality Microdata <img src="tools/mort.tools_hex.png" align="right" style="padding-left:10px;background-color:white;" width="100" height="100" />
 
+<!-- badges: start -->
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
-**WORKING VERSION** - Some code and documentation is still incomplete
-are undergoing review by the analyst team.
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+<!-- badges: end -->
 
 ## Motivation
 
@@ -83,13 +85,17 @@ devtools::install_git(
 # this should make a box pop up where you enter your GitLab password
 ```
 
-Then load the package, and some other packages that are useful. Note
+You will also need the
+[tobalcepi](https://stapm.gitlab.io/r-packages/tobalcepi/) package. Note
 that the code within `mort.tools` uses the `data.table::data.table()`
 syntax.
 
 ``` r
 # Load the package
+library(data.table)
 library(mort.tools)
+library(tobalcepi)
+
 
 # Other useful packages
 library(dplyr) # for data manipulation and summary
