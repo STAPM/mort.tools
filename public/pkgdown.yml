@@ -7,7 +7,7 @@ articles:
   mortality_rate_calculation: mortality_rate_calculation.html
   mortality_rate_smoothing: mortality_rate_smoothing.html
   mortality_summary_age_standardised_rates: mortality_summary_age_standardised_rates.html
-last_built: 2020-11-28T11:55Z
+last_built: 2020-11-28T12:07Z
 urls:
   reference: https://stapm.gitlab.io/r-packages/mort.tools/reference
   article: https://stapm.gitlab.io/r-packages/mort.tools/articles
