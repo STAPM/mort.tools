@@ -11,6 +11,8 @@
 #' \item conducts the forecast up to \code{n_years} from baseline
 #' }
 #'
+#' \lifecycle{maturing}
+#'
 #' @param mort_data_cause Data table containing our processed cause-specific mortality rates
 #' @param folder_path where to put the folder of diagnostic files
 #' @param cause_names names of the causes to include

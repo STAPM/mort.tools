@@ -28,7 +28,8 @@ consumption behaviours.
 
 ## Usage
 
-We have written a range of short
+See [Get started](mort-tools.html) for example workflows. We have
+written a range of short
 [articles](https://stapm.gitlab.io/r-packages/mort.tools/articles/index.html)
 that explain our data and methods. There is a [reference list of
 functions](https://stapm.gitlab.io/r-packages/mort.tools/reference/index.html)

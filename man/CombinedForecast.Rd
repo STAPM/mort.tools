@@ -27,6 +27,9 @@ CombinedForecast(
 \description{
 A wrapper that runs the forecast for each cause and groups the outputs together.
 }
+\details{
+\lifecycle{maturing}
+}
 \examples{
 
 \dontrun{

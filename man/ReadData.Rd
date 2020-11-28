@@ -19,6 +19,8 @@ for further processing.
 \details{
 The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
 The data is processed by an ONS analyst initially before being transferred to us.
+
+\lifecycle{stable}
 }
 \examples{
 

@@ -67,6 +67,8 @@ Uses the functions from the R package 'demography':
 \item fits the Lee-Carter model (singular value decomposition of trends)
 \item conducts the forecast up to \code{n_years} from baseline
 }
+
+\lifecycle{maturing}
 }
 \examples{
 

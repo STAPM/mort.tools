@@ -31,6 +31,8 @@ assign any occurance in males as 'other causes'. Finally, collapse the data by s
 within each cause group.
 
 Before running this function you will need to run ExpandCodes() from the tobalcepi package.
+
+\lifecycle{stable}
 }
 \examples{
 

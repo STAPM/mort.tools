@@ -1,0 +1,34 @@
+---
+title: "Get started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get started}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography: mort-refs.bib
+header-includes:
+  \usepackage{float}
+  \usepackage{amsmath}
+link-citations: yes
+citation_package: natbib
+biblio-style: vancouver
+urlcolor: blue
+---
+
+To illustrate the use of the `mort.tools` functions for different tasks, we have created example workflows. You can use these examples to help understand how the code works, run them to generate model inputs, or use them as a starting point for the development of a new project.    
+
+At the moment, these workflows are accessible only to the project team. To access them, you will need to be added to the STAPM Gitlab organisation.  
+
+The workflows are listed below:  
+
+- [English national-level tobacco-related mortality rates for use in STPM]()  
+- [English national-level alcohol-related mortality rates for use in SAPM]()  
+- [English national-level tobacco- and alcohol-related mortality rates for use in STAPM]()  
+
+
+
+
+
+
+
+

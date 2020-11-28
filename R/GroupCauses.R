@@ -12,6 +12,8 @@
 #'
 #' Before running this function you will need to run ExpandCodes() from the tobalcepi package.
 #'
+#' \lifecycle{stable}
+#'
 #' @param data_file Data table containing death counts ("n_deaths") by individual ICD10 codes.
 #' @param lookup_file Data table showing how ICD-10 codes are grouped by cause.
 #' @param strat_vars Character vector - the variables by which the dataset output should be stratified.

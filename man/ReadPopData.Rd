@@ -17,6 +17,9 @@ Returns a data table containing the data for all years.
 \description{
 Reads and cleans the population count data by age, year, sex and IMD quintile.
 }
+\details{
+\lifecycle{stable}
+}
 \examples{
 
 \dontrun{
