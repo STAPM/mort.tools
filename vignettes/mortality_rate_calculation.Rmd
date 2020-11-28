@@ -28,7 +28,6 @@ Aim: To calculate the one year central rates of death from diseases defined by s
 The functions `mort.tools::ReadPopData()` and `mort.tools::ReadData()` have been written to read the data in the format that it was provided by the data providers and output the data in a nicely formatted form ready for further processing. Depending on the objective for processing, you might then need to filter the data to select only specific geographic regions. You might also need to collapse some of the dimensionality in the data, e.g. if you do not need separate counts of deaths for males and females, then you will need to sum the counts of deaths and population numbers across the sexes. 
 
 ```{r loadmortpopdata, eval = F}
-
 # Load the population counts by age, sex, IMD quintile, local authority, year
 pop_data <- mort.tools::ReadPopData(path = "D:/Death and population data")
 
@@ -38,51 +37,20 @@ data <- mort.tools::ReadData(path = "D:/Death and population data")
 ```
 
 ## Grouping deaths by cause
-Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in `mort.tools::tob_icd10_lookups`. We then use the function `tobalcepi::ExpandCodes()` to convert these data to 'long' form, which we use to map the single ICD-10 codes to disease groups.  
+Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups defined in our lists of tobacco and alcohol related diseases [@Angus2018;@webster2018risk]. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. "C00-C06" becomes the single codes C00, C01, C02, C03, C04, C05, and C06. These are stored in `tobalcepi::tob_icd10_lookups`, `tobalcepi::alc_icd10_lookups`, and `tobalcepi::tobalc_icd10_lookups`. We use the function `tobalcepi::ExpandCodes()` to convert these ICD-10 lookups to 'long' form, and use the resulting data table to map the single ICD-10 codes to disease groups. This mapping is done by the function `mort.tools::GroupCauses()`.   
 
-We then use the function `mort.tools::GroupCauses()` to aggregate the cause of death counts by disease group (searching for 3 and 4 character ICD-10 matches).  
+### Oesophageal cancer SCC-AC splits
+Oesophageal cancer is defined by the ICD-10 code "C15". It has two subtypes "SCC" and "AC" - these subtypes have different risk relationships to tobacco and alcohol but they are not easy to identify based on the ICD-10 coding system. We therefore use some external data to estimate how total oesophageal cancers might be divided between the subtypes (see our disease list reports [@Angus2018;@webster2018risk]). The data for splitting is in `mort.tools::oesoph_splits` and the function that does the splitting is `mort.tools::SplitOesoph()`, which is called by `mort.tools::GroupCauses()`.  
 
-## Oesphageal SCC-AC splits
-See the `tobalcepi` package's vignette for smoking disease risks for an explanation of why and how we split the rates of death from oesophageal cancer into the Squamous cell carcinoma and adenocarcinoma subtypes. The data for splitting is in `mort.tools::oesoph_splits` and the function that does the splitting is `mort.tools::SplitOesoph()`.  
+### Zero deaths
+There might be some population subgroups for which there have been no deaths from a particular cause, and rows with zero deaths needed to be added in these cases.  
 
-## Trends over time
-To illustrate how to use this code to view the trends over time in the rates of mortality from tobacco related disease, the code below calculates the mortality rates  
-
-```{r clean tob rates trends, eval = F}
-
-# install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/mort.tools_1.0.0.zip", 
-  # repos = NULL, type = "binary")
-# install.packages("//tsclient/X/ScHARR/PR_STAPM/Code/R_packages/tobalcepi_0.1.0.zip", 
-  # repos = NULL)
-
-library(mort.tools)
-library(tobalcepi)
-library(stringr)
-
-# Prepare the death rates from tobacco related diseases for England
-
-# Load the population counts by age, sex, IMD quintile, local authority, year
-pop_data <- ReadPopData(path = "D:/Death and population data")
-
-# Load the death counts by age, sex, IMD quintile, local authority, year and cause
-data <- ReadData(path = "D:/Death and population data")
-
-# Select only England
-data <- data[str_sub(laua, 1, 1) == "E"]
-pop_data <- pop_data[str_sub(laua, 1, 1) == "E"]
-
-# Collapse local authority splits to national level
-data <- data[ , .(n_deaths = sum(n_deaths, na.rm = T)), 
-              by = c("year", "age", "sex", "imd_quintile", "icd10")]
-
-pop_data <- pop_data[ , .(pops = sum(pops, na.rm = T)), 
-                      by = c("year", "age", "sex", "imd_quintile")]
-
+```{r grpbycause, eval = F}
 # Generate the relevant lookup file
-lookups <- ExpandCodes(tob_icd10_lookups)
+lookups <- tobalcepi::ExpandCodes(tob_icd10_lookups)
 
 # Group death data into causes
-data <- GroupCauses(data, lookups, strat_vars = c("year", "age", "sex", "imd_quintile"))
+data <- mort.tools::GroupCauses(data, lookups, strat_vars = c("year", "age", "sex", "imd_quintile"))
 
 # Where there have been no deaths from a particular cause within a particular subgroup,
 # add new rows that have n_deaths = 0
@@ -95,17 +63,33 @@ domain <- data.frame(expand.grid(
 ))
 setDT(domain)
 
-data <- merge(domain, data, 
-              by = c("year", "age", "sex", "imd_quintile", "cause"), 
-              all.x = T, all.y = F)
+data <- merge(domain, data, by = c("year", "age", "sex", "imd_quintile", "cause"), all.x = T, all.y = F)
 
 data[is.na(n_deaths), n_deaths := 0]
 
+```
+
+## Calculate the central death rates
+The cause-specific central death rates can now be calculated for each population subgroup by dividing the annual number of deaths from each cause by the mid-year population size.  
+
+```{r calcrates, eval = F}
 # Merge the deaths and population counts
 data <- merge(data, pop_data, by = c("year", "age", "sex", "imd_quintile"), all = T)
 
 # Calculate the central death rates
 data[ , mx_cause := n_deaths / pops]
 
-```  
+# Check looks ok
+data[ , .(n_deaths = sum(n_deaths)), by = "cause"]
 
+# write data
+
+# note the package version so the data can be tagged with it
+ver <- packageVersion("mort.tools")
+
+write.table(data, paste0("outputs/tob_death_rates_england_national_", Sys.Date(), "_mort.tools_", ver, ".csv"),
+  row.names = F, sep = ",")
+
+```
+
+## References
