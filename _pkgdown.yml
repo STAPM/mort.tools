@@ -2,7 +2,7 @@ destination: public
 home:
   title: Process Mortality Microdata
   links:
-  - text: View source code (team members only)
+  - text: View source code (team members)
     href: https://gitlab.com/stapm/r-packages/mort.tools
   - text: STAPM webpage
     href: https://stapm.gitlab.io/
