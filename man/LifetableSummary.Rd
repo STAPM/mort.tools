@@ -2,7 +2,7 @@
 % Please edit documentation in R/LifetableSummary.R
 \name{LifetableSummary}
 \alias{LifetableSummary}
-\title{Calculate lifetable summary statistics}
+\title{Calculate lifetable summary statistics \lifecycle{maturing}}
 \usage{
 LifetableSummary(
   mort_data,

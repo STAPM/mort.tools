@@ -1,9 +1,8 @@
 
-#' Load the population counts data
+#' Load the population counts data \lifecycle{stable}
 #'
 #' Reads and cleans the population count data by age, year, sex and IMD quintile.
 #' 
-#' \lifecycle{stable}
 #'
 #' @param path Character - the path to the folder in which the data are stored.
 #' @param last_year Integer - the last year for which data is available.

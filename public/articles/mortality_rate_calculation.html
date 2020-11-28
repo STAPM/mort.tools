@@ -104,7 +104,7 @@
 <div id="grouping-deaths-by-cause" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grouping-deaths-by-cause" class="anchor"></a>Grouping deaths by cause</h2>
-<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in <code>mort.tools::tob_icd10_lookups</code>. We then use the function <code><a href="https://rdrr.io/pkg/tobalcepi/man/ExpandCodes.html">tobalcepi::ExpandCodes()</a></code> to convert these data to ‘long’ form, which we use to map the single ICD-10 codes to disease groups.</p>
+<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups in table 2.1 e.g. C00-C06. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. C00, C01, C02, C03, C04, C05, C06. These are stored in <code><a href="https://rdrr.io/pkg/tobalcepi/man/tob_icd10_lookups.html">mort.tools::tob_icd10_lookups</a></code>. We then use the function <code><a href="https://rdrr.io/pkg/tobalcepi/man/ExpandCodes.html">tobalcepi::ExpandCodes()</a></code> to convert these data to ‘long’ form, which we use to map the single ICD-10 codes to disease groups.</p>
 <p>We then use the function <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code> to aggregate the cause of death counts by disease group (searching for 3 and 4 character ICD-10 matches).</p>
 </div>
 <div id="oesphageal-scc-ac-splits" class="section level2">

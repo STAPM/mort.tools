@@ -2,7 +2,7 @@
 % Please edit documentation in R/SplitOesoph.R
 \name{SplitOesoph}
 \alias{SplitOesoph}
-\title{Split oesophageal (C15) ICD-10 codes in to SCC or AC}
+\title{Split oesophageal (C15) ICD-10 codes in to SCC or AC \lifecycle{stable}}
 \usage{
 SplitOesoph(data, cruk_splits = oesoph_splits, n_deaths_var = "n_deaths")
 }

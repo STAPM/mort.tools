@@ -1,5 +1,5 @@
 
-#' Calculate lifetable summary statistics
+#' Calculate lifetable summary statistics \lifecycle{maturing}
 #'
 #' Calculates key lifetable summary statistics from mortality rates and population numbers,
 #' remaining life expectancy at each age and the expected number of years of life lost to death from each cause.

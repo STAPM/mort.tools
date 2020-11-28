@@ -1,6 +1,6 @@
 
 
-#' Read ONS mortality microdata
+#' Read ONS mortality microdata \lifecycle{stable}
 #'
 #' Loads and cleans the microdata provided by the ONS into a clean form ready 
 #' for further processing.
@@ -8,7 +8,6 @@
 #' The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
 #' The data is processed by an ONS analyst initially before being transferred to us.
 #' 
-#' \lifecycle{stable}
 #'
 #' @param path Character - the path to the folder in which the data are stored.
 #' 

@@ -1,6 +1,6 @@
 
 
-#' Aggregate ICD-10 codes by cause group
+#' Aggregate ICD-10 codes by cause group \lifecycle{stable}
 #'
 #' Groups ICD-10 codes based on the groups of causes specified in our lists of diseases attributable
 #' to tobacco, alcohol or both.
@@ -12,7 +12,7 @@
 #'
 #' Before running this function you will need to run ExpandCodes() from the tobalcepi package.
 #'
-#' \lifecycle{stable}
+#' 
 #'
 #' @param data_file Data table containing death counts ("n_deaths") by individual ICD10 codes.
 #' @param lookup_file Data table showing how ICD-10 codes are grouped by cause.

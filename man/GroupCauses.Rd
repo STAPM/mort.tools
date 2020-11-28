@@ -2,7 +2,7 @@
 % Please edit documentation in R/GroupCauses.R
 \name{GroupCauses}
 \alias{GroupCauses}
-\title{Aggregate ICD-10 codes by cause group}
+\title{Aggregate ICD-10 codes by cause group \lifecycle{stable}}
 \usage{
 GroupCauses(
   data_file,
@@ -31,8 +31,6 @@ assign any occurance in males as 'other causes'. Finally, collapse the data by s
 within each cause group.
 
 Before running this function you will need to run ExpandCodes() from the tobalcepi package.
-
-\lifecycle{stable}
 }
 \examples{
 

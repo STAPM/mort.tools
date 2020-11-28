@@ -2,7 +2,7 @@
 % Please edit documentation in R/CombinedForecast.R
 \name{CombinedForecast}
 \alias{CombinedForecast}
-\title{Run cause-specific forecasts}
+\title{Run cause-specific forecasts \lifecycle{maturing}}
 \usage{
 CombinedForecast(
   data,
@@ -26,9 +26,6 @@ CombinedForecast(
 }
 \description{
 A wrapper that runs the forecast for each cause and groups the outputs together.
-}
-\details{
-\lifecycle{maturing}
 }
 \examples{
 

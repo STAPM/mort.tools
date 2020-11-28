@@ -1,10 +1,9 @@
 
 
-#' Run cause-specific forecasts
+#' Run cause-specific forecasts \lifecycle{maturing}
 #'
 #' A wrapper that runs the forecast for each cause and groups the outputs together.
 #'
-#' \lifecycle{maturing}
 #'
 #' @param data Data table containing our processed cause-specific mortality rates
 #' @param forecast_params Data table containing the control parameters for the cause specific forecasts

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ReadPopData.R
 \name{ReadPopData}
 \alias{ReadPopData}
-\title{Load the population counts data}
+\title{Load the population counts data \lifecycle{stable}}
 \usage{
 ReadPopData(path, last_year = 2018)
 }
@@ -16,9 +16,6 @@ Returns a data table containing the data for all years.
 }
 \description{
 Reads and cleans the population count data by age, year, sex and IMD quintile.
-}
-\details{
-\lifecycle{stable}
 }
 \examples{
 

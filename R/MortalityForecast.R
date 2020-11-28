@@ -1,5 +1,5 @@
 
-#' Lee-Carter forecast of mortality
+#' Lee-Carter forecast of mortality \lifecycle{maturing}
 #'
 #' Implements a Lee-Carter forecast separately for mortality from different causes within 10 subgroups defined by
 #' combinations of sex and IMD quintile.
@@ -11,7 +11,6 @@
 #' \item conducts the forecast up to \code{n_years} from baseline
 #' }
 #'
-#' \lifecycle{maturing}
 #'
 #' @param mort_data_cause Data table containing our processed cause-specific mortality rates
 #' @param folder_path where to put the folder of diagnostic files

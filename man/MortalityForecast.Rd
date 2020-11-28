@@ -2,7 +2,7 @@
 % Please edit documentation in R/MortalityForecast.R
 \name{MortalityForecast}
 \alias{MortalityForecast}
-\title{Lee-Carter forecast of mortality}
+\title{Lee-Carter forecast of mortality \lifecycle{maturing}}
 \usage{
 MortalityForecast(
   mort_data_cause,
@@ -67,8 +67,6 @@ Uses the functions from the R package 'demography':
 \item fits the Lee-Carter model (singular value decomposition of trends)
 \item conducts the forecast up to \code{n_years} from baseline
 }
-
-\lifecycle{maturing}
 }
 \examples{
 
