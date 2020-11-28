@@ -21,7 +21,7 @@ At the moment, these workflows are accessible only to the project team. To acces
 
 The workflows are listed below:  
 
-- [English national-level tobacco-related mortality rates for use in STPM]()  
+- [English national-level tobacco-related mortality rates for use in STPM](https://gitlab.com/stapm/model-inputs/mortality_tob_eng_nat)  
 - [English national-level alcohol-related mortality rates for use in SAPM]()  
 - [English national-level tobacco- and alcohol-related mortality rates for use in STAPM]()  
 
