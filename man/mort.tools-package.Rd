@@ -8,6 +8,13 @@
 \description{
 Read, Clean and Analyse Cause-Specific Mortality Data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://stapm.gitlab.io/r-packages/mort.tools}
+}
+
+}
 \author{
 \strong{Maintainer}: Duncan Gillespie \email{duncan.gillespie@sheffield.ac.uk} (\href{https://orcid.org/0000-0003-3450-5747}{ORCID})
 

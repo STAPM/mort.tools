@@ -1,11 +1,6 @@
 destination: public
 home:
   title: Process Mortality Microdata
-  links:
-  - text: View source code (team members)
-    href: https://gitlab.com/stapm/r-packages/mort.tools
-  - text: STAPM webpage
-    href: https://stapm.gitlab.io/
 url: https://stapm.gitlab.io/r-packages/mort.tools/
 template:
   params:
@@ -17,6 +12,28 @@ authors:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/angus_c
   Alan Brennan:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a
+
+navbar:
+  structure:
+    left:  [home, intro, reference, articles]
+    right: [gitlab, software]
+  components:
+    home: ~
+    intro:
+     text: Get started
+     href: articles/mort-tools.html
+    reference:
+     text: Functions
+     href: reference/index.html
+    articles:
+     text: Technical documentation
+     href: articles/index.html
+    gitlab:
+      icon: fab fa-gitlab fa-lg
+      href: https://gitlab.com/stapm/r-packages/mort.tools
+    software:
+      icon: fa-code
+      href: https://stapm.gitlab.io/software.html
 
 articles:
 - title: "Data"
