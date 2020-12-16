@@ -26,7 +26,7 @@ The motivation for `mort.tools` was to develop a set of functions to clean and d
 `mort.tools` was created as part of a programme of work on the health economics of tobacco and alcohol at the School of Health and Related Research (ScHARR), The University of Sheffield. This programme is based around the construction of the Sheffield Tobacco and Alcohol Policy Model (STAPM), which aims to use comparable methodologies to evaluate the impacts of tobacco and alcohol policies, and investigate the consequences of clustering and interactions between tobacco and alcohol consumption behaviours.   
 
 ## Usage
-See [Get started](mort-tools.html) for example workflows. We have written a range of short [articles](https://stapm.gitlab.io/r-packages/mort.tools/articles/index.html) that explain our data and methods. There is a [reference list of functions](https://stapm.gitlab.io/r-packages/mort.tools/reference/index.html) in this package. Data processing is done on the University of Sheffield managed secure `heta-study` virtual machine.     
+See [Get started](mort-tools.html) for example workflows. We have written a range of short [technical descriptions](https://stapm.gitlab.io/r-packages/mort.tools/articles/index.html) that explain our data and methods. There is a [reference list of functions](https://stapm.gitlab.io/r-packages/mort.tools/reference/index.html) in this package. Data processing is done on the University of Sheffield managed secure `heta-study` virtual machine.     
 
 The suite of functions within `mort.tools` reads the data for each year, produces cause-specific life tables (focusing on the diseases related to tobacco and alcohol), and gives options for conducting forecasts of cause-specific death rates.     
 
