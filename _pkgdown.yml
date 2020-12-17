@@ -5,6 +5,7 @@ url: https://stapm.gitlab.io/r-packages/mort.tools/
 template:
   params:
     bootswatch: flatly
+    ganalytics: UA-167990045-1
 authors:
   Duncan Gillespie:
     href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/gillespie_d
