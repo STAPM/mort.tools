@@ -46,9 +46,6 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_rate_calculation.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_rate_smoothing.html</loc>
-  </url>
-  <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_summary_age_standardised_rates.html</loc>
   </url>
 </urlset>

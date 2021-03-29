@@ -44,8 +44,7 @@ articles:
 - title: "Calculate mortality rates"
   contents:
   - mortality_rate_calculation
-  - mortality_rate_smoothing
-  
+
 - title: "Summarise mortality rates"
   contents:
   - mortality_summary_age_standardised_rates
