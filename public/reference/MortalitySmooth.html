@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • mort.tools</title>
+<title>Smooth age and period surface of death rates  — MortalitySmooth • mort.tools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,8 @@
 
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Smooth age and period surface of death rates  — MortalitySmooth" />
+<meta property="og:description" content="Applies a 2d moving average over age and period, by condition, sex and IMD quintile." />
 <meta property="og:image" content="https://stapm.gitlab.io/r-packages/mort.tools/logo.png" />
 
 
@@ -76,7 +77,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -131,45 +132,71 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Smooth age and period surface of death rates <a href='https://lifecycle.r-lib.org/articles/stages.html#maturing'><img src='figures/lifecycle-maturing.svg' alt='[Maturing]' /></a></h1>
+    
+    <div class="hidden name"><code>MortalitySmooth.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>Data</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="mortality_england_data.html">English mortality data</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>Applies a 2d moving average over age and period, by condition, sex and IMD quintile.</p>
     </div>
-    <div class="section ">
-      <h3>Calculate mortality rates</h3>
-      <p class="section-desc"></p>
 
-      <dl>
-        <dt><a href="mortality_rate_calculation.html">Mortality rate calculation</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Summarise mortality rates</h3>
-      <p class="section-desc"></p>
+    <pre class="usage"><span class='fu'>MortalitySmooth</span><span class='op'>(</span>
+  <span class='va'>mort_data</span>,
+  <span class='va'>condition_names</span>,
+  smooth_n_age <span class='op'>=</span> <span class='fl'>3</span>,
+  smooth_n_year <span class='op'>=</span> <span class='fl'>3</span>
+<span class='op'>)</span></pre>
 
-      <dl>
-        <dt><a href="mortality_summary_age_standardised_rates.html">Calculate age-standardised mortality rates</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
-    <div class="section ">
-      <h3>Forecast mortality rates</h3>
-      <p class="section-desc"></p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>mort_data</th>
+      <td><p>Data table containing cause-specific mortality rates</p></td>
+    </tr>
+    <tr>
+      <th>condition_names</th>
+      <td><p>names of the causes to include</p></td>
+    </tr>
+    <tr>
+      <th>smooth_n_age</th>
+      <td><p>the age range for moving average - must be odd number</p></td>
+    </tr>
+    <tr>
+      <th>smooth_n_year</th>
+      <td><p>the year range for moving average - must be odd number</p></td>
+    </tr>
+    </table>
 
-      <dl>
-        <dt><a href="mortality_forecasting.html">Mortality forecasting</a></dt>
-        <dd></dt>
-      </dl>
-    </div>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+<dt>mort_data</dt><dd><p>Observed mortality</p></dd>
+<dt>mort_data_smooth</dt><dd><p>Smoothed observed mortality</p></dd>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+
+<span class='va'>mx_smoothed</span> <span class='op'>&lt;-</span> <span class='fu'>MortalitySmooth</span><span class='op'>(</span>
+  mort_data <span class='op'>=</span> <span class='va'>test_data</span>,
+  condition_names <span class='op'>=</span> <span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/duplicated.html'>unique</a></span><span class='op'>(</span><span class='va'>test_data</span><span class='op'>$</span><span class='va'>condition</span><span class='op'>)</span>,
+  smooth_n_age <span class='op'>=</span> <span class='fl'>5</span>,
+  smooth_n_year <span class='op'>=</span> <span class='fl'>5</span>
+<span class='op'>)</span>
+
+<span class='op'>}</span>
+
+
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

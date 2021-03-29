@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mort.tools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@
 <p>Before we conduct our cause and subgroup specific mortality forecast, we reduce the noise in the matrix of observed rates of mortality by smoothing each matrix over age and period. To do so, we estimate a moving average based on the application of a two-dimensional sliding window (we adjust the degree of smoothing by adjusting the size of the window). We find that smoothing is particularly important for the rarer causes, as the projected future trends for these causes can be strongly influenced by noise in the observed rates.</p>
 <p>We conduct the forecast using the R package <code>demography</code> <span class="citation">(Rob J Hyndman with contributions from Heather Booth and Leonie Tickle and John Maindonald., <a href="#ref-RJHHBLTJ2019" role="doc-biblioref">n.d.</a>)</span>. We conduct a set of cause-specific forecasts and also a forecast of the remaining other-cause mortality. In our <code>mort.tools</code> R package, the forecast is conducted by the function <code><a href="../reference/CombinedForecast.html">CombinedForecast()</a></code>, which is a wrapper that calls the function <code><a href="../reference/MortalityForecast.html">MortalityForecast()</a></code> to run the forecast for each cause and groups the outputs together. The forecast is run for 10 population subgroups defined by combinations of sex and IMD quintile.</p>
 <p>The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into <code><a href="../reference/CombinedForecast.html">CombinedForecast()</a></code> as <code>forecast_params</code> (Figure 3). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.</p>
-<p><img src="forecast_spreadsheet_snapshot.PNG" width="800"></p>
+<p><img src="forecast_spreadsheet_snapshot.png" width="800"></p>
 <p>Given all the potential unreliabilities of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.</p>
 <p>There is lots of room for improvement in this forecasting method, particularly looking into incorporating forecast undertainty, and developing methods that improve the consistency between the forecasts of cause-specific mortality and those of all-cause mortality <span class="citation">(Li et al. <a href="#ref-Li2019" role="doc-biblioref">2019</a>; Arnold and Sherris <a href="#ref-Arnold2013" role="doc-biblioref">2013</a>; Bergeron-Boucher et al. <a href="#ref-Bergeron-Boucher2017" role="doc-biblioref">2017</a>)</span>.</p>
 </div>
