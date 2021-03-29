@@ -66,7 +66,7 @@ We conduct the forecast using the R package `demography` [@RJHHBLTJ2019]. We con
 
 The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into `CombinedForecast()` as `forecast_params` (Figure 3). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.  
 
-<img src="images/forecast_spreadsheet_snapshot.png" width = "800" />
+<img src="forecast_spreadsheet_snapshot.png" width = "800" />
 
 
 Given all the potential unreliabilities of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.  
