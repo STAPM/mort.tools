@@ -1,9 +1,12 @@
 
-#' Smooth age and period surface of death rates \lifecycle{maturing}
+#' Smooth age and period surface of rates \lifecycle{maturing}
 #'
 #' Applies a 2d moving average over age and period, by condition, sex and IMD quintile.
+#' 
+#' Applied to mortality or morbidity data.
 #'
-#' @param mort_data Data table containing cause-specific mortality rates
+#' @param data Data table containing cause-specific mortality rates
+#' @param var_name Character - the name of the variable to be smoother
 #' @param condition_names names of the causes to include
 #' @param smooth_n_age the age range for moving average - must be odd number
 #' @param smooth_n_year the year range for moving average - must be odd number
@@ -11,8 +14,8 @@
 #' @importFrom data.table := setDT setnames fread rbindlist dcast copy
 #' 
 #' @return
-#' \item{mort_data}{Observed mortality}
-#' \item{mort_data_smooth}{Smoothed observed mortality}
+#' \item{data}{Observed data}
+#' \item{data_smooth}{Smoothed observed data}
 #'
 #' @export
 #'
@@ -20,8 +23,9 @@
 #'
 #' \dontrun{
 #'
-#' mx_smoothed <- MortalitySmooth(
-#'   mort_data = test_data,
+#' mx_smoothed <- MSmooth(
+#'   data = test_data,
+#'   var_name = "mix",
 #'   condition_names = unique(test_data$condition),
 #'   smooth_n_age = 5,
 #'   smooth_n_year = 5
@@ -30,15 +34,16 @@
 #' }
 #'
 #'
-MortalitySmooth <- function(
-  mort_data,
+MSmooth <- function(
+  data,
+  var_name,
   condition_names,
   smooth_n_age = 3,
   smooth_n_year = 3
 ) {
   
-  ages_ref <- min(mort_data$age):max(mort_data$age)
-  years_ref <- min(mort_data$year):max(mort_data$year)
+  ages_ref <- min(data$age):max(data$age)
+  years_ref <- min(data$year):max(data$year)
   
   
   # Loop through subgroups
@@ -66,16 +71,15 @@ MortalitySmooth <- function(
         
         # Select the data for one subgroup
         
-        subdata <- copy(mort_data[sex == sex_i & imd_quintile == imd_quintile_i & condition == cond_i])
+        subdata <- copy(data[sex == sex_i & imd_quintile == imd_quintile_i & condition == cond_i])
         
-        subdata[ , `:=`(sex = NULL, imd_quintile = NULL, condition = NULL,
-                        n_deaths = NULL, pops = NULL)]
+        subdata[ , `:=`(sex = NULL, imd_quintile = NULL, condition = NULL)]
         
         
         # Reshape to wide form with years as columns
         # then make into a matrix
         
-        qdat <- dcast(subdata, age ~ year, value.var = "mix")
+        qdat <- dcast(subdata, age ~ year, value.var = var_name)
         
         qdat[ , age := NULL]
         
@@ -114,7 +118,7 @@ MortalitySmooth <- function(
         
         setDT(qdat)
         
-        qdat <- melt(qdat, id.vars = "age", variable.name = "year", value.name = "mix")
+        qdat <- melt(qdat, id.vars = "age", variable.name = "year", value.name = var_name)
         
         qdat[ , year := as.numeric(as.vector(year))]
         
@@ -124,9 +128,9 @@ MortalitySmooth <- function(
         
         
         if(counter == 1) {
-          mort_data_smooth <- copy(qdat)
+          data_smooth <- copy(qdat)
         } else {
-          mort_data_smooth <- rbindlist(list(mort_data_smooth, copy(qdat)), use.names = T)
+          data_smooth <- rbindlist(list(data_smooth, copy(qdat)), use.names = T)
         }
         
         counter <- counter + 1
@@ -136,8 +140,8 @@ MortalitySmooth <- function(
   
   
   return(list(
-    mort_data = mort_data,
-    mort_data_smooth = mort_data_smooth
+    data = data,
+    data_smooth = data_smooth
   ))
 }
 
