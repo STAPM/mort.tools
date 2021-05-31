@@ -13,10 +13,10 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/LifetableSummary.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MortalityForecast.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MSmooth.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MortalitySmooth.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MortalityForecast.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/ReadData.html</loc>
