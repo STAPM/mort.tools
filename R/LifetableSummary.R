@@ -67,8 +67,12 @@ LifetableSummary <- function(
   mort_data <- merge(mort_data, ex_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
 
   # Merge with the population data
-  mort_data <- merge(mort_data, pop_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
+  mort_data <- merge(mort_data, pop_data[ , arm := NULL], by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
 
+  # Missing values for N_pop indicate that that age and subgroup was not present in the simulated population for that year
+  # so fill with zeros
+  mort_data[is.na(N_pop), N_pop := 0]
+  
   # Calculate and summarise the years of life lost to death from each cause
   data_YLL <- mort_data[ , .(
 
