@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mort.tools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.2</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
 
       
 
-      </header><script src="mortality_rate_calculation_files/header-attrs-2.7/header-attrs.js"></script><script src="mortality_rate_calculation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="mortality_rate_calculation_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Mortality rate calculation</h1>
@@ -123,11 +123,11 @@
 <div id="grouping-deaths-by-cause" class="section level2">
 <h2 class="hasAnchor">
 <a href="#grouping-deaths-by-cause" class="anchor"></a>Grouping deaths by cause</h2>
-<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups defined in our lists of tobacco and alcohol related diseases <span class="citation">(Angus et al. <a href="#ref-Angus2018" role="doc-biblioref">2018</a>; Webster et al. <a href="#ref-webster2018risk" role="doc-biblioref">2018</a>)</span>. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. “C00-C06” becomes the single codes C00, C01, C02, C03, C04, C05, and C06. These are stored in <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/tob_icd10_lookups.html">tobalcepi::tob_icd10_lookups</a>, <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/alc_icd10_lookups.html">tobalcepi::alc_icd10_lookups</a>, and <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/tobalc_icd10_lookups.html">tobalcepi::tobalc_icd10_lookups</a>. We use the function <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/ExpandCodes.html">tobalcepi::ExpandCodes()</a> to convert these ICD-10 lookups to ‘long’ form, and use the resulting data table to map the single ICD-10 codes to disease groups. This mapping is done by the function <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code>.</p>
+<p>Deaths in the mortality data are assigned a single ICD-10 code e.g. C00, but for our analysis we need to group these into cause-groups according to the groups defined in our lists of tobacco and alcohol related diseases <span class="citation">(<a href="#ref-Angus2018" role="doc-biblioref">Angus et al. 2018</a>; <a href="#ref-webster2018risk" role="doc-biblioref">Webster et al. 2018</a>)</span>. To do this, we create a new column that defines each group by its constituent ICD-10 codes e.g. “C00-C06” becomes the single codes C00, C01, C02, C03, C04, C05, and C06. These are stored in <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/tob_icd10_lookups.html">tobalcepi::tob_icd10_lookups</a>, <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/alc_icd10_lookups.html">tobalcepi::alc_icd10_lookups</a>, and <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/tobalc_icd10_lookups.html">tobalcepi::tobalc_icd10_lookups</a>. We use the function <a href="https://stapm.gitlab.io/r-packages/tobalcepi/reference/ExpandCodes.html">tobalcepi::ExpandCodes()</a> to convert these ICD-10 lookups to ‘long’ form, and use the resulting data table to map the single ICD-10 codes to disease groups. This mapping is done by the function <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code>.</p>
 <div id="oesophageal-cancer-scc-ac-splits" class="section level3">
 <h3 class="hasAnchor">
 <a href="#oesophageal-cancer-scc-ac-splits" class="anchor"></a>Oesophageal cancer SCC-AC splits</h3>
-<p>Oesophageal cancer is defined by the ICD-10 code “C15”. It has two subtypes “SCC” and “AC” - these subtypes have different risk relationships to tobacco and alcohol but they are not easy to identify based on the ICD-10 coding system. We therefore use some external data to estimate how total oesophageal cancers might be divided between the subtypes (see our disease list reports <span class="citation">(Angus et al. <a href="#ref-Angus2018" role="doc-biblioref">2018</a>; Webster et al. <a href="#ref-webster2018risk" role="doc-biblioref">2018</a>)</span>). The data for splitting is in <code><a href="../reference/oesoph_splits.html">mort.tools::oesoph_splits</a></code> and the function that does the splitting is <code><a href="../reference/SplitOesoph.html">mort.tools::SplitOesoph()</a></code>, which is called by <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code>.</p>
+<p>Oesophageal cancer is defined by the ICD-10 code “C15.” It has two subtypes “SCC” and “AC” - these subtypes have different risk relationships to tobacco and alcohol but they are not easy to identify based on the ICD-10 coding system. We therefore use some external data to estimate how total oesophageal cancers might be divided between the subtypes (see our disease list reports <span class="citation">(<a href="#ref-Angus2018" role="doc-biblioref">Angus et al. 2018</a>; <a href="#ref-webster2018risk" role="doc-biblioref">Webster et al. 2018</a>)</span>). The data for splitting is in <code><a href="../reference/oesoph_splits.html">mort.tools::oesoph_splits</a></code> and the function that does the splitting is <code><a href="../reference/SplitOesoph.html">mort.tools::SplitOesoph()</a></code>, which is called by <code><a href="../reference/GroupCauses.html">mort.tools::GroupCauses()</a></code>.</p>
 </div>
 <div id="zero-deaths" class="section level3">
 <h3 class="hasAnchor">
@@ -181,12 +181,12 @@
 <div id="references" class="section level2 unnumbered">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Angus2018">
-<p>Angus, Colin, M Henney, L Webster, and Duncan Gillespie. 2018. <em>Alcohol-Attributable Diseases and Dose-Response Curves for the Sheffield Alcohol Policy Model Version 4.0</em>. <a href="https://doi.org/10.15131/shef.data.6819689.v1">https://doi.org/10.15131/shef.data.6819689.v1</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Angus2018" class="csl-entry">
+Angus, Colin, M Henney, L Webster, and Duncan Gillespie. 2018. <em>Alcohol-Attributable Diseases and Dose-Response Curves for the Sheffield Alcohol Policy Model Version 4.0</em>. <a href="https://doi.org/10.15131/shef.data.6819689.v1">https://doi.org/10.15131/shef.data.6819689.v1</a>.
 </div>
-<div id="ref-webster2018risk">
-<p>Webster, Laura, Colin Angus, Alan Brennan, and Duncan Gillespie. 2018. “Smoking and the Risks of Adult Diseases.” The University of Sheffield. <a href="https://doi.org/10.15131/shef.data.7411451.v1">https://doi.org/10.15131/shef.data.7411451.v1</a>.</p>
+<div id="ref-webster2018risk" class="csl-entry">
+Webster, Laura, Colin Angus, Alan Brennan, and Duncan Gillespie. 2018. <span>“Smoking and the Risks of Adult Diseases.”</span> The University of Sheffield. <a href="https://doi.org/10.15131/shef.data.7411451.v1">https://doi.org/10.15131/shef.data.7411451.v1</a>.
 </div>
 </div>
 </div>

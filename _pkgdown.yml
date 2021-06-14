@@ -61,7 +61,7 @@ reference:
   - GroupCauses
   - SplitOesoph
   - oesoph_splits
-  - MortalitySmooth
+  - MSmooth
   
 - title: "Summarise mortality rates"
   contents:
