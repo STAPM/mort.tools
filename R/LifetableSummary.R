@@ -32,6 +32,19 @@ LifetableSummary <- function(
   label = NULL
 ) {
 
+  
+  # Check that there is a "year" variable in mort_data and pop_data
+  
+  if(!("year" %in% colnames(mort_data))) {
+    warning("Year variable missing in mort_data")
+  }
+  
+  if(!("year" %in% colnames(pop_data))) {
+    warning("Year variable missing in pop_data")
+  }
+  
+  if("arm" %in% colnames(pop_data)) pop_data[ , arm := NULL]
+  
   # Calculate the probability of death from each cause during and age interval
   mort_data[ , qix := 1 - exp(-mix)]
 
@@ -67,7 +80,7 @@ LifetableSummary <- function(
   mort_data <- merge(mort_data, ex_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
 
   # Merge with the population data
-  mort_data <- merge(mort_data, pop_data[ , arm := NULL], by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
+  mort_data <- merge(mort_data, pop_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
 
   # Missing values for N_pop indicate that that age and subgroup was not present in the simulated population for that year
   # so fill with zeros
@@ -88,6 +101,7 @@ LifetableSummary <- function(
            c(paste0("n_deaths_", label), paste0("yll_", label), paste0("ex_", label))
   )
 
+  
 return(data_YLL)
 }
 
