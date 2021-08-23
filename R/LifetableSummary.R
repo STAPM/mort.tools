@@ -13,6 +13,9 @@
 #' Counts must be in a variable named "N_pop".
 #' @param strat_vars Character vector - the variables by which to stratify the summary.
 #' @param label Character - the label to append to the calculated variables. Defaults to NULL.
+#' @param two_arms Logical - is there a control and treatment arm. Defaults to FALSE
+#' 
+#' 
 #' @importFrom data.table := setDT setnames fread rbindlist
 #'
 #' @return Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
@@ -29,10 +32,10 @@ LifetableSummary <- function(
   mort_data,
   pop_data,
   strat_vars = c("age_cat", "sex", "imd_quintile", "year", "condition"),
-  label = NULL
+  label = NULL,
+  two_arms = FALSE
 ) {
 
-  
   # Check that there is a "year" variable in mort_data and pop_data
   
   if(!("year" %in% colnames(mort_data))) {
@@ -43,13 +46,23 @@ LifetableSummary <- function(
     warning("Year variable missing in pop_data")
   }
   
-  if("arm" %in% colnames(pop_data)) pop_data[ , arm := NULL]
+  if("arm" %in% colnames(pop_data)) {
+    pop_data[ , arm := NULL]
+  }
+  
+  if(isTRUE(two_arms)) {
+    strat_vars1a <- c(strat_vars, "arm")
+    strat_vars1b <- strat_vars1a[-grep("age", strat_vars1a)]
+  } else {
+    strat_vars1a <- strat_vars
+    strat_vars1b <- strat_vars1a[-grep("age", strat_vars1a)]
+  }
   
   # Calculate the probability of death from each cause during and age interval
   mort_data[ , qix := 1 - exp(-mix)]
 
   # Remove the cause-specific splits by summing the probabilities of death for each subgroup
-  ex_data <- mort_data[, .(qx = sum(qix, na.rm = T)), by = c("age", "sex", "imd_quintile", "year")]
+  ex_data <- mort_data[, .(qx = sum(qix, na.rm = T)), by = strat_vars1a]
 
   # Add the open age interval, 90+, giving it a probability of death of 1
   ex_data <- rbindlist(list(ex_data, copy(ex_data[age == 89])[, `:=`(age = 90, qx = 1)]), use.names = T)
@@ -59,7 +72,7 @@ LifetableSummary <- function(
 
   # Calculate the survivorship function
   # as the cumulative product of the probability of survival to the start of each age interval
-  ex_data[, lx := cumprod(c(1, px[1:(length(px) - 1)])), by = c("sex", "imd_quintile", "year")]
+  ex_data[, lx := cumprod(c(1, px[1:(length(px) - 1)])), by = strat_vars1b]
 
   # Calculate the age distribution of deaths
   ex_data[, phix := qx * lx]
@@ -68,19 +81,19 @@ LifetableSummary <- function(
   ex_data[, Lx := lx - .5 * phix]
 
   # Calculate the expected years of life lived
-  ex_data[, Tx := rev(cumsum(rev(Lx))), by = c("sex", "imd_quintile", "year")]
+  ex_data[, Tx := rev(cumsum(rev(Lx))), by = strat_vars1b]
 
   # Calculate remaining life expectancy
   ex_data[, ex := Tx / lx]
 
   # Select required variables
-  ex_data <- ex_data[, c("age", "sex", "imd_quintile", "year", "ex")]
+  ex_data <- ex_data[, c(strat_vars1a, "ex")]
 
   # Merge the population level with the cause specific data
-  mort_data <- merge(mort_data, ex_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
+  mort_data <- merge(mort_data, ex_data, by = strat_vars1a, all.x = T, all.y = F)
 
   # Merge with the population data
-  mort_data <- merge(mort_data, pop_data, by = c("age", "sex", "imd_quintile", "year"), all.x = T, all.y = F)
+  mort_data <- merge(mort_data, pop_data, by = strat_vars1a, all.x = T, all.y = F)
 
   # Missing values for N_pop indicate that that age and subgroup was not present in the simulated population for that year
   # so fill with zeros
@@ -93,7 +106,7 @@ LifetableSummary <- function(
     yll = sum(N_pop * mix * ex),
     ex = mean(ex)
 
-  ), by = strat_vars]
+  ), by = strat_vars1a]
 
 
   setnames(data_YLL,
@@ -102,7 +115,7 @@ LifetableSummary <- function(
   )
 
   
-return(data_YLL)
+return(data_YLL[])
 }
 
 

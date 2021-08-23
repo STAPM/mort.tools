@@ -8,7 +8,8 @@ LifetableSummary(
   mort_data,
   pop_data,
   strat_vars = c("age_cat", "sex", "imd_quintile", "year", "condition"),
-  label = NULL
+  label = NULL,
+  two_arms = FALSE
 )
 }
 \arguments{
@@ -21,6 +22,8 @@ Counts must be in a variable named "N_pop".}
 \item{strat_vars}{Character vector - the variables by which to stratify the summary.}
 
 \item{label}{Character - the label to append to the calculated variables. Defaults to NULL.}
+
+\item{two_arms}{Logical - is there a control and treatment arm. Defaults to FALSE}
 }
 \value{
 Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
