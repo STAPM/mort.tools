@@ -46,7 +46,7 @@ LifetableSummary <- function(
     warning("Year variable missing in pop_data")
   }
   
-  if("arm" %in% colnames(pop_data)) {
+  if("arm" %in% colnames(pop_data) & !isTRUE(two_arms)) {
     pop_data[ , arm := NULL]
   }
   
@@ -87,20 +87,20 @@ LifetableSummary <- function(
   ex_data[, ex := Tx / lx]
 
   # Select required variables
-  ex_data <- ex_data[, c(strat_vars1a, "ex")]
+  ex_data <- ex_data[, c(strat_vars1a, "ex"), with = F]
 
   # Merge the population level with the cause specific data
   mort_data <- merge(mort_data, ex_data, by = strat_vars1a, all.x = T, all.y = F)
 
   # Merge with the population data
-  mort_data <- merge(mort_data, pop_data, by = strat_vars1a, all.x = T, all.y = F)
+  mort_data <- merge(mort_data, pop_data, by = strat_vars1a[!(strat_vars1a %in% c("condition"))], all.x = T, all.y = F)
 
   # Missing values for N_pop indicate that that age and subgroup was not present in the simulated population for that year
   # so fill with zeros
   mort_data[is.na(N_pop), N_pop := 0]
   
   # Calculate and summarise the years of life lost to death from each cause
-  data_YLL <- mort_data[ , .(
+  data_YLL <- mort_data[ , list(
 
     n_deaths = sum(N_pop * mix),
     yll = sum(N_pop * mix * ex),
