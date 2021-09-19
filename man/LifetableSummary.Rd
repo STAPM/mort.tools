@@ -16,7 +16,7 @@ LifetableSummary(
 \item{mort_data}{Data table - central rates of death in single years of age and period, stratified by cause.
 Cause-specific death rates are "mix", stratified by subgroups of "age", "sex", "imd_quintile" and "year".}
 
-\item{pop_data}{Data table - mid-year population sizes in single years of age and period. 
+\item{pop_data}{Data table - mid-year population sizes in single years of age and period.
 Counts must be in a variable named "N_pop".}
 
 \item{strat_vars}{Character vector - the variables by which to stratify the summary.}

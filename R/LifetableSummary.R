@@ -9,13 +9,13 @@
 #'
 #' @param mort_data Data table - central rates of death in single years of age and period, stratified by cause.
 #' Cause-specific death rates are "mix", stratified by subgroups of "age", "sex", "imd_quintile" and "year".
-#' @param pop_data Data table - mid-year population sizes in single years of age and period. 
+#' @param pop_data Data table - mid-year population sizes in single years of age and period.
 #' Counts must be in a variable named "N_pop".
 #' @param strat_vars Character vector - the variables by which to stratify the summary.
 #' @param label Character - the label to append to the calculated variables. Defaults to NULL.
 #' @param two_arms Logical - is there a control and treatment arm. Defaults to FALSE
-#' 
-#' 
+#'
+#'
 #' @importFrom data.table := setDT setnames fread rbindlist
 #'
 #' @return Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
@@ -37,25 +37,25 @@ LifetableSummary <- function(
 ) {
 
   # Check that there is a "year" variable in mort_data and pop_data
-  
+
   if(!("year" %in% colnames(mort_data))) {
     warning("Year variable missing in mort_data")
   }
-  
+
   if(!("year" %in% colnames(pop_data))) {
     warning("Year variable missing in pop_data")
   }
-  
+
   if("arm" %in% colnames(pop_data) & !isTRUE(two_arms)) {
     pop_data[ , arm := NULL]
   }
-  
+
   if(isTRUE(two_arms)) {
     arm_ind <- "arm"
   } else {
     arm_ind <- NULL
   }
-  
+
   # Calculate the probability of death from each cause during and age interval
   mort_data[ , qix := 1 - exp(-mix)]
 
@@ -96,7 +96,7 @@ LifetableSummary <- function(
   # Missing values for N_pop indicate that that age and subgroup was not present in the simulated population for that year
   # so fill with zeros
   mort_data[is.na(N_pop), N_pop := 0]
-  
+
   # Calculate and summarise the years of life lost to death
   data_YLL <- mort_data[ , list(
 
@@ -112,8 +112,8 @@ LifetableSummary <- function(
            c(paste0("n_deaths_", label), paste0("yll_", label), paste0("ex_", label))
   )
 
-  
-return(data_YLL[])
+
+return(data_YLL)
 }
 
 
