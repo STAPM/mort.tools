@@ -2,7 +2,7 @@
 % Please edit documentation in R/MortalityForecast.R
 \name{MortalityForecast}
 \alias{MortalityForecast}
-\title{Lee-Carter forecast of mortality \lifecycle{maturing}}
+\title{Lee-Carter forecast of mortality \lifecycle{experimental}}
 \usage{
 MortalityForecast(
   mort_data_cause,

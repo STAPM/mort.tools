@@ -37,20 +37,10 @@ navbar:
       href: https://stapm.gitlab.io/software.html
 
 articles:
-- title: "Data"
+- title: "Technical details"
   contents:
-  - mortality_england_data
-
-- title: "Calculate mortality rates"
-  contents:
+  - mort-tools
   - mortality_rate_calculation
-
-- title: "Summarise mortality rates"
-  contents:
-  - mortality_summary_age_standardised_rates
-
-- title: "Forecast mortality rates"
-  contents:
   - mortality_forecasting
 
 reference:
@@ -62,18 +52,17 @@ reference:
   - SplitOesoph
   - oesoph_splits
   - MSmooth
-  
+
 - title: "Summarise mortality rates"
   contents:
   - LifetableSummary
   - esp2013
-  
+
 - title: "Forecast mortality rates"
   contents:
   - CombinedForecast
   - MortalityForecast
-  
-  
-  
-  
-  
+
+
+
+

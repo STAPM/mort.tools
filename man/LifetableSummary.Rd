@@ -2,7 +2,7 @@
 % Please edit documentation in R/LifetableSummary.R
 \name{LifetableSummary}
 \alias{LifetableSummary}
-\title{Calculate lifetable summary statistics \lifecycle{maturing}}
+\title{Calculate life-table summary statistics}
 \usage{
 LifetableSummary(
   mort_data,
@@ -29,7 +29,7 @@ Counts must be in a variable named "N_pop".}
 Returns a data table of the number of deaths and expected years of life lost by cause and subgroup.
 }
 \description{
-Calculates key lifetable summary statistics from mortality rates and population numbers,
+Calculates key life-table summary statistics from mortality rates and population numbers,
 remaining life expectancy at each age and the expected number of years of life lost to death from each cause.
 }
 \details{

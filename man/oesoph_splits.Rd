@@ -8,7 +8,7 @@
 A data table
 }
 \source{
-Percentages supplied by Katrina Brown at CRUK Katrina.Brown@cancer.org.uk
+Percentages supplied by CRUK
 }
 \usage{
 oesoph_splits

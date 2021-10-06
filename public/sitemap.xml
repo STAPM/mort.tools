@@ -7,16 +7,25 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/CombinedForecast.html</loc>
   </url>
   <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/esp2013.html</loc>
+  </url>
+  <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/GroupCauses.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/LifetableSummary.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MSmooth.html</loc>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/mort.tools-package.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MortalityForecast.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/MSmooth.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/oesoph_splits.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/ReadData.html</loc>
@@ -28,27 +37,12 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/SplitOesoph.html</loc>
   </url>
   <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/esp2013.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/mort.tools-package.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//reference/oesoph_splits.html</loc>
-  </url>
-  <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mort-tools.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_england_data.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_forecasting.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_rate_calculation.html</loc>
-  </url>
-  <url>
-    <loc>https://stapm.gitlab.io/r-packages/mort.tools//articles/mortality_summary_age_standardised_rates.html</loc>
   </url>
 </urlset>

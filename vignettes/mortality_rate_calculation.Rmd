@@ -1,5 +1,8 @@
 ---
 title: "Mortality rate calculation"
+subtitle: "Vignette version number 1.2.0"
+date: "Last reviewed 06/10/21"
+author: "Duncan Gillespie"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Mortality rate calculation}
@@ -11,21 +14,58 @@ header-includes:
   \usepackage{amsmath}
 link-citations: yes
 citation_package: natbib
-biblio-style: vancouver
+biblio-style: apalike
 urlcolor: blue
+editor_options: 
+  chunk_output_type: console
 ---
 
+```{r setup, include = FALSE, results = 'hide', warning = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.pos = 'H'
+)
 
-Aim: To calculate the one year central rates of death from diseases defined by specific ICD-10 codes, stratified by specified population subgroups.   
+suppressPackageStartupMessages(library(readxl))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(ggplot2))
+#library(cowplot)
 
-## Preliminaries
+#knitr::opts_knit$set(root.dir = "/Volumes/Shared/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
+#knitr::opts_knit$set(root.dir = "X:/ScHARR/PR_STAPM/Code/R_packages/mort.tools")
 
-- Get access to the data on the `heta-study` VM.  
-- Get access to the STAPM Gitlab organisation.  
-- [Choose a repo](mort-tools.html) as a starting point and get the code on the VM.  
+```
+
+## Data
+For England, to inform the cause-specific central rates of death in one year intervals of age and period, data on annual counts of deaths and mid-year population sizes was requested from the Office for National Statistics (in the form of mortality micro-data). Data is processed from 2001 (being the first year for which estimates by Index of Multiple Deprivation quintile are available) to the latest available. The data is used to calculate and forecast the central rates of death, and from period life-tables to estimate the years of life lost to death from each cause. Causes are defined by groupings of ICD-10 codes ([see the information on the relative risks of disease](https://stapm.gitlab.io/data.html#Relative_risks_of_disease)). Death rate and life-table calculations are stratified by sex and IMD quintile population subgroups.       
+
+### Death counts
+Death counts data for England are stratified as follows:  
+
+- 326 lower tier Local Authorities    
+- IMD quintiles   
+- sex   
+- Age groups single year of age then 90+  
+- Disease categories defined by ICD-Codes   
+- 2001-latest available   
+
+### Population counts
+Mid-year population size data for England:  
+
+- 326 lower tier Local Authorities   
+- IMD quintiles   
+- sex   
+- Age groups single year of age then 90+   
+- 2001-latest available   
+
+## Data management
+See the [dataset information sheet](https://docs.google.com/spreadsheets/d/1mRPa--eN_JByDr-0EVtkMeG-ETeqrfG6vgOTBo3YZ-8/edit#gid=0).   
+
+Data is stored and analysed on the University of Sheffield managed `heta-study` virtual machine. The code used to process these data is stored in [Gitlab repos](mort-tools.html) that can be accessed by the project team.  
 
 ## Read the death and population counts data
-The functions `mort.tools::ReadPopData()` and `mort.tools::ReadData()` have been written to read the data in the format that it was provided by the data providers and output the data in a nicely formatted form ready for further processing. Depending on the objective for processing, you might then need to filter the data to select only specific geographic regions. You might also need to collapse some of the dimensionality in the data, e.g. if you do not need separate counts of deaths for males and females, then you will need to sum the counts of deaths and population numbers across the sexes. 
+The functions `mort.tools::ReadPopData()` and `mort.tools::ReadData()` read the data in the format that it was provided by the data providers and output the data in a formatted form ready for further processing. Depending on the objective for processing, you might then need to filter the data to select only specific geographic regions. You might also need to collapse some of the dimensionality in the data, e.g. if you do not need separate counts of deaths for males and females, then you will need to sum the counts of deaths and population numbers across the sexes. 
 
 ```{r loadmortpopdata, eval = F}
 # Load the population counts by age, sex, IMD quintile, local authority, year
@@ -89,6 +129,38 @@ ver <- packageVersion("mort.tools")
 
 write.table(data, paste0("outputs/tob_death_rates_england_national_", Sys.Date(), "_mort.tools_", ver, ".csv"),
   row.names = F, sep = ",")
+
+```
+
+## Calculate age-standardised death rates
+For the age-standardisation, the package `mort.tools` contains the 2013 European Standard Population in `esp2013`, which provides a standard set of weights for calculating average mortality across all ages. 
+
+```{r lung cancer trends, eval = F}
+
+# Figure 1
+
+library(ggplot2)
+
+# Create age categorys for merging with the European Standard Population
+data[, agegroup := c(
+  "0-4", "5-9", "10-14", "15-19",  "20-24", "25-29", "30-34", "35-39", "40-44", 
+  "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90+"
+  )[findInterval(age, seq(0, 90, 5))]]
+
+data <- merge(data, esp2013, by = "agegroup")
+
+# Calculate age-standardised mortality rates per 100,000 people for lung cancer 
+# by year, sex and IMD quintile
+lungc_rates <- data[cause == "Lung", 
+                    .(stdrate = 1e5 * sum(mx_cause * ESP2013) / sum(ESP2013)), 
+                    by = c("year", "sex", "imd_quintile")]
+
+# Plot
+ggplot(lungc_rates) +
+  geom_line(aes(x = year, y = stdrate, colour = imd_quintile)) +
+  facet_wrap(~ sex, ncol = 1) +
+  ggtitle("Lung cancer") + ylab("Death rate / 100 thousand people") + xlab("year") +
+  theme_minimal()
 
 ```
 

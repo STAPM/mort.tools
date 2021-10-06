@@ -1,6 +1,5 @@
 
-
-#' Run cause-specific forecasts \lifecycle{maturing}
+#' Run cause-specific forecasts \lifecycle{experimental}
 #'
 #' A wrapper that runs the forecast for each cause and groups the outputs together.
 #'

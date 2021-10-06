@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate lifetable summary statistics  — LifetableSummary • mort.tools</title>
+<title>Calculate life-table summary statistics — LifetableSummary • mort.tools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Calculate lifetable summary statistics  — LifetableSummary" />
-<meta property="og:description" content="Calculates key lifetable summary statistics from mortality rates and population numbers,
+<meta property="og:title" content="Calculate life-table summary statistics — LifetableSummary" />
+<meta property="og:description" content="Calculates key life-table summary statistics from mortality rates and population numbers,
 remaining life expectancy at each age and the expected number of years of life lost to death from each cause." />
 <meta property="og:image" content="https://stapm.gitlab.io/r-packages/mort.tools/logo.png" />
 
@@ -116,7 +116,7 @@ remaining life expectancy at each age and the expected number of years of life l
 </li>
 <li>
   <a href="https://stapm.gitlab.io/software.html">
-    <span class="fas fa-code"></span>
+    <span class="fa fa-code"></span>
      
   </a>
 </li>
@@ -133,13 +133,13 @@ remaining life expectancy at each age and the expected number of years of life l
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate lifetable summary statistics <a href='https://lifecycle.r-lib.org/articles/stages.html#maturing'><img src='figures/lifecycle-maturing.svg' alt='[Maturing]' /></a></h1>
+    <h1>Calculate life-table summary statistics</h1>
     
     <div class="hidden name"><code>LifetableSummary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates key lifetable summary statistics from mortality rates and population numbers,
+    <p>Calculates key life-table summary statistics from mortality rates and population numbers,
 remaining life expectancy at each age and the expected number of years of life lost to death from each cause.</p>
     </div>
 
@@ -147,7 +147,8 @@ remaining life expectancy at each age and the expected number of years of life l
   <span class='va'>mort_data</span>,
   <span class='va'>pop_data</span>,
   strat_vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"age_cat"</span>, <span class='st'>"sex"</span>, <span class='st'>"imd_quintile"</span>, <span class='st'>"year"</span>, <span class='st'>"condition"</span><span class='op'>)</span>,
-  label <span class='op'>=</span> <span class='cn'>NULL</span>
+  label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  two_arms <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -160,7 +161,7 @@ Cause-specific death rates are "mix", stratified by subgroups of "age", "sex", "
     </tr>
     <tr>
       <th>pop_data</th>
-      <td><p>Data table - mid-year population sizes in single years of age and period. 
+      <td><p>Data table - mid-year population sizes in single years of age and period.
 Counts must be in a variable named "N_pop".</p></td>
     </tr>
     <tr>
@@ -170,6 +171,10 @@ Counts must be in a variable named "N_pop".</p></td>
     <tr>
       <th>label</th>
       <td><p>Character - the label to append to the calculated variables. Defaults to NULL.</p></td>
+    </tr>
+    <tr>
+      <th>two_arms</th>
+      <td><p>Logical - is there a control and treatment arm. Defaults to FALSE</p></td>
     </tr>
     </table>
 

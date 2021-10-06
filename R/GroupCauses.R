@@ -1,18 +1,17 @@
 
-
-#' Aggregate ICD-10 codes by cause group \lifecycle{stable}
+#' Aggregate ICD-10 codes by cause group
 #'
 #' Groups ICD-10 codes based on the groups of causes specified in our lists of diseases attributable
 #' to tobacco, alcohol or both.
 #'
 #' Identifies the ICD-10 codes that fall within each cause group.
 #' For conditions that we consider only to occur in females (Breast, Cervix cancer, and hip fracture)
-#' assign any occurance in males as 'other causes'. Finally, collapse the data by summing the death counts
+#' assign any occurrence in males as 'other causes'. Finally, collapse the data by summing the death counts
 #' within each cause group.
 #'
 #' Before running this function you will need to run ExpandCodes() from the tobalcepi package.
 #'
-#' 
+#'
 #'
 #' @param data_file Data table containing death counts ("n_deaths") by individual ICD10 codes.
 #' @param lookup_file Data table showing how ICD-10 codes are grouped by cause.
@@ -73,5 +72,6 @@ GroupCauses <- function(
   # Split deaths from oesophageal cancer into two subtypes
   data_file <- mort.tools::SplitOesoph(data_file)
 
-return(data_file)
+
+  return(data_file)
 }

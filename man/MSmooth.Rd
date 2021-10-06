@@ -2,7 +2,7 @@
 % Please edit documentation in R/MSmooth.R
 \name{MSmooth}
 \alias{MSmooth}
-\title{Smooth age and period surface of rates \lifecycle{maturing}}
+\title{Smooth age and period surface of rates}
 \usage{
 MSmooth(data, var_name, condition_names, smooth_n_age = 3, smooth_n_year = 3)
 }

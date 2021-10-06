@@ -2,14 +2,14 @@
 % Please edit documentation in R/SplitOesoph.R
 \name{SplitOesoph}
 \alias{SplitOesoph}
-\title{Split oesophageal (C15) ICD-10 codes in to SCC or AC \lifecycle{stable}}
+\title{Split oesophageal (C15) ICD-10 codes in to SCC or AC}
 \usage{
 SplitOesoph(data, cruk_splits = oesoph_splits, n_deaths_var = "n_deaths")
 }
 \arguments{
 \item{data}{Data table containing counts of death by cause.}
 
-\item{cruk_splits}{Data table containing the percentages of oesphageal cancer that are SCC and AC.}
+\item{cruk_splits}{Data table containing the percentages of oesophageal cancer that are SCC and AC.}
 
 \item{n_deaths_var}{Character - the name of the variable containing the death counts.}
 }

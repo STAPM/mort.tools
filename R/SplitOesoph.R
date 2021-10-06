@@ -1,13 +1,12 @@
 
-
-#' Split oesophageal (C15) ICD-10 codes in to SCC or AC \lifecycle{stable}
+#' Split oesophageal (C15) ICD-10 codes in to SCC or AC
 #'
 #' Using the data provided to us by CRUK, split deaths marked as due to Oesophageal cancer into
 #' deaths from the subtypes SCC and AC.
 #'
 #' @param data Data table containing counts of death by cause.
-#' @param cruk_splits Data table containing the percentages of oesphageal cancer that are SCC and AC.
-#' @param n_deaths_var Character - the name of the variable containing the death counts.  
+#' @param cruk_splits Data table containing the percentages of oesophageal cancer that are SCC and AC.
+#' @param n_deaths_var Character - the name of the variable containing the death counts.
 #'
 #' @return Returns a data table that is an updated version of data with extra rows added to reflect
 #' the splitting of oesophageal cancer into two diseases.
@@ -58,5 +57,6 @@ SplitOesoph <- function(
   data <- rbindlist(list(data, scc_deaths, ac_deaths), use.names = T)
   data[ , cruk_ageband := NULL]
 
-return(data[])
+
+  return(data)
 }

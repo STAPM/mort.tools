@@ -102,11 +102,3 @@ library(dplyr) # for data manipulation and summary
 library(magrittr) # for pipes
 library(ggplot2) # for plotting
 ```
-
-## Citation
-
-Please cite the latest version of the package using:  
-“Duncan Gillespie, Laura Webster, Colin Angus and Alan Brennan (2020).
-mort.tools: Read, Clean and Analyse Cause-Specific Mortality Data. R
-package version x.x.x.
-<https://stapm.gitlab.io/r-packages/mort.tools/>.”

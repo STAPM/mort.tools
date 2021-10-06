@@ -1,13 +1,11 @@
-pandoc: 2.11.4
+pandoc: 2.14.0.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   mort-tools: mort-tools.html
-  mortality_england_data: mortality_england_data.html
   mortality_forecasting: mortality_forecasting.html
   mortality_rate_calculation: mortality_rate_calculation.html
-  mortality_summary_age_standardised_rates: mortality_summary_age_standardised_rates.html
-last_built: 2021-06-14T11:29Z
+last_built: 2021-10-06T19:39Z
 urls:
   reference: https://stapm.gitlab.io/r-packages/mort.tools//reference
   article: https://stapm.gitlab.io/r-packages/mort.tools//articles

@@ -19,10 +19,6 @@
 #'
 #' @format A data table
 #'
-#' @source Percentages supplied by Katrina Brown at CRUK Katrina.Brown@cancer.org.uk
-#'
-#'
-#'
-#'
+#' @source Percentages supplied by CRUK
 #'
 "oesoph_splits"

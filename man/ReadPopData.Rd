@@ -2,7 +2,7 @@
 % Please edit documentation in R/ReadPopData.R
 \name{ReadPopData}
 \alias{ReadPopData}
-\title{Load the population counts data \lifecycle{stable}}
+\title{Load the population counts data}
 \usage{
 ReadPopData(path, last_year = 2018)
 }

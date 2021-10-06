@@ -2,7 +2,7 @@
 % Please edit documentation in R/CombinedForecast.R
 \name{CombinedForecast}
 \alias{CombinedForecast}
-\title{Run cause-specific forecasts \lifecycle{maturing}}
+\title{Run cause-specific forecasts \lifecycle{experimental}}
 \usage{
 CombinedForecast(
   data,

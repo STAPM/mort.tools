@@ -1,5 +1,5 @@
 
-#' Lee-Carter forecast of mortality \lifecycle{maturing}
+#' Lee-Carter forecast of mortality \lifecycle{experimental}
 #'
 #' Implements a Lee-Carter forecast separately for mortality from different causes within 10 subgroups defined by
 #' combinations of sex and IMD quintile.
@@ -23,7 +23,7 @@
 #' @param smooth_n_age the age range for moving average - must be odd number
 #' @param smooth_n_year the year range for moving average - must be odd number
 #' @param n_years how far in future to project
-#' @param standard_pop Data table - the population structure for standardisation.  
+#' @param standard_pop Data table - the population structure for standardisation.
 #' @param interpolate TRUE or FALSE - should any remaining zeros in the data after smoothing
 #' be interpolated based on neighbouring values. This only works if sufficient data exists to inform the interpolation
 #' i.e. for diseases with few deaths it might have to be turned off.
@@ -88,7 +88,7 @@ MortalityForecast <- function(
   pop_counts <- copy(mort_data[age %in% age_range & year %in% year_range & sex %in% sex_focus])
   pop_counts[ , n_deaths := NULL]
   pop_counts <- dcast(pop_counts, year + age ~ sex + imd_quintile,
-    value.var = "pops", sep = "x")
+                      value.var = "pops", sep = "x")
 
   write.table(pop_counts, paste0(folder_name, "/popdata.txt"), sep = "\t", row.names = F)
 
@@ -183,8 +183,8 @@ MortalityForecast <- function(
 
   # need mortality rates for each subgroup in wide form in a tab deliminated text file
   mort_data_temp <- dcast(mort_data_smooth[age %in% age_range & year %in% year_range & sex %in% sex_focus],
-    year + age ~ sex + imd_quintile,
-    value.var = "mx", sep = "x")
+                          year + age ~ sex + imd_quintile,
+                          value.var = "mx", sep = "x")
 
   series <- tolower(colnames(mort_data_temp)[3:ncol(mort_data_temp)])
 
@@ -203,22 +203,22 @@ MortalityForecast <- function(
 
     # Fit Lee-Carter model
     lca_i <- lca(data, series = i, years = year_range, ages = age_range,
-      max.age = 90, adjust = "dt", restype = "logrates", interpolate = interpolate)
+                 max.age = 90, adjust = "dt", restype = "logrates", interpolate = interpolate)
 
     png(paste0(folder_name, "/lca_", i, ".png"))
-      plot(lca_i)
+    plot(lca_i)
     dev.off()
 
     # Implement the forecast
     forecast_i <- forecast(object = lca_i, h = n_years,
-      se = "innovdrift", jumpchoice = "actual", level = 95)
+                           se = "innovdrift", jumpchoice = "actual", level = 95)
 
     png(paste0(folder_name, "/forecast_", i, ".png"))
-      plot(forecast_i)
+    plot(forecast_i)
     dev.off()
 
     png(paste0(folder_name, "/forecast_components_", i, ".png"))
-      plot(forecast_i, "c")
+    plot(forecast_i, "c")
     dev.off()
 
     # Store the results
@@ -276,12 +276,12 @@ MortalityForecast <- function(
 
   mort_data[mx == 0, mx := NA]
 
-return(list(
-  mort_data = mort_data,
-  mort_data_smooth = mort_data_smooth,
-  mx_forecast = mx_forecast,
-  year_plot = year_plot,
-  age_plot = age_plot
+  return(list(
+    mort_data = mort_data,
+    mort_data_smooth = mort_data_smooth,
+    mx_forecast = mx_forecast,
+    year_plot = year_plot,
+    age_plot = age_plot
   ))
 }
 

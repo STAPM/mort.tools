@@ -2,7 +2,7 @@
 % Please edit documentation in R/ReadData.R
 \name{ReadData}
 \alias{ReadData}
-\title{Read ONS mortality microdata \lifecycle{stable}}
+\title{Read ONS mortality micro-data}
 \usage{
 ReadData(path)
 }
@@ -13,7 +13,7 @@ ReadData(path)
 Returns a data table containing the data for all years.
 }
 \description{
-Loads and cleans the microdata provided by the ONS into a clean form ready 
+Loads and cleans the micro-data provided by the ONS into a clean form ready
 for further processing.
 }
 \details{

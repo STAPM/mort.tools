@@ -2,7 +2,7 @@
 % Please edit documentation in R/GroupCauses.R
 \name{GroupCauses}
 \alias{GroupCauses}
-\title{Aggregate ICD-10 codes by cause group \lifecycle{stable}}
+\title{Aggregate ICD-10 codes by cause group}
 \usage{
 GroupCauses(
   data_file,
@@ -27,7 +27,7 @@ to tobacco, alcohol or both.
 \details{
 Identifies the ICD-10 codes that fall within each cause group.
 For conditions that we consider only to occur in females (Breast, Cervix cancer, and hip fracture)
-assign any occurance in males as 'other causes'. Finally, collapse the data by summing the death counts
+assign any occurrence in males as 'other causes'. Finally, collapse the data by summing the death counts
 within each cause group.
 
 Before running this function you will need to run ExpandCodes() from the tobalcepi package.

@@ -1,7 +1,7 @@
 
-#' Calculate lifetable summary statistics \lifecycle{maturing}
+#' Calculate life-table summary statistics
 #'
-#' Calculates key lifetable summary statistics from mortality rates and population numbers,
+#' Calculates key life-table summary statistics from mortality rates and population numbers,
 #' remaining life expectancy at each age and the expected number of years of life lost to death from each cause.
 #'
 #' The function assumes that it is dealing with age and period in single years, so adjusting the size
@@ -113,7 +113,7 @@ LifetableSummary <- function(
   )
 
 
-return(data_YLL)
+  return(data_YLL)
 }
 
 
