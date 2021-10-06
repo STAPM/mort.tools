@@ -5,7 +5,7 @@ articles:
   mort-tools: mort-tools.html
   mortality_forecasting: mortality_forecasting.html
   mortality_rate_calculation: mortality_rate_calculation.html
-last_built: 2021-10-06T19:39Z
+last_built: 2021-10-06T19:55Z
 urls:
   reference: https://stapm.gitlab.io/r-packages/mort.tools//reference
   article: https://stapm.gitlab.io/r-packages/mort.tools//articles
