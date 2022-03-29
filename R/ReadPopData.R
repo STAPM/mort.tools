@@ -160,28 +160,28 @@ ReadPopData <- function(
     
     #path <- "D:/Scottish death and population data"
     
-    data_y <- readxl::read_excel(paste0(path, "/Population 2008-2018 by SIMD quintile and age.xlsx"),
+    data <- readxl::read_excel(paste0(path, "/Population 2008-2018 by SIMD quintile and age.xlsx"),
                                  col_types = c("numeric", "text", rep("numeric", 83)))
     
-    setDT(data_y)
+    setDT(data)
     
-    data_y[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
+    data[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
     
-    data_y[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
+    data[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
                                               c("1" = "5_most_deprived",
                                                 "2" = "4",
                                                 "4" = "2",
                                                 "5" = "1_least_deprived"))]
     
-    data_y[ , `:=`(AllAges = NULL, age0to10 = NULL)]
+    data[ , `:=`(AllAges = NULL, age0to10 = NULL)]
     
-    data_y <- melt.data.table(data_y, id.vars = c("yr", "sex", "SIMD16quintile"), value.name = "pops", variable.name = "age")
+    data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile"), value.name = "pops", variable.name = "age")
     
-    data_y[ , age := stringr::str_remove_all(age, "age")]
-    data_y[ , age := stringr::str_remove_all(age, "plus")]
-    data_y[ , age := as.vector(as.numeric(age))]
+    data[ , age := stringr::str_remove_all(age, "age")]
+    data[ , age := stringr::str_remove_all(age, "plus")]
+    data[ , age := as.vector(as.numeric(age))]
     
-    setnames(data_y, c("yr", "SIMD16quintile"), c("year", "imd_quintile"))
+    setnames(data, c("yr", "SIMD16quintile"), c("year", "imd_quintile"))
     
   }
   
