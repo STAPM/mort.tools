@@ -48,6 +48,7 @@ ReadPopData <- function(
         setDT(data_y)
         
         # Select only English local authorities
+        #pop_data <- pop_data[str_sub(laua, 1, 1) == "E"]
         data_y <- data_y[stringr::str_detect(laua, "E")]
         
         setnames(data_y, c("age", "IMD_quintile"), c("ageinyrs", "imd_quintile"))
@@ -233,7 +234,7 @@ ReadPopData <- function(
         
         data_y[ , "laua name" := NULL]
         
-        setnames(data_y, c("Pops", "Year", "Age", "Sex", "IMD QUINTILE"),
+        setnames(data_y, c("Pops", "Year", "Age", "Sex", "IMD Quintile"),
                  c("pops", "year", "ageinyrs", "sex", "imd_quintile"))
       }
       
