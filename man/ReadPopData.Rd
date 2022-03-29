@@ -4,7 +4,7 @@
 \alias{ReadPopData}
 \title{Load the population counts data}
 \usage{
-ReadPopData(path, last_year = 2018, country = "England")
+ReadPopData(path, last_year = 2019, country = "England")
 }
 \arguments{
 \item{path}{Character - the path to the folder in which the data are stored.}

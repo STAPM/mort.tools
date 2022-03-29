@@ -22,7 +22,7 @@
 #'
 ReadPopData <- function(
   path,
-  last_year = 2018,
+  last_year = 2019,
   country = "England"
 ) {
   
@@ -118,6 +118,30 @@ ReadPopData <- function(
         
         data_y[ , "laua name" := NULL]
         data_y[ , year := 2018]
+        
+      }
+      
+      ###################################
+      # 2019
+      
+      if(ky == 2019) {
+        
+        # age variable includes 90+ so is initially treated as text
+        
+        # path <- "D:/Death and population data"
+        
+        data_y <- readxl::read_excel(paste0(path, "/2019/Eng_Pops_2019_Final.xlsx"),
+                                     sheet = "England_Pops_2019",
+                                     col_types = c("text", "text", "numeric", "numeric", "text", "numeric"))
+        
+        setDT(data_y)
+        
+        setnames(data_y,
+                 c("age", "IMD Quintile", "lad20nm"),
+                 c("ageinyrs", "imd_quintile", "laua name"))
+        
+        data_y[ , "laua name" := NULL]
+        data_y[ , year := 2019]
         
       }
       
