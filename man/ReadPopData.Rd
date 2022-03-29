@@ -4,12 +4,14 @@
 \alias{ReadPopData}
 \title{Load the population counts data}
 \usage{
-ReadPopData(path, last_year = 2018)
+ReadPopData(path, last_year = 2018, country = "England")
 }
 \arguments{
 \item{path}{Character - the path to the folder in which the data are stored.}
 
 \item{last_year}{Integer - the last year for which data is available.}
+
+\item{country}{Character string - the country: "England", "Scotland", "Wales. Defaults to England.}
 }
 \value{
 Returns a data table containing the data for all years.
