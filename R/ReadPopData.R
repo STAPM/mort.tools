@@ -270,7 +270,7 @@ ReadPopData <- function(
         
         # age variable includes 90+ so is initially treated as text
         
-        data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_Wales_2017_IMD2014.xlsx"),
+        data_y <- readxl::read_excel(paste0(path, "/2017-2018/Deaths_Pops_Wales_2018_IMD2014.xlsx"),
                                      sheet = "POPS_2018_IMD_2014",
                                      col_types = c("text", "numeric", "numeric", "text", "text", "numeric"))
         
