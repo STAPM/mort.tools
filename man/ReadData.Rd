@@ -2,23 +2,35 @@
 % Please edit documentation in R/ReadData.R
 \name{ReadData}
 \alias{ReadData}
-\title{Read ONS mortality micro-data}
+\title{Read data on counts of deaths}
 \usage{
-ReadData(path)
+ReadData(path, country = "England", supp_data = NULL)
 }
 \arguments{
 \item{path}{Character - the path to the folder in which the data are stored.}
+
+\item{country}{Character string - the country for which the death rates are being calculated - "England", "Wales", "Scotland". 
+Defaults to England.}
+
+\item{supp_data}{Optional input of supplementary information to support processing. Defaults to NULL.}
 }
 \value{
 Returns a data table containing the data for all years.
 }
 \description{
-Loads and cleans the micro-data provided by the ONS into a clean form ready
-for further processing.
+Loads and cleans the data on counts of deaths provided by the data owner, e.g. the Office for National Statistics, 
+clean these data and make them ready for calculating cause-specific rates of death.
 }
 \details{
-The ONS data was provided originally for years 2001-2014, with subsequent annual updates.
-The data is processed by an ONS analyst initially before being transferred to us.
+The counts of death provided to inform the STAPM modelling 
+come in a time series of many years so that ongoing trends in death rates can be estimated 
+and input into the model micro-simulation.   
+
+The data on counts of death are processed into a filtered and summarised form by an analyst 
+at the data owner before being transferred to the STAPM team for further processing.  
+
+The counts of death are all stratified by single years of age and year, sex (m/f) and quintiles of the index of multiple deprivation. 
+Depending on the project for which the data is required, the death counts might also be stratified by local authority.
 }
 \examples{
 

@@ -21,13 +21,13 @@ At the moment, these workflows are accessible only to the project team. To acces
 
 The workflows are listed below:  
 
-- [English national-level population sizes](https://gitlab.com/stapm/model-inputs/pop_sizes_eng_nat)  
+
+- [English, Wales and Scotland population sizes](https://gitlab.com/stapm/model-inputs/pop_sizes_eng_nat)  
 - [English national-level tobacco-related mortality rates](https://gitlab.com/stapm/model-inputs/mortality_tob_eng_nat)  
 - [English national-level alcohol-related mortality rates](https://gitlab.com/stapm/model-inputs/mortality_alc_eng_nat)  
 - [English national-level tobacco- and alcohol-related mortality rates](https://gitlab.com/stapm/model-inputs/mortality_tobalc_eng_nat)  
 
-
-
+- [Scottish national-level tobacco-related mortality rates](https://gitlab.com/stapm/model-inputs/pop_sizes_eng_nat)    
 
 
 
