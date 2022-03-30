@@ -437,13 +437,13 @@ ReadData <- function(path,
     
     data[ , `:=`(icd10_lookups = NULL, CauseOfDeath = NULL)]
     
-    data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile", "condition"), value.name = "pops", variable.name = "age")
+    data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile", "condition"), value.name = "n_deaths", variable.name = "age")
     
     data[ , age := stringr::str_remove_all(age, "age")]
     data[ , age := stringr::str_remove_all(age, "plus")]
     data[ , age := as.vector(as.numeric(age))]
     
-    setnames(data, c("yr", "SIMD16quintile"), c("year", "imd_quintile"))
+    setnames(data, c("yr", "SIMD16quintile", "condition"), c("year", "imd_quintile", "cause"))
     
   }
   
