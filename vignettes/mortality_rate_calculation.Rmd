@@ -37,27 +37,7 @@ suppressPackageStartupMessages(library(ggplot2))
 
 ```
 
-## Data
-For England, to inform the cause-specific central rates of death in one year intervals of age and period, data on annual counts of deaths and mid-year population sizes was requested from the Office for National Statistics (in the form of mortality micro-data). Data is processed from 2001 (being the first year for which estimates by Index of Multiple Deprivation quintile are available) to the latest available. The data is used to calculate and forecast the central rates of death, and from period life-tables to estimate the years of life lost to death from each cause. Causes are defined by groupings of ICD-10 codes ([see the information on the relative risks of disease](https://stapm.gitlab.io/data.html#Relative_risks_of_disease)). Death rate and life-table calculations are stratified by sex and IMD quintile population subgroups.       
 
-### Death counts
-Death counts data for England are stratified as follows:  
-
-- 326 lower tier Local Authorities    
-- IMD quintiles   
-- sex   
-- Age groups single year of age then 90+  
-- Disease categories defined by ICD-Codes   
-- 2001-latest available   
-
-### Population counts
-Mid-year population size data for England:  
-
-- 326 lower tier Local Authorities   
-- IMD quintiles   
-- sex   
-- Age groups single year of age then 90+   
-- 2001-latest available   
 
 ## Data management
 See the [dataset information sheet](https://docs.google.com/spreadsheets/d/1mRPa--eN_JByDr-0EVtkMeG-ETeqrfG6vgOTBo3YZ-8/edit#gid=0).   

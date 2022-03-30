@@ -37,53 +37,9 @@ suppressPackageStartupMessages(library(ggplot2))
 
 ```
 
-## Overview
+
 The mortality forecasting code developed and discussed here is still experimental. There are several potential methods that could be used to forecast mortality by cause, and further thought is needed about what the most reliable method might be.
 
-## Smoothed and forecast mortality rates
-For STAPM, it should be possible to project the past trends in the age-patterns of cause-specific mortality forwards into the future for each sex and Index of Multiple deprivation population subgroup. It is important to consider how mortality might change into the future due to factors that are not related to smoking. For example, the effect of a future policy on cardiovascular disease mortality might be over-estimated if the ongoing declines in cardiovascular mortality rates are not modelled [@castillo2014future]. This presents the challenge of producing forecasts of the age-patterns of cause-specific mortality for each sex and Index of Multiple Deprivation population subgroup. Intervention effects would then be modelled as adjustments to these trends.    
-
-The advantages of conducting a cause-specific forecast is that it would enable us to incorporate different trends for different diseases and different subgroups e.g. that that there are fewer deaths from Ischemic Heart disease but more from dementia, and that lung cancer rates are declining in males but rising in females. Cause-specific forecasts stratified by IMD quintiles would also allow us to incorporate the different socio-economic trends in past mortality and to project an expectation of the future socio-economic trends in mortality.  
-
-There are several methods that might be used [@Li2019;@Arnold2013;@Bergeron-Boucher2017]. One issue with cause-specific mortality forecasting is that the forecasts of cause-specific mortality rates might not add up to / correspond with the forecasts of the aggregate all-cause mortality rates. Wilmoth [-@Wilmoth1995] observed that mortality projections are more pessimistic when disaggregated by cause of death because the causes of death that are decreasing the most slowly or that are increasing come to dominate (i.e. the aggregate trends are most influenced by trends in the causes with the most deaths).  
-
-## Lee-Carter methods
-Our current approach in STAPM is to conduct a Lee-Carter forecast [@Lee1992] separately for mortality from different causes within ten subgroups defined by combinations of sex and IMD quintile. The Lee-carter method is a "proportional rate of change model". It summarises the age-period surface of log-mortality rates ($\log{}m_{xt}$) in terms of vectors $\mathbf{a}$ and $\mathbf{b}$ along the age dimension and $\mathbf{k}$ along the time dimension such that 
-
-\begin{equation}
-\log{}m_{xt}=a_x+b_xk_t+e_{xt}  \label{leecartereq}
-\end{equation}
-
-with restrictions such that the $b$'s are normalized to sum to one and the $k$'s sum to zero, so the $a$'s are average log rates.  
-
-The vector $\mathbf{a}$ can be interpreted as an average age profile of mortality, the vector $\mathbf{k}$ tracks mortality
-changes over time, and the vector $\mathbf{b}$ determines how much each age group changes when $k_t$ changes. When $k_t$ is linear on time each age group changes at its own exponential rate, but this is not a requirement of the model. The error term reflects age-period effects not captured by the model.  
-
-The vector $\mathbf{a}$ is estimated by averaging log rates over time and $\mathbf{b}$ and $\mathbf{k}$ via a singular value decomposition (SVD) of the residuals (this is essentially a method for approximating a matrix as the product of two vectors).  
-
-Having reduced the time dimension of mortality to a single vector $\mathbf{k}$, this is then projected forward by an ARIMA time series model. In our forecasting for STAPM we don't currently incorporate forecast error but if we were to then it would be based on the error in this time series model.  
-
-Future mortality is then estimated by inputting the extrapolated values of $k_t$ back into (\ref{leecartereq}).  
-
-## Our experimental application of these methods
-Before we conduct our cause and subgroup specific mortality forecast, we have experimented with reducing the noise in the matrix of observed rates of mortality by smoothing each matrix over age and period. To do so, we estimated a moving average based on the application of a two-dimensional sliding window (adjusting the degree of smoothing by adjusting the size of the window). We found that smoothing is particularly important for the rarer causes, as the projected future trends for these causes can be strongly influenced by noise in the observed rates.   
-
-We conducted the forecast using the R package `demography` [@RJHHBLTJ2019]. We conducted a set of cause-specific forecasts and also a forecast of the remaining other-cause mortality. In the `mort.tools` R package, the experimental forecast method is implemented by the function `mort.tools::CombinedForecast()`, which is a wrapper that calls the function `mort.tools::MortalityForecast()` to run the forecast for each cause and groups the outputs together. The forecast is run for ten population subgroups defined by combinations of sex and IMD quintile.  
-
-The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into `mort.tools::CombinedForecast()` as `forecast_params` (see Figure). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.  
-
-<!-- <img src="forecast_spreadsheet_snapshot.png" width = "800" /> -->
-<!-- ![Forecasting parameters for each cause](forecast_spreadsheet_snapshot.png){#id .class width=75% height=75%} -->
-
-```{r forecastparams, out.width="100%", echo=FALSE}
-knitr::include_graphics("forecast_spreadsheet_snapshot.png")
-```
-
-Given all the potential unreliability of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.   
-
-There is lots of room for improvement in this forecasting method, particularly looking into incorporating forecast uncertainty, and developing methods that improve the consistency between the forecasts of cause-specific mortality and those of all-cause mortality [@Li2019;@Arnold2013;@Bergeron-Boucher2017].  
-
-## Example forecast
 The following code illustrates the observed and forecast cause and subgroup specific mortality rates that would be used in STAPM. In this case, we forecast the trends from 2016 to 2100.  
 
 ```{r forecast example code, eval = F}
@@ -114,6 +70,4 @@ cforecast <- CombinedForecast(
 tob_mort_data_cause <- copy(cforecast$mx_data_cause)
 
 ```
-
-## References
 
