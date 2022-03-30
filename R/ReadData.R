@@ -349,6 +349,8 @@ ReadData <- function(path,
                                  col_types = c("numeric", "numeric", "numeric", "text", "numeric",
                                                "text", "text", "numeric"))
     
+    setDT(data_y)
+    
     setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
     
     setnames(data_y,
@@ -370,13 +372,15 @@ ReadData <- function(path,
                                  col_types = c("numeric", "text", "text", "numeric", "numeric",
                                                "text", "text", "text", "numeric"))
     
+    setDT(data_y)
+    
     setnames(data_y, colnames(data_y), tolower(colnames(data_y)))
     
     setnames(data_y,
              c("imd quintile", "fic10und"),
              c("imd_quintile", "icd10u"))
     
-    data[ , lad20nm := NULL]
+    data_y[ , lad20nm := NULL]
     
     data <- rbindlist(list(data, data_y), use.names = TRUE)
     
