@@ -1,6 +1,6 @@
 Package: mort.tools
 Title: Process Mortality Microdata
-Version: 1.4.0
+Version: 1.5.0
 Authors@R: 
     c(
     person(given = "Duncan",
