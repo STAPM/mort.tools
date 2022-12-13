@@ -1,12 +1,12 @@
-pandoc: 2.14.0.3
-pkgdown: 1.6.1
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   mort-tools: mort-tools.html
   mortality_forecasting: mortality_forecasting.html
   mortality_rate_calculation: mortality_rate_calculation.html
-last_built: 2021-10-06T19:55Z
+last_built: 2022-12-13T18:35Z
 urls:
-  reference: https://stapm.gitlab.io/r-packages/mort.tools//reference
-  article: https://stapm.gitlab.io/r-packages/mort.tools//articles
+  reference: https://stapm.gitlab.io/r-packages/mort.tools/reference
+  article: https://stapm.gitlab.io/r-packages/mort.tools/articles
 
