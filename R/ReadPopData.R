@@ -1,14 +1,24 @@
 
 #' Load the population counts data
 #'
-#' Reads and cleans the population count data by age, year, sex and IMD quintile.
-#'
+#' Reads and cleans the population count data by age, year, sex and IMD quintile.    
+#' 
+#' Population count data for England and Wales are supplied by the Office for National Statistics. 
+#' Population counts for Scotland are supplied by National Records Scotland.   
+#' 
+#' This function takes the data in the format supplied by the data provider and converts into a standard format 
+#' used in the STAPM modelling. This function is therefore specific to the format of the data sheets 
+#' provided to the University of Sheffield to inform the STAPM modelling.   
+#' 
+#' The data supplied are stored on a secure virtual machine. The code that uses this function to 
+#' read and process the population count data is run in the virtual machine environment.  
 #'
 #' @param path Character - the path to the folder in which the data are stored.
 #' @param last_year Integer - the last year for which data is available.
 #' @param country Character string - the country: "England", "Scotland", "Wales. Defaults to England.
 #'
-#' @return Returns a data table containing the data for all years.
+#' @return Returns a data table containing the data for all years for the country specified.  
+#' 
 #' @importFrom data.table := setDT setnames rbindlist copy
 #' @export
 #'
@@ -16,14 +26,19 @@
 #'
 #' \dontrun{
 #'
-#' data <- ReadPopData("D:/Death and population data")
-#'
+#' # England 
+#' data <- ReadPopData(path = "D:/Death and population data",
+#'   last_year = 2019, country = "England")
+#'   
+#' # Scotland
+#' pop_data <- ReadPopData(path = "D:/Scottish death and population data", country = "Scotland")
+#' 
 #' }
 #'
 ReadPopData <- function(
   path,
   last_year = 2019,
-  country = "England"
+  country = c("England", "Scotland", "Wales")
 ) {
   
   ##############################################################################
@@ -348,34 +363,68 @@ ReadPopData <- function(
     
     #path <- "D:/Scottish death and population data"
     
-    data <- readxl::read_excel(paste0(path, "/Population 2008-2018 by SIMD quintile and age.xlsx"),
+    #######################################
+    # 2008 - 2018 population counts
+    
+    data1 <- readxl::read_excel(paste0(path, "/Population 2008-2018 by SIMD quintile and age.xlsx"),
                                  col_types = c("numeric", "text", rep("numeric", 83)))
     
-    setDT(data)
+    setDT(data1)
     
-    data[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
+    data1[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
     
-    data[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
+    data1[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
                                               c("1" = "5_most_deprived",
                                                 "2" = "4",
                                                 "4" = "2",
                                                 "5" = "1_least_deprived"))]
     
-    data[ , `:=`(AllAges = NULL, age0to10 = NULL)]
+    data1[ , `:=`(AllAges = NULL, age0to10 = NULL)]
     
-    data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile"), value.name = "pops", variable.name = "age")
+    data1 <- melt.data.table(data1, id.vars = c("yr", "sex", "SIMD16quintile"), value.name = "pops", variable.name = "age")
     
-    data[ , age := stringr::str_remove_all(age, "age")]
-    data[ , age := stringr::str_remove_all(age, "plus")]
-    data[ , age := as.vector(as.numeric(age))]
+    data1[ , age := stringr::str_remove_all(age, "age")]
+    data1[ , age := stringr::str_remove_all(age, "plus")]
+    data1[ , age := as.vector(as.numeric(age))]
     
-    setnames(data, c("yr", "SIMD16quintile"), c("year", "imd_quintile"))
+    setnames(data1, c("yr", "SIMD16quintile"), c("year", "imd_quintile"))
+    
+    #######################################
+    # 2019 - 2021 population counts
+    
+    data2 <- readxl::read_excel(paste0(path, "/NRS - University of Sheffield - Duncan Gillespie - population data.xlsx"),
+                               col_types = c("numeric", "text", rep("numeric", 83)))
+    
+    setDT(data2)
+    
+    data2 <- data2[sex %in% c("M", "F")]
+    
+    data2[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
+    
+    data2[ , SIMDquintile := plyr::revalue(as.character(quintile),
+                                             c("1" = "5_most_deprived",
+                                               "2" = "4",
+                                               "4" = "2",
+                                               "5" = "1_least_deprived"))]
+    
+    data2[ , `:=`(AllAges = NULL, age0to10 = NULL, quintile = NULL)]
+    
+    data2 <- melt.data.table(data2, id.vars = c("yr", "sex", "SIMDquintile"), value.name = "pops", variable.name = "age")
+    
+    data2[ , age := stringr::str_remove_all(age, "age")]
+    data2[ , age := stringr::str_remove_all(age, "p")]
+    data2[ , age := as.vector(as.numeric(age))]
+    
+    setnames(data2, c("yr", "SIMDquintile"), c("year", "imd_quintile"))
+    
+    # bind together
+    data <- rbindlist(list(data1, data2), use.names = TRUE, fill = FALSE)
     
   }
   
   
   data[ , country := country]
   
-  return(data)
+  return(data[])
 }
 
