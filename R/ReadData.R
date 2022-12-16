@@ -420,13 +420,66 @@ ReadData <- function(path,
     
     #path <- "D:/Scottish death and population data"
     
-    data <- read.csv(paste0(path, "/Sheffield Univ - Duncan Gillespie - Tobacco-related deaths - CSV file.csv"))
+    # # read in the data in the format given by the data provider
+    # data <- read.csv(paste0(path, "/Sheffield Univ - Duncan Gillespie - Tobacco-related deaths - CSV file.csv"))
+    # 
+    # # convert to a data.table format
+    # setDT(data)
+    # 
+    # # rename the levels of the sex variable
+    # data[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
+    # 
+    # # rename the levels of the IMD quintile variable
+    # data[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
+    #                                         c("1" = "5_most_deprived",
+    #                                           "2" = "4",
+    #                                           "4" = "2",
+    #                                           "5" = "1_least_deprived"))]
+    # 
+    # # Remove ages below 11 years and records where age not known
+    # data[ , `:=`(AllAges = NULL, age0to10 = NULL, ageNK = NULL)]
+    # 
+    # # Cause of death
+    # 
+    # # Data supplied with numeric codes indicating cause
+    # # the file tobacco_icd10_lookups should be supplied to this processing code as supplementary data (as a data.table)
+    # 
+    # #supp_data <- read.csv(paste0(path, "/tobacco_icd10_lookups.csv"))
+    # #setDT(supp_data)
+    # 
+    # # merge in the lookups so have the disease names formatted in the way we want them
+    # data <- merge.data.table(data, supp_data, all.x = T, all.y = F, by = "CauseOfDeath")
+    # 
+    # # delete columns not needed
+    # data[ , `:=`(icd10_lookups = NULL, CauseOfDeath = NULL)]
+    # 
+    # # convert the data from wide form with respect to age to long form
+    # data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile", "condition"), value.name = "n_deaths", variable.name = "age")
+    # 
+    # # clean up the formatting of the new age column to turn it from a character variable into a numeric
+    # data[ , age := stringr::str_remove_all(age, "age")]
+    # data[ , age := stringr::str_remove_all(age, "plus")]
+    # data[ , age := as.vector(as.numeric(age))]
+    # 
+    # # set the column names to the standard ones used
+    # setnames(data, c("yr", "SIMD16quintile", "condition"), c("year", "imd_quintile", "cause"))
+    # 
     
+    #######################################
+    
+    #path <- "D:/Scottish death and population data"
+    
+    # read in the data in the format given by the data provider
+    data <- read.csv(paste0(path, "/NRS - University of Sheffield - Duncan Gillespie - tobacco and alcohol deaths - CSV File.csv"))
+    
+    # convert to a data.table format
     setDT(data)
     
+    # rename the levels of the sex variable
     data[ , sex := as.character(plyr::revalue(sex, c("F" = "Female", "M" = "Male")))]
     
-    data[ , SIMD16quintile := plyr::revalue(as.character(SIMD16quintile),
+    # rename the levels of the IMD quintile variable
+    data[ , quintile := plyr::revalue(as.character(quintile),
                                             c("1" = "5_most_deprived",
                                               "2" = "4",
                                               "4" = "2",
@@ -440,20 +493,31 @@ ReadData <- function(path,
     # Data supplied with numeric codes indicating cause
     # the file tobacco_icd10_lookups should be supplied to this processing code as supplementary data (as a data.table)
     
-    #supp_data <- read.csv(paste0(path, "/tobacco_icd10_lookups.csv"))
-    #setDT(supp_data)
+    supp_data <- read.csv(paste0(path, "/tobalc_icd10_lookups.csv"))
+    setDT(supp_data)
     
-    data <- merge.data.table(data, supp_data, all.x = T, all.y = F, by = "CauseOfDeath")
+    # merge in the lookups so have the disease names formatted in the way we want them
+    data <- merge.data.table(data, supp_data, all.x = T, all.y = F, by = "causeofdeath")
     
-    data[ , `:=`(icd10_lookups = NULL, CauseOfDeath = NULL)]
+    # delete columns not needed
+    #data[ , `:=`(icd10_lookups = NULL, causeofdeath = NULL)]
+    data[ , `:=`(causeofdeath = NULL, causename = NULL)]
     
-    data <- melt.data.table(data, id.vars = c("yr", "sex", "SIMD16quintile", "condition"), value.name = "n_deaths", variable.name = "age")
+    # convert the data from wide form with respect to age to long form
+    data <- melt.data.table(data, id.vars = c("yr", "sex", "quintile", "condition"), value.name = "n_deaths", variable.name = "age")
     
+    # clean up the formatting of the new age column to turn it from a character variable into a numeric
     data[ , age := stringr::str_remove_all(age, "age")]
     data[ , age := stringr::str_remove_all(age, "plus")]
     data[ , age := as.vector(as.numeric(age))]
     
-    setnames(data, c("yr", "SIMD16quintile", "condition"), c("year", "imd_quintile", "cause"))
+    # set the column names to the standard ones used
+    setnames(data, c("yr", "quintile", "condition"), c("year", "imd_quintile", "cause"))
+    
+    
+    
+    
+    
     
   }
   
