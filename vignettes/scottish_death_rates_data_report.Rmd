@@ -82,62 +82,11 @@ Trends over age are plotted for a subsample of five data years from 2017 to 2021
 
 # Reproducibility notes
 
-- Data processed using [mort.tools](https://stapm.github.io/mort.tools/) version `r packageDescription("mort.tools", fields = "Version")` (open access)
+- Data processed using [mort.tools](https://stapm.gitlab.io/r-packages/mort.tools/) version `r packageDescription("mort.tools", fields = "Version")` (open access)
 - Github code repository https://github.com/STAPM/mort.tools. Code for these plots https://github.com/STAPM/mort.tools/tree/master/vignettes/Scotland_mortality_calculations
 - Open Science Framework repository https://osf.io/wn6rh/
 
 
 <!-- # References -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
