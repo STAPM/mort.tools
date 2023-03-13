@@ -46,7 +46,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mort.tools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.6.0</span>
       </span>
     </div>
 
@@ -58,24 +58,32 @@
 <li>
   <a href="../reference/index.html">Functions</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../articles/index.html">Technical documentation</a>
+      <a href="../articles/mortality_forecasting.html">Mortality forecasting</a>
+    </li>
+    <li>
+      <a href="../articles/mortality_rate_calculation.html">Mortality rate calculation</a>
+    </li>
+    <li>
+      <a href="../articles/Scotland_mortality_calculations/age_specific_death_rates.html">Age-specific death rates for Scotland</a>
+    </li>
+    <li>
+      <a href="../articles/Scotland_mortality_calculations/age_standardised_death_rates.html">Age-standardised death rates for Scotland</a>
+    </li>
+    <li>
+      <a href="../articles/scottish_death_rates_data_report.html">Data check: Death rates in Scotland</a>
+    </li>
+  </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://gitlab.com/stapm/r-packages/mort.tools" class="external-link">
-    <span class="fab fa-gitlab fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://stapm.gitlab.io/software.html" class="external-link">
-    <span class="fa fa-code"></span>
-     
-  </a>
-</li>
-      </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -171,7 +179,7 @@ deaths from a particular cause, and rows with zero deaths needed to be
 added in these cases.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Generate the relevant lookup file</span></span>
-<span><span class="va">lookups</span> <span class="op">&lt;-</span> <span class="fu">tobalcepi</span><span class="fu">::</span><span class="fu">ExpandCodes</span><span class="op">(</span><span class="va">tob_icd10_lookups</span><span class="op">)</span></span>
+<span><span class="va">lookups</span> <span class="op">&lt;-</span> <span class="fu">tobalcepi</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tobalcepi/man/ExpandCodes.html" class="external-link">ExpandCodes</a></span><span class="op">(</span><span class="va">tob_icd10_lookups</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Group death data into causes</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">mort.tools</span><span class="fu">::</span><span class="fu"><a href="../reference/GroupCauses.html">GroupCauses</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">lookups</span>, strat_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"age"</span>, <span class="st">"sex"</span>, <span class="st">"imd_quintile"</span><span class="op">)</span><span class="op">)</span></span>
@@ -280,12 +288,12 @@ of Sheffield. <a href="https://doi.org/10.15131/shef.data.7411451.v1" class="ext
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://www.sheffield.ac.uk/scharr/sections/heds/staff/gillespie_d" class="external-link">Duncan Gillespie</a>, Laura Webster, <a href="https://www.sheffield.ac.uk/scharr/sections/heds/staff/angus_c" class="external-link">Colin Angus</a>, <a href="https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a" class="external-link">Alan Brennan</a>.</p>
+<p>Developed by <a href="https://www.sheffield.ac.uk/scharr/people/staff/duncan-gillespie" class="external-link">Duncan Gillespie</a>, Laura Webster, <a href="https://www.sheffield.ac.uk/scharr/people/staff/colin-angus" class="external-link">Colin Angus</a>, <a href="https://www.sheffield.ac.uk/scharr/people/staff/alan-brennan" class="external-link">Alan Brennan</a>.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

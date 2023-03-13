@@ -4,6 +4,12 @@
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/404.html</loc>
   </url>
   <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/age_specific_death_rates.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/age_standardised_death_rates.html</loc>
+  </url>
+  <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/index.html</loc>
   </url>
   <url>
@@ -23,6 +29,15 @@
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/mortality_summary_age_standardised_rates.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/Scotland_mortality_calculations/age_specific_death_rates.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/Scotland_mortality_calculations/age_standardised_death_rates.html</loc>
+  </url>
+  <url>
+    <loc>https://stapm.gitlab.io/r-packages/mort.tools/articles/scottish_death_rates_data_report.html</loc>
   </url>
   <url>
     <loc>https://stapm.gitlab.io/r-packages/mort.tools/authors.html</loc>

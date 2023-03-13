@@ -1,0 +1,68 @@
+---
+title: "Age-standardised death rates for Scotland"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+<style>
+
+body{
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+}
+
+.container { width: 1000px; }
+h3 {
+  background-color: #D4DAEC;
+  #text-indent: 100px; 
+}
+h4 {
+  text-indent: 100px;
+}
+
+
+g-table-intro h4 {
+  text-indent: 0px;
+}
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(here))
+suppressPackageStartupMessages(library(stringr))
+```
+
+
+```{r deathratesav, echo = F, results = "asis", eval = T}
+
+files <- list.files(path = "plots/", 
+                    pattern = "*_mix_av.png$",
+                    full.names = TRUE)
+
+for(i in 1:length(files)) {
+  
+  name <- str_remove(files[i], "plots/")
+  name <- str_remove(name, "_mix_av.png")
+  name <- str_replace_all(name, "_", " ")
+  
+  cat(paste0("\n\n# ", name, "\n\n"))
+    
+  cat('![](', paste0(files[i]), ')')
+}
+
+
+```  

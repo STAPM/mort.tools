@@ -1,6 +1,6 @@
 destination: public
 home:
-  title: Process Mortality Microdata
+  title: Processing Mortality Microdata
 url: https://stapm.gitlab.io/r-packages/mort.tools/
 template:
   params:
@@ -8,16 +8,16 @@ template:
     ganalytics: UA-167990045-1
 authors:
   Duncan Gillespie:
-    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/gillespie_d
+    href: https://www.sheffield.ac.uk/scharr/people/staff/duncan-gillespie
   Colin Angus:
-    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/angus_c
+    href: https://www.sheffield.ac.uk/scharr/people/staff/colin-angus
   Alan Brennan:
-    href: https://www.sheffield.ac.uk/scharr/sections/heds/staff/brennan_a
+    href: https://www.sheffield.ac.uk/scharr/people/staff/alan-brennan
 
 navbar:
   structure:
     left:  [home, intro, reference, articles]
-    right: [gitlab, software]
+    right: [github, gitlab, software]
   components:
     home: ~
     intro:
@@ -26,22 +26,24 @@ navbar:
     reference:
      text: Functions
      href: reference/index.html
-    articles:
-     text: Technical documentation
-     href: articles/index.html
-    gitlab:
-      icon: fab fa-gitlab fa-lg
-      href: https://gitlab.com/stapm/r-packages/mort.tools
-    software:
-      icon: fa-code
-      href: https://stapm.gitlab.io/software.html
-
-articles:
-- title: "Technical details"
-  contents:
-  - mort-tools
-  - mortality_rate_calculation
-  - mortality_forecasting
+  articles:
+     text: Methods and data checks
+     menu:
+      - text: "Methods notes: Mortality rate calculation"
+        href: articles/mortality_rate_calculation.html
+      - text: "Data check: Scottish death rates"
+        href: articles/scottish_death_rates_data_report.html
+      - text: "Methods notes: Mortality forecasting"
+        href: articles/mortality_rate_calculation.html
+  github:
+    icon: fab fa-github fa-lg
+    href: https://github.com/STAPM/mort.tools
+  gitlab:
+    icon: fab fa-gitlab fa-lg
+    href: https://gitlab.com/stapm/r-packages/mort.tools
+  software:
+    icon: fa-code
+    href: https://stapm.gitlab.io/software.html
 
 reference:
 - title: "Calculate mortality rates"
@@ -50,19 +52,20 @@ reference:
   - ReadPopData
   - GroupCauses
   - SplitOesoph
-  - oesoph_splits
   - MSmooth
 
 - title: "Summarise mortality rates"
   contents:
   - LifetableSummary
-  - esp2013
 
 - title: "Forecast mortality rates"
   contents:
   - CombinedForecast
   - MortalityForecast
 
-
+- title: Data
+  contents:
+  - oesoph_splits
+  - esp2013
 
 

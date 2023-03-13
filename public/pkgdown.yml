@@ -1,11 +1,14 @@
-pandoc: '2.18'
-pkgdown: 2.0.6
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   mort-tools: mort-tools.html
   mortality_forecasting: mortality_forecasting.html
   mortality_rate_calculation: mortality_rate_calculation.html
-last_built: 2022-12-13T18:35Z
+  age_specific_death_rates: Scotland_mortality_calculations/age_specific_death_rates.html
+  age_standardised_death_rates: Scotland_mortality_calculations/age_standardised_death_rates.html
+  scottish_death_rates_data_report: scottish_death_rates_data_report.html
+last_built: 2023-03-13T12:02Z
 urls:
   reference: https://stapm.gitlab.io/r-packages/mort.tools/reference
   article: https://stapm.gitlab.io/r-packages/mort.tools/articles
