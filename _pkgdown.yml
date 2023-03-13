@@ -27,14 +27,16 @@ navbar:
      text: Functions
      href: reference/index.html
   articles:
-     text: Methods and data checks
-     menu:
+    text: "Methods and data checks"
+    menu:
       - text: "Methods notes: Mortality rate calculation"
         href: articles/mortality_rate_calculation.html
       - text: "Data check: Scottish death rates"
         href: articles/scottish_death_rates_data_report.html
       - text: "Methods notes: Mortality forecasting"
-        href: articles/mortality_rate_calculation.html
+        href: articles/mortality_forecasting.html
+      - text: "Technical report"
+        href: articles/STAPM_population_and_mortality_data_report.pdf
   github:
     icon: fab fa-github fa-lg
     href: https://github.com/STAPM/mort.tools

@@ -1,0 +1,249 @@
+---
+title: "The use of population and death count data to inform time-trends in the rates of death and years of life lost to death from tobacco and/or alcohol related diseases"
+subtitle: Version 1.0.1
+biblio-style: apalike
+date: "**`r format(Sys.Date(), format = '%B %Y')`**"
+output: 
+  bookdown::pdf_document2:
+    highlight: haddock
+    number_sections: true
+    toc: false
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage[normalem]{ulem}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{makecell}
+  - \usepackage{amsmath}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage{geometry}
+  - \geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm,}
+  - \usepackage{graphicx}
+  - \usepackage{titling}
+  - \usepackage{tcolorbox}
+  - \usepackage{xcolor}
+  - \usepackage{hyperref}
+  - \usepackage{footnote}
+link-citations: yes
+bibliography:
+  - refs/hes_refs.bib
+  - refs/packages.bib
+  - refs/disease-risks.bib
+  - refs/mort-refs.bib
+always_allow_html: yes
+urlcolor: blue
+editor_options: 
+  chunk_output_type: console
+pkgdown:
+  as_is: true
+  extension: pdf
+---
+
+**Contact**:\
+Duncan Gillespie\
+Email: [duncan.gillespie\@sheffield.ac.uk](mailto:duncan.gillespie@sheffield.ac.uk){.email}
+
+\vskip 1em
+
+
+
+This document is a working version of notes on the methods used to process death and population count data in the Sheffield Tobacco and Alcohol Policy Modelling. It is licensed to The University of Sheffield under a [CC by 4.0](https://creativecommons.org/licenses/by/4.0/) license.   
+
+
+
+```{r setup, include = FALSE, results = 'hide', warning = FALSE}
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.pos = 'H'
+)
+
+options(tinytex.verbose = F)
+
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(data.table))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(readxl))
+suppressPackageStartupMessages(library(ggthemes))
+suppressPackageStartupMessages(library(RColorBrewer))
+suppressPackageStartupMessages(library(cowplot))
+
+```
+
+```{r include=FALSE, eval=F}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+ 
+<!-- # Summary {-} -->
+
+
+<!-- \newpage -->
+
+<!-- # Glossary of terms {-} -->
+
+<!-- ```{r table1, eval = F, warning = F, echo=F, cache = F} -->
+
+<!-- df_table1 <- readxl::read_xlsx('inst/Glossary.xlsx','glossary') -->
+
+<!-- df_table1 %>% -->
+<!--   kableExtra::kbl(booktabs = T, caption = "Explanation of terms.", label = "table1", linesep = "\\hline", escape = F, longtable = T) %>% -->
+<!--   kableExtra::column_spec(column = 1, width = "5cm") %>% -->
+<!--   kableExtra::column_spec(column = 2, width = "11cm") %>% -->
+<!--   kableExtra::kable_styling(font_size = 8, latex_options = c("HOLD_position"))  -->
+
+<!-- ``` -->
+
+<!-- \newpage -->
+
+\hypersetup{linkcolor=blue}
+\tableofcontents
+
+\newpage
+
+
+# Introduction
+Investigating the past trends in deaths associated with tobacco and alcohol consumption is fundamental to evaluating the effect of past policy and appraising the potential effects of new policy.   
+
+The on-going STAPM programme of work at The University of Sheffield is developing public health economic models for policymaker decision support in the fields of alcohol and tobacco control. This work builds on the methods used in the Sheffield Alcohol Policy Model [@Brennan2009;@Brennan2015] and is being conducted at a range of geographic scales, including national and local authority level.   
+
+The two objectives for the use of mortality data for the STAPM modelling are:  
+
+- To investigate past trends in alcohol and/or smoking related deaths and the consequent years of life lost, and the impact of past policy changes on these outcomes.
+- To appraise the future effects of potential interventions or changes to policy on deaths related to alcohol and/or tobacco and the consequent years of life lost.   
+
+This report is focused on explaining the choice of method used in the STAPM modelling for calculating rates of death and life years lost to death.    
+
+
+# Methods
+
+## Population and death count data
+Data on annual counts of deaths and mid-year population sizes - separately for England, Wales and Scotland. England and Wales data provided by the Office for National Statistics; Scotland data provided by National Records Scotland. Time series of data are used from 2001 for England and Wales, and from 2008 for Scotland. Data for national-level STAPM modelling are stratified by Index of Multiple Deprivation (IMD) quintiles, sex (m/f), single years of age up to the open age interval of 90+ years.   
+
+## Preliminary data processing
+Deaths are grouped by the ICD-10 definitions of diseases attributable to tobacco and alcohol developed for the STAPM modelling ([see the information on the relative risks of disease](https://stapm.gitlab.io/data.html#Relative_risks_of_disease)).        
+
+Oesophageal cancer is defined by the ICD-10 code "C15", but has two subtypes "SCC" and "AC" that have different risk relationships to tobacco and alcohol. These subtypes are not identifiable based on the ICD-10 coding system. External data is therefore used to estimate how total oesophageal cancers are split between subtypes (see the disease list reports [@Angus2018;@webster2018risk]).    
+
+consistency of disease coding
+
+- From 2011 onwards, no acute intoxication deaths recorded (F10.0)
+- Before 2011, no acute pancreatitis (alcohol induced) deaths recorded (K85.2)
+
+For some other conditions, e.g. vascular dementia, the time trends indicate changes in the practices of coding deaths that I'm still trying to understand.
+
+## Calculating death rates
+Cause-specific central death rates are calculated for each population subgroup by dividing the annual number of deaths from each cause by the mid-year population size.    
+
+## Smoothing death rates
+Death rates are smoothed by applying a 2d moving average over age and period, by condition, sex and IMD quintile.  
+
+
+
+## Age-standardising death rates
+Age-standardisation uses the 2013 European Standard Population, which provides a standard set of weights for calculating average mortality across all ages.   
+
+Age-standardised rates are also calculated based on the population structure in the data for a chosen index year.   
+
+## Forecasting death rates
+Mortality forecasting methods for STAPM are exploratory   
+
+The aim is to project past trends in the age-patterns of cause-specific mortality into the future separately for each sex and Index of Multiple deprivation population subgroup.   
+
+It is important to consider how mortality might change into the future due to factors that are not related to tobacco or alcohol. For example, the effect of a future policy on cardiovascular disease mortality might be over-estimated if the ongoing declines in cardiovascular mortality rates are not modelled [@castillo2014future]. This presents the challenge of producing forecasts of the age-patterns of cause-specific mortality for each sex and Index of Multiple Deprivation population subgroup. Intervention effects would then be modelled as adjustments to these trends.    
+
+The advantages of conducting a cause-specific forecast is that it would enable us to incorporate different trends for different diseases and different subgroups e.g. that that there are fewer deaths from Ischemic Heart disease but more from dementia, and that lung cancer rates are declining in males but rising in females. Cause-specific forecasts stratified by IMD quintiles would also allow us to incorporate the different socio-economic trends in past mortality and to project an expectation of the future socio-economic trends in mortality.  
+
+There are several methods that might be used [@Li2019;@Arnold2013;@Bergeron-Boucher2017]. One issue with cause-specific mortality forecasting is that the forecasts of cause-specific mortality rates might not add up to / correspond with the forecasts of the aggregate all-cause mortality rates. Wilmoth [-@Wilmoth1995] observed that mortality projections are more pessimistic when disaggregated by cause of death because the causes of death that are decreasing the most slowly or that are increasing come to dominate (i.e. the aggregate trends are most influenced by trends in the causes with the most deaths).  
+
+### Lee-Carter methods
+Our current approach in STAPM is to conduct a Lee-Carter forecast [@Lee1992] separately for mortality from different causes within ten subgroups defined by combinations of sex and IMD quintile. The Lee-carter method is a "proportional rate of change model". It summarises the age-period surface of log-mortality rates ($\log{}m_{xt}$) in terms of vectors $\mathbf{a}$ and $\mathbf{b}$ along the age dimension and $\mathbf{k}$ along the time dimension such that 
+
+\begin{equation}
+\log{}m_{xt}=a_x+b_xk_t+e_{xt}  \label{leecartereq}
+\end{equation}
+
+with restrictions such that the $b$'s are normalized to sum to one and the $k$'s sum to zero, so the $a$'s are average log rates.  
+
+The vector $\mathbf{a}$ can be interpreted as an average age profile of mortality, the vector $\mathbf{k}$ tracks mortality
+changes over time, and the vector $\mathbf{b}$ determines how much each age group changes when $k_t$ changes. When $k_t$ is linear on time each age group changes at its own exponential rate, but this is not a requirement of the model. The error term reflects age-period effects not captured by the model.  
+
+The vector $\mathbf{a}$ is estimated by averaging log rates over time and $\mathbf{b}$ and $\mathbf{k}$ via a singular value decomposition (SVD) of the residuals (this is essentially a method for approximating a matrix as the product of two vectors).  
+
+Having reduced the time dimension of mortality to a single vector $\mathbf{k}$, this is then projected forward by an ARIMA time series model. In our forecasting for STAPM we don't currently incorporate forecast error but if we were to then it would be based on the error in this time series model.  
+
+Future mortality is then estimated by inputting the extrapolated values of $k_t$ back into (\ref{leecartereq}).  
+
+### Experimental application
+Before we conduct our cause and subgroup specific mortality forecast, we have experimented with reducing the noise in the matrix of observed rates of mortality by smoothing each matrix over age and period. To do so, we estimated a moving average based on the application of a two-dimensional sliding window (adjusting the degree of smoothing by adjusting the size of the window). We found that smoothing is particularly important for the rarer causes, as the projected future trends for these causes can be strongly influenced by noise in the observed rates.   
+
+We conducted the forecast using the R package `demography` [@RJHHBLTJ2019]. We conducted a set of cause-specific forecasts and also a forecast of the remaining other-cause mortality. In the `mort.tools` R package, the experimental forecast method is implemented by the function `mort.tools::CombinedForecast()`, which is a wrapper that calls the function `mort.tools::MortalityForecast()` to run the forecast for each cause and groups the outputs together. The forecast is run for ten population subgroups defined by combinations of sex and IMD quintile.  
+
+The parameters that control the forecast for each cause are contained in a separate spreadsheet, which is input into `mort.tools::CombinedForecast()` as `forecast_params` (see Figure). The parameters in this spreadsheet allow the control of the period and and age range that are used to inform the forecast for each cause, and the degree of smoothing to apply to the past trends in mortality.  
+
+<!-- <img src="forecast_spreadsheet_snapshot.png" width = "800" /> -->
+<!-- ![Forecasting parameters for each cause](forecast_spreadsheet_snapshot.png){#id .class width=75% height=75%} -->
+
+```{r forecastparams, out.width="100%", echo=FALSE}
+knitr::include_graphics("inst/forecast_spreadsheet_snapshot.png")
+```
+
+Given all the potential unreliability of a cause-specific forecast, it is important to consider how far in the future the trends in mortality might be extrapolated reliably. Once this final year is determined, if we want the STAPM projections to run beyond it, we assume that the mortality rates in the control arm of our model will remain constant into the future from this final year.   
+
+There is lots of room for improvement in this forecasting method, particularly looking into incorporating forecast uncertainty, and developing methods that improve the consistency between the forecasts of cause-specific mortality and those of all-cause mortality [@Li2019;@Arnold2013;@Bergeron-Boucher2017].
+
+
+<!-- ## Calculating years of life lost to death -->
+
+
+
+
+<!-- # Results -->
+
+
+
+
+
+
+
+<!-- # Discussion -->
+
+
+<!-- ## Use of death rates in the STAPM microsimulation -->
+
+<!-- age ranges used for modelling -->
+<!-- past trends used to inform modelling -->
+
+<!-- whether to allow continuing (forecast) trends in the control arm or not -->
+
+
+
+
+
+
+
+
+
+# References
+
+
+
+
+
+
+
