@@ -87,7 +87,8 @@ Framework, which provides the doi for the package citation
 
 Gillespie D, Webster L, Angus C, Brennan A (\[YEAR\]). mort.tools: An R
 Package for Processing Mortality Microdata. R package version \[x.x.x\].
-University of Sheffield. <https://stapm.github.io/mort.tools/>. doi:
+University of Sheffield.
+<https://stapm.gitlab.io/r-packages/mort.tools/>. doi:
 <https://doi.org/10.17605/OSF.IO/WN6RH>
 
 ## Motivation
