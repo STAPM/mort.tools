@@ -1,0 +1,12 @@
+citHeader("To cite mort.tools in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "mort.tools: An R Package for Processing Mortality Microdata",
+  author   = "Duncan Gillespie and Laura Webster and Colin Angus and Alan Brennan",
+  year     = "2023",
+  note   = "R package version x.x.x [replace with version used]",
+  url      = "https://stapm.gitlab.io/r-packages/mort.tools/",
+  doi = "10.17605/OSF.IO/WN6RH",
+  textVersion = "Gillespie D, Webster L, Angus C, Brennan A ([YEAR]). mort.tools: An R Package for Processing Mortality Microdata. R package version [x.x.x]. University of Sheffield. https://stapm.gitlab.io/r-packages/mort.tools/. doi: https://doi.org/10.17605/OSF.IO/WN6RH"
+)
