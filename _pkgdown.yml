@@ -16,23 +16,21 @@ authors:
 
 navbar:
   structure:
-    left:  [home, intro, reference, articles]
-    right: [github, gitlab, software]
+   left:  [home, intro, reference, articles]
+   right: [github, gitlab, software]
   components:
-    home: ~
-    intro:
+   home: ~
+   intro:
      text: Get started
      href: articles/mort-tools.html
-    reference:
+   reference:
      text: Functions
      href: reference/index.html
   articles:
-    text: "Methods and data checks"
+    text: Methods and data checks
     menu:
       - text: "Methods notes: Mortality rate calculation"
         href: articles/mortality_rate_calculation.html
-      - text: "Data check: Scottish death rates"
-        href: articles/scottish_death_rates_data_report.html
       - text: "Methods notes: Mortality forecasting"
         href: articles/mortality_forecasting.html
       - text: "Technical report"
@@ -69,5 +67,3 @@ reference:
   contents:
   - oesoph_splits
   - esp2013
-
-

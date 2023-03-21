@@ -1,6 +1,6 @@
 
 # The aim of this code is to install and load the packages needed 
-# to calculate Scottish national mortality rates for tobacco-related conditions
+# to calculate Scottish national mortality rates for tobacco- and alcohol related conditions
 
 # Take care to update the package versions where necessary
 

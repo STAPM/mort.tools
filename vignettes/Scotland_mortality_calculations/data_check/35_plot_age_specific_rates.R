@@ -61,10 +61,3 @@ for(cond in condition_names) {
   
 }
 
-# knit the plots to a html
-
-rmarkdown::render(
-  input = "vignettes/Scotland_mortality_calculations/age_specific_death_rates.Rmd", 
-  output_file = here::here("public/articles/age_specific_death_rates"),
-  quiet = TRUE)
-

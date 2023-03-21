@@ -60,6 +60,9 @@ In ScHARR, all data is stored and processed according to the [ScHARR Information
 
 Data checks are brief reports that show the results of the mortality data processing using the mort.tools package. The data checks help to visualise the patterns in the data.      
 
+* [Scottish national death rates](https://stapm.shinyapps.io/scottish_death_rates_dashboard/)
+
+
 ## Code repositories
 The code on Github (https://github.com/STAPM/mort.tools) is a mirror of the code in a private Gitlab repository where the actual development takes place (https://gitlab.com/stapm/r-packages/mort.tools). The code in the Github repository is linked to a repository on the Open Science Framework, which provides the doi for the package citation (https://osf.io/wn6rh/).    
 

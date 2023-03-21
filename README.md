@@ -74,6 +74,9 @@ Data checks are brief reports that show the results of the mortality
 data processing using the mort.tools package. The data checks help to
 visualise the patterns in the data.
 
+- [Scottish national death
+  rates](https://stapm.shinyapps.io/scottish_death_rates_dashboard/)
+
 ## Code repositories
 
 The code on Github (<https://github.com/STAPM/mort.tools>) is a mirror
