@@ -9,6 +9,7 @@ library(mort.tools)
 library(tobalcepi)
 library(stringr)
 
+ver <- packageVersion("mort.tools")
 
 path <- "D:/Scottish death and population data"
 
@@ -60,11 +61,23 @@ deaths_data <- merge(domain, deaths_data, by = c("year", "age", "sex", "imd_quin
 
 deaths_data[is.na(n_deaths), n_deaths := 0]
 
+# check observed numbers of alcohol specific deaths
+#setnames(deaths_data, "cause", "condition")
+#deaths_data <- merge(deaths_data, tobalcepi::disease_groups, by = "condition")
+#deaths_data[age %in% 18:89 & disease_type == "Wholly attributable to alcohol", .(N = sum(n_deaths, na.rm = T)), by = c("year")]
+
+# check age range
+# range(deaths_data$age)
+# 11 to 90
 
 ######## Calculate the central death rates
 
 # Read the population data
-pop_data <- fread(paste0("vignettes/Scotland_mortality_calculations/outputs/pop_sizes_scotland_national_2008-2021_v1_", Sys.Date(), "_mort.tools_", ver, ".csv"))
+pop_data <- fread(paste0("vignettes/Scotland_mortality_calculations/outputs/pop_sizes_scotland_national_2008-2021_v1_", "2023-03-21", "_mort.tools_", "1.6.0", ".csv"))
+
+# check age range
+# range(pop_data$age)
+# 11 to 90
 
 # Merge the deaths and population counts
 deaths_data <- merge(deaths_data, pop_data, by = c("year", "age", "sex", "imd_quintile"), all = T)

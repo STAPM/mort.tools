@@ -2,6 +2,8 @@
 # The aim of this code is to prepare the mortality data 
 # for use in the simulation model
 
+# this involves smoothing the rates of death
+
 library(data.table)
 library(ggplot2)
 library(mort.tools)
@@ -9,8 +11,8 @@ library(mort.tools)
 # Load the mortality data
 
 # Load the processed mortality data
-tobalc_mort_data <- fread(paste0("vignettes/Scotland_mortality_calculations/outputs/tobalc_death_rates_scot_national_2008-2021_v1_", Sys.Date(), "_mort.tools_", ver, ".csv"))
-
+#tobalc_mort_data <- fread(paste0("vignettes/Scotland_mortality_calculations/outputs/tobalc_death_rates_scot_national_2008-2021_v1_", Sys.Date(), "_mort.tools_", ver, ".csv"))
+tobalc_mort_data <- fread(paste0("vignettes/Scotland_mortality_calculations/outputs/tobalc_death_rates_scot_national_2008-2021_v1_", "2023-03-21", "_mort.tools_", "1.6.0", ".csv"))
 
 # Filter data
 
@@ -43,6 +45,11 @@ tobalc_mort_data[ , mix := n_deaths / pops]
 
 
 tobalc_mort_data[is.na(mix), mix := 0]
+
+
+# check observed numbers of alcohol specific deaths
+#data_check <- merge(copy(tobalc_mort_data), tobalcepi::disease_groups, by = "condition")
+#data_check[age %in% 18:89 & disease_type == "Wholly attributable to alcohol", .(N = sum(n_deaths, na.rm = T)), by = c("year")]
 
 
 # For conditions with less than 10 deaths recorded in a year, 
@@ -82,6 +89,11 @@ tobalc_mort_data[ , death_rate_av := NULL]
 #tobalc_mort_data[condition == "Acute_intoxication", .(n = sum(n_deaths)), by = c("condition", "year")]
 
 
+# check observed numbers of alcohol specific deaths
+#data_check <- merge(copy(tobalc_mort_data), tobalcepi::disease_groups, by = "condition")
+#data_check[age %in% 18:89 & disease_type == "Wholly attributable to alcohol", .(N = sum(pops * mix, na.rm = T)), by = c("year")]
+
+
 
 # Smooth mortality rates
 
@@ -112,9 +124,20 @@ setnames(data, "mix", "mix_raw")
 
 tobalc_mort_data <- merge(tobalc_mort_data, data, by = c("age", "sex", "imd_quintile", "year", "condition"), all.x = T, all.y = F)
 
-tobalc_mort_data[ , pops := NULL]
+
+
+# check observed numbers of alcohol specific deaths
+#data_check <- merge(copy(tobalc_mort_data), tobalcepi::disease_groups, by = "condition")
+#data_check[age %in% 18:89 & disease_type == "Wholly attributable to alcohol", .(N = sum(pops * mix, na.rm = T)), by = c("year")]
 
 tobalc_mort_data[condition == "Acute_intoxication", mix := mix_raw]
+
+# check observed numbers of alcohol specific deaths
+#data_check <- merge(copy(tobalc_mort_data), tobalcepi::disease_groups, by = "condition")
+#data_check[age %in% 18:89 & disease_type == "Wholly attributable to alcohol", .(N = sum(pops * mix, na.rm = T)), by = c("year")]
+
+
+tobalc_mort_data[ , pops := NULL]
 
 
 
